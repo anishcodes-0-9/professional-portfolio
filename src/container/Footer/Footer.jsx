@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { BsGithub, BsLinkedin } from 'react-icons/bs';
-import { HiMail } from 'react-icons/hi';
-import { AppWrap, MotionWrap } from '../../wrapper';
-import { personalInfo } from '../../data/anishData';
-import './Footer.scss';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { HiMail } from "react-icons/hi";
+import { AppWrap, MotionWrap } from "../../wrapper";
+import { personalInfo } from "../../data/anishData";
+import "./Footer.scss";
 
 const Footer = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -30,9 +34,12 @@ const Footer = () => {
 
   return (
     <>
-      <h2 className="head-text">Let's <span>Connect</span></h2>
+      <h2 className="head-text">
+        Let's <span>Connect</span>
+      </h2>
       <p className="footer__subtitle">
-        Open to full-time roles, freelance projects, and interesting conversations.
+        Open to full-time roles, freelance projects, and interesting
+        conversations.
       </p>
 
       <div className="footer__links">
@@ -40,13 +47,23 @@ const Footer = () => {
           <HiMail />
           <span>{personalInfo.email}</span>
         </a>
-        <a href={personalInfo.github} target="_blank" rel="noreferrer" className="footer__link-card">
+        <a
+          href={personalInfo.github}
+          target="_blank"
+          rel="noreferrer"
+          className="footer__link-card"
+        >
           <BsGithub />
-          <span>github.com/anish-krishnan</span>
+          <span>github.com/anishcodes-0-9</span>
         </a>
-        <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="footer__link-card">
+        <a
+          href={personalInfo.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          className="footer__link-card"
+        >
           <BsLinkedin />
-          <span>linkedin.com/in/anish-krishnan</span>
+          <span>linkedin.com/in/anishkrishnan09/</span>
         </a>
       </div>
 
@@ -91,7 +108,7 @@ const Footer = () => {
             className="footer__submit-btn"
             onClick={handleSubmit}
           >
-            {loading ? 'Sending...' : 'Send Message →'}
+            {loading ? "Sending..." : "Send Message →"}
           </motion.button>
         </div>
       ) : (
@@ -108,7 +125,7 @@ const Footer = () => {
 };
 
 export default AppWrap(
-  MotionWrap(Footer, 'app__footer'),
-  'contact',
-  'app__primarybg',
+  MotionWrap(Footer, "app__footer"),
+  "contact",
+  "app__primarybg",
 );

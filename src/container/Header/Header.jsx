@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { AppWrap } from '../../wrapper';
-import { personalInfo } from '../../data/anishData';
-import './Header.scss';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { AppWrap } from "../../wrapper";
+import { personalInfo } from "../../data/anishData";
+import "./Header.scss";
 
-const roles = ['Full Stack Engineer', 'Backend Architect', 'AI Enthusiast', 'Cloud Developer'];
+const roles = [
+  "Full Stack Engineer",
+  "Backend Architect",
+  "AI Enthusiast",
+  "Cloud Developer",
+];
 
 const Header = () => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
+  const [displayed, setDisplayed] = useState("");
   const [typing, setTyping] = useState(true);
 
   useEffect(() => {
@@ -17,7 +22,10 @@ const Header = () => {
 
     if (typing) {
       if (displayed.length < currentRole.length) {
-        timeout = setTimeout(() => setDisplayed(currentRole.slice(0, displayed.length + 1)), 70);
+        timeout = setTimeout(
+          () => setDisplayed(currentRole.slice(0, displayed.length + 1)),
+          70,
+        );
       } else {
         timeout = setTimeout(() => setTyping(false), 1800);
       }
@@ -40,7 +48,7 @@ const Header = () => {
 
       <motion.div
         whileInView={{ x: [-60, 0], opacity: [0, 1] }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
         className="app__header-info"
       >
         <p className="header__greeting">Hello World 👋 — I'm</p>
@@ -52,8 +60,12 @@ const Header = () => {
         <p className="header__summary">{personalInfo.summary}</p>
 
         <div className="header__actions">
-          <a href="#work" className="btn btn--primary">View Projects</a>
-          <a href="#contact" className="btn btn--ghost">Get in Touch</a>
+          <a href="#work" className="btn btn--primary">
+            View Projects
+          </a>
+          <a href="#contact" className="btn btn--ghost">
+            Get in Touch
+          </a>
         </div>
 
         <div className="header__meta">
@@ -75,11 +87,11 @@ const Header = () => {
             <span className="avatar__initials">AK</span>
           </div>
           <div className="header__tech-orbit">
-            {['⚛️', '☕', '🐍', '☁️'].map((icon, i) => (
+            {["⚛️", "☕", "🐍", "☁️"].map((icon, i) => (
               <div
                 key={i}
                 className="orbit-item"
-                style={{ '--orbit-index': i }}
+                style={{ "--orbit-index": i }}
               >
                 {icon}
               </div>
@@ -89,7 +101,7 @@ const Header = () => {
 
         <div className="header__stats">
           <div className="stat">
-            <span className="stat__number">3+</span>
+            <span className="stat__number">4+</span>
             <span className="stat__label">Years exp</span>
           </div>
           <div className="stat">
@@ -106,4 +118,4 @@ const Header = () => {
   );
 };
 
-export default AppWrap(Header, 'home');
+export default AppWrap(Header, "home");

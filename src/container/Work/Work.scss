@@ -2,205 +2,527 @@
   flex: 1;
   width: 100%;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 }
 
-.work__subtitle {
-  text-align: center;
-  color: var(--lightGray-color);
-  font-size: 0.95rem;
-  margin-top: 0.75rem;
-}
-
-.app__work-filter {
+// ── Tab Bar ────────────────────────────────────
+.work-tabs {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 2.5rem 0 2rem;
-
-  .app__work-filter-item {
-    padding: 0.45rem 1.1rem;
-    border-radius: 100px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    color: var(--lightGray-color);
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    letter-spacing: 0.03em;
-
-    &:hover {
-      border-color: var(--secondary-color);
-      color: var(--secondary-color);
-    }
-  }
-
-  .item-active {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    color: #fff;
-  }
-}
-
-.app__work-portfolio {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+  margin: 2.5rem 0 0;
+  padding-bottom: 0;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.12);
   width: 100%;
+  max-width: 900px;
 }
 
-.app__work-item {
-  width: 300px;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1.25rem;
-  border-radius: 16px;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+.work-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  color: var(--gray-color);
+  font-family: var(--font-base);
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
 
   &:hover {
-    border-color: rgba(59, 130, 246, 0.4);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+    color: var(--lightGray-color);
+    background: rgba(59, 130, 246, 0.06);
+    border-radius: 8px 8px 0 0;
   }
 
-  @media screen and (max-width: 680px) {
-    width: 100%;
-  }
-}
-
-.app__work-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 0.75rem;
-
-  .work-item__category {
-    font-size: 0.7rem;
-    font-weight: 700;
+  &--active {
     color: var(--secondary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    background: rgba(59, 130, 246, 0.1);
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
+    border-bottom-color: var(--secondary-color);
+
+    &:hover { background: transparent; }
   }
 
-  .work-item__period {
-    font-size: 0.7rem;
-    color: var(--gray-color);
+  &__icon { font-size: 0.9rem; }
+
+  &__soon {
+    font-size: 0.62rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 100px;
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    color: #fbbf24;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-left: 0.2rem;
+  }
+
+  @media screen and (max-width: 700px) {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+
+    &__icon { display: none; }
   }
 }
 
-.app__work-img {
+// ── Tab Panel ─────────────────────────────────
+.work-panel {
   width: 100%;
-  height: 160px;
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #0d1525, #1e2d4a);
+  max-width: 900px;
+  margin-top: 2rem;
+}
 
-  .work-img__placeholder {
+// ── Shared tab content ─────────────────────────
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  &__subtitle {
+    font-size: 0.9rem;
+    color: var(--lightGray-color);
+    line-height: 1.6;
+    margin-bottom: 0.25rem;
+  }
+
+  &--centered {
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+}
+
+// ── Shared chip styles ─────────────────────────
+.chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 100px;
+
+  &--blue {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    color: var(--secondary-color);
+  }
+
+  &--gray {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--lightGray-color);
+  }
+
+  &--cyan {
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    color: #06b6d4;
+  }
+}
+
+// ── Work History Card ──────────────────────────
+.history-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: rgba(59, 130, 246, 0.3); }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__logo {
+    font-size: 1.75rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-
-    span {
-      font-family: var(--font-display);
-      font-size: 4rem;
-      font-weight: 800;
-      color: rgba(59, 130, 246, 0.2);
-    }
+    flex-shrink: 0;
   }
-}
 
-.app__work-hover {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 15, 30, 0.85);
-  border-radius: 10px;
-  opacity: 0;
-  backdrop-filter: blur(4px);
+  &__meta { flex: 1; }
 
-  div {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(59, 130, 246, 0.2);
-    border: 1px solid rgba(59, 130, 246, 0.4);
-    margin: 0.5rem;
-    transition: all 0.25s ease;
-
-    &:hover {
-      background: var(--secondary-color);
-    }
-
-    svg {
-      width: 40%;
-      height: 40%;
-      color: #fff;
-    }
-  }
-}
-
-.app__work-content {
-  width: 100%;
-  position: relative;
-  flex-direction: column;
-
-  h4 {
-    font-size: 1rem;
+  &__company {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--white-color);
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.15rem;
+  }
+
+  &__role {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+
+  &__period {
+    font-size: 0.75rem;
+    color: var(--gray-color);
+    font-weight: 500;
+  }
+
+  &__desc {
+    font-size: 0.875rem;
+    color: var(--lightGray-color);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  &__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    li {
+      font-size: 0.85rem;
+      color: var(--lightGray-color);
+      line-height: 1.6;
+      padding-left: 1.25rem;
+      position: relative;
+
+      &::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: var(--secondary-color);
+        font-size: 0.7rem;
+        top: 0.2rem;
+      }
+    }
+  }
+}
+
+// ── Enterprise Card ────────────────────────────
+.enterprise-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: rgba(59, 130, 246, 0.3); }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__emoji {
+    font-size: 1.75rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white-color);
+    margin: 0 0 0.3rem;
     line-height: 1.3;
   }
 
-  p {
-    font-size: 0.8rem;
+  &__period {
+    font-size: 0.75rem;
     color: var(--gray-color);
-    line-height: 1.55;
-  }
-}
-
-.work-item__highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
-
-  .highlight-tag {
-    font-size: 0.68rem;
-    color: var(--accent-color);
-    background: rgba(6, 182, 212, 0.08);
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    padding: 0.2rem 0.55rem;
-    border-radius: 4px;
     font-weight: 500;
   }
+
+  &__desc {
+    font-size: 0.875rem;
+    color: var(--lightGray-color);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  &__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    li {
+      font-size: 0.85rem;
+      color: var(--lightGray-color);
+      line-height: 1.6;
+      padding-left: 1.25rem;
+      position: relative;
+
+      &::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: var(--secondary-color);
+        font-size: 0.7rem;
+        top: 0.2rem;
+      }
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
 }
 
-.app__work-tag {
-  position: absolute;
-  top: -14px;
-  right: 0;
-  padding: 0.3rem 0.8rem;
-  border-radius: 6px;
-  background: var(--tertiary-color);
+// ── Personal Project Card ──────────────────────
+.personal-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: border-color 0.2s;
 
-  p {
-    font-size: 0.7rem;
-    font-weight: 600;
+  &:hover { border-color: rgba(59, 130, 246, 0.3); }
+
+  &__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white-color);
+    margin: 0;
+    flex: 1;
+  }
+
+  &__links {
+    display: flex;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  &__desc {
+    font-size: 0.875rem;
     color: var(--lightGray-color);
+    line-height: 1.7;
+    margin-bottom: 1.1rem;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-base);
+  text-decoration: none;
+  transition: all 0.2s;
+  background: var(--secondary-color);
+  color: #fff;
+  border: 1px solid var(--secondary-color);
+
+  svg { font-size: 0.85rem; }
+
+  &:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+  }
+
+  &--live {
+    background: transparent;
+    color: var(--secondary-color);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: var(--secondary-color);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// ── Certification Card ─────────────────────────
+.cert-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: rgba(59, 130, 246, 0.3); }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  &__emoji { font-size: 1.4rem; }
+
+  &__name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white-color);
+    margin: 0;
+  }
+
+  &__row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gray-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  &__value {
+    font-size: 0.875rem;
+    color: var(--lightGray-color);
+    font-weight: 500;
+  }
+
+  &__id {
+    font-size: 0.78rem;
+    color: var(--lightGray-color);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.1rem;
+    flex-wrap: wrap;
+  }
+}
+
+.cert-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-base);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+
+  &--primary {
+    background: var(--secondary-color);
+    color: #fff;
+
+    &:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+  }
+
+  &--secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--lightGray-color);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--white-color);
+    }
+  }
+}
+
+// ── Coming Soon ────────────────────────────────
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  &__icon { font-size: 3.5rem; }
+
+  &__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white-color);
+    margin: 0;
+  }
+
+  &__text {
+    font-size: 0.95rem;
+    color: var(--lightGray-color);
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0;
+  }
+
+  &__badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    color: #fbbf24;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
   }
 }
