@@ -10,21 +10,19 @@ import {
 } from '../../data/anishData';
 import './Work.scss';
 
-// ─── Tab definitions ──────────────────────────
 const TABS = [
-  { id: 'history',    label: 'Work History',        icon: '🏢' },
-  { id: 'enterprise', label: 'Enterprise Projects',  icon: '⚡' },
-  { id: 'personal',   label: 'Personal Projects',    icon: '🛠️' },
-  { id: 'certs',      label: 'Certifications',       icon: '🏆' },
-  { id: 'blogs',      label: 'Blogs',                icon: '✍️', soon: true },
+  { id: 'history', label: 'Work History', icon: '🏢' },
+  { id: 'enterprise', label: 'Enterprise Projects', icon: '⚡' },
+  { id: 'personal', label: 'Personal Projects', icon: '🛠️' },
+  { id: 'certs', label: 'Certifications', icon: '🏆' },
+  { id: 'blogs', label: 'Blogs', icon: '✍️', soon: true },
 ];
 
-// ─── Work History Tab ─────────────────────────
 const WorkHistoryTab = () => (
   <div className="tab-content">
     {workHistory.map((job, i) => (
       <motion.div
-        key={job.company + job.role}
+        key={`${job.company}-${job.role}`}
         className="history-card"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -49,7 +47,6 @@ const WorkHistoryTab = () => (
   </div>
 );
 
-// ─── Enterprise Projects Tab ──────────────────
 const EnterpriseTab = () => (
   <div className="tab-content">
     {enterpriseProjects.map((proj, i) => (
@@ -83,11 +80,10 @@ const EnterpriseTab = () => (
   </div>
 );
 
-// ─── Personal Projects Tab ────────────────────
 const PersonalTab = () => (
   <div className="tab-content">
     <p className="tab-content__subtitle">
-      Some things I've built while experimenting with systems, AI, and interactive interfaces.
+      Some things I&apos;ve built while experimenting with systems, AI, and interactive interfaces.
     </p>
     {personalProjects.map((proj, i) => (
       <motion.div
@@ -125,7 +121,6 @@ const PersonalTab = () => (
   </div>
 );
 
-// ─── Certifications Tab ───────────────────────
 const CertsTab = () => (
   <div className="tab-content">
     {certifications.map((cert, i) => (
@@ -161,7 +156,6 @@ const CertsTab = () => (
   </div>
 );
 
-// ─── Blogs Tab (Coming Soon) ──────────────────
 const BlogsTab = () => (
   <div className="tab-content tab-content--centered">
     <motion.div
@@ -182,16 +176,14 @@ const BlogsTab = () => (
   </div>
 );
 
-// ─── Tab content map ──────────────────────────
 const TAB_COMPONENTS = {
-  history:    <WorkHistoryTab />,
+  history: <WorkHistoryTab />,
   enterprise: <EnterpriseTab />,
-  personal:   <PersonalTab />,
-  certs:      <CertsTab />,
-  blogs:      <BlogsTab />,
+  personal: <PersonalTab />,
+  certs: <CertsTab />,
+  blogs: <BlogsTab />,
 };
 
-// ─── Main Work Component ──────────────────────
 const Work = () => {
   const [activeTab, setActiveTab] = useState('history');
 
@@ -199,10 +191,10 @@ const Work = () => {
     <>
       <h2 className="head-text">My <span>Work</span></h2>
 
-      {/* Tab bar */}
       <div className="work-tabs">
         {TABS.map((tab) => (
           <button
+            type="button"
             key={tab.id}
             className={`work-tab ${activeTab === tab.id ? 'work-tab--active' : ''}`}
             onClick={() => setActiveTab(tab.id)}
@@ -214,7 +206,6 @@ const Work = () => {
         ))}
       </div>
 
-      {/* Tab panel */}
       <div className="work-panel">
         <AnimatePresence mode="wait">
           <motion.div

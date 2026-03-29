@@ -4,11 +4,11 @@ import { chatbotContext } from '../../data/anishData';
 import './Chatbot.scss';
 
 const QUICK_QUESTIONS = [
-  "What projects has Anish built?",
-  "What are his main skills?",
-  "Where has he worked?",
-  "Is he open to work?",
-  "What certifications does he have?",
+  'What projects has Anish built?',
+  'What are his main skills?',
+  'Where has he worked?',
+  'Is he open to work?',
+  'What certifications does he have?',
 ];
 
 const TypingDots = () => (
@@ -58,7 +58,7 @@ const Chatbot = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
+          Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           model: 'gpt-4o-mini',
@@ -83,7 +83,7 @@ const Chatbot = () => {
         ...prev,
         {
           role: 'assistant',
-          content: "Oops! Something went wrong. Make sure REACT_APP_OPENAI_API_KEY is set in your .env file.",
+          content: 'Oops! Something went wrong. Make sure REACT_APP_OPENAI_API_KEY is set in your .env file.',
         },
       ]);
     } finally {
@@ -100,8 +100,8 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* FAB */}
       <motion.button
+        type="button"
         className="chatbot__fab"
         onClick={() => setOpen((o) => !o)}
         whileHover={{ scale: 1.08 }}
@@ -124,19 +124,17 @@ const Chatbot = () => {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            {/* Header */}
             <div className="chatbot__header">
               <div className="chatbot__avatar">AK</div>
               <div className="chatbot__header-info">
-                <h4>Ask Anish's AI</h4>
+                <h4>Ask Anish&apos;s AI</h4>
                 <span className="chatbot__status">
                   <span className="status-dot" /> Online
                 </span>
               </div>
-              <button className="chatbot__close" onClick={() => setOpen(false)}>✕</button>
+              <button type="button" className="chatbot__close" onClick={() => setOpen(false)}>✕</button>
             </div>
 
-            {/* Messages */}
             <div className="chatbot__messages">
               {messages.map((msg, i) => (
                 <motion.div
@@ -157,18 +155,16 @@ const Chatbot = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick questions — only show on first load */}
             {messages.length === 1 && (
               <div className="chatbot__quickq">
                 {QUICK_QUESTIONS.map((q) => (
-                  <button key={q} className="quickq-btn" onClick={() => sendMessage(q)}>
+                  <button type="button" key={q} className="quickq-btn" onClick={() => sendMessage(q)}>
                     {q}
                   </button>
                 ))}
               </div>
             )}
 
-            {/* Input */}
             <div className="chatbot__input-row">
               <input
                 ref={inputRef}
@@ -181,6 +177,7 @@ const Chatbot = () => {
                 disabled={loading}
               />
               <button
+                type="button"
                 className="chatbot__send"
                 onClick={() => sendMessage()}
                 disabled={loading || !input.trim()}
