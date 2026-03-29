@@ -41,11 +41,13 @@
     box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
   }
 
-  .profile-item__emoji {
+  /* JSX uses .profile-emoji */
+  .profile-emoji {
     font-size: 2rem;
     line-height: 1;
   }
 
+  h3,
   h2 {
     font-size: 1rem;
     font-weight: 700;
@@ -63,11 +65,13 @@
   }
 }
 
+/* ── Certifications block ─────────────────────────────────── */
 .about__certs {
   margin-top: 3.5rem;
   width: 100%;
 
-  .about__certs-title {
+  /* JSX uses .certs__label */
+  .certs__label {
     font-family: var(--font-display);
     font-size: 1.1rem;
     font-weight: 700;
@@ -76,14 +80,16 @@
     margin-bottom: 1.25rem;
   }
 
-  .about__certs-list {
+  /* JSX uses .certs__list */
+  .certs__list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.75rem;
   }
 
-  .cert-badge {
+  /* JSX uses .cert__badge */
+  .cert__badge {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -92,20 +98,15 @@
     border-radius: 100px;
     background: var(--card-bg);
 
-    .cert-badge__dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .cert-badge__name {
+    /* JSX uses .cert__name */
+    .cert__name {
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--white-color);
     }
 
-    .cert-badge__level {
+    /* JSX uses .cert__level */
+    .cert__level {
       font-size: 0.7rem;
       color: var(--gray-color);
     }
