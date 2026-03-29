@@ -1,79 +1,107 @@
 import React, { useState } from 'react';
-
-import { images } from '../../constants';
+import { motion } from 'framer-motion';
+import { BsGithub, BsLinkedin } from 'react-icons/bs';
+import { HiMail } from 'react-icons/hi';
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { client } from '../../client';
+import { personalInfo } from '../../data/anishData';
 import './Footer.scss';
 
 const Footer = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { username, email, message } = formData;
-
-  const handleChangeInput = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = () => {
+    if (!formData.name || !formData.email || !formData.message) return;
     setLoading(true);
-
-    const contact = {
-      _type: 'contact',
-      name: formData.username,
-      email: formData.email,
-      message: formData.message,
-    };
-
-    client.create(contact)
-      .then(() => {
-        setLoading(false);
-        setIsFormSubmitted(true);
-      })
-      .catch((err) => console.log(err));
+    // Replace with your preferred form submission (Formspree, EmailJS, etc.)
+    const mailtoLink = `mailto:${personalInfo.email}?subject=Portfolio Contact from ${formData.name}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${formData.email}`;
+    window.open(mailtoLink);
+    setTimeout(() => {
+      setLoading(false);
+      setIsSubmitted(true);
+    }, 600);
   };
 
   return (
     <>
-      <h2 className="head-text">Take a coffee & chat with me</h2>
+      <h2 className="head-text">Let's <span>Connect</span></h2>
+      <p className="footer__subtitle">
+        Open to full-time roles, freelance projects, and interesting conversations.
+      </p>
 
-      <div className="app__footer-cards">
-        <div className="app__footer-card ">
-          <img src={images.email} alt="email" />
-          <a href="mailto:hello@micael.com" className="p-text">hello@micael.com</a>
-        </div>
-        <div className="app__footer-card">
-          <img src={images.mobile} alt="phone" />
-          <a href="tel:+1 (123) 456-7890" className="p-text">+1 (123) 456-7890</a>
-        </div>
+      <div className="footer__links">
+        <a href={`mailto:${personalInfo.email}`} className="footer__link-card">
+          <HiMail />
+          <span>{personalInfo.email}</span>
+        </a>
+        <a href={personalInfo.github} target="_blank" rel="noreferrer" className="footer__link-card">
+          <BsGithub />
+          <span>github.com/anish-krishnan</span>
+        </a>
+        <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="footer__link-card">
+          <BsLinkedin />
+          <span>linkedin.com/in/anish-krishnan</span>
+        </a>
       </div>
-      {!isFormSubmitted ? (
-        <div className="app__footer-form app__flex">
-          <div className="app__flex">
-            <input className="p-text" type="text" placeholder="Your Name" name="username" value={username} onChange={handleChangeInput} />
+
+      {!isSubmitted ? (
+        <div className="app__footer-form">
+          <h3 className="footer__form-title">Drop a message</h3>
+          <div className="form__row">
+            <div className="app__flex form__field">
+              <input
+                className="p-text"
+                type="text"
+                placeholder="Your Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="app__flex form__field">
+              <input
+                className="p-text"
+                type="email"
+                placeholder="Your Email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-          <div className="app__flex">
-            <input className="p-text" type="email" placeholder="Your Email" name="email" value={email} onChange={handleChangeInput} />
-          </div>
-          <div>
+          <div className="app__flex form__field">
             <textarea
               className="p-text"
-              placeholder="Your Message"
-              value={message}
+              placeholder="Your message..."
+              value={formData.message}
               name="message"
-              onChange={handleChangeInput}
+              onChange={handleChange}
             />
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            type="button"
+            className="footer__submit-btn"
+            onClick={handleSubmit}
+          >
+            {loading ? 'Sending...' : 'Send Message →'}
+          </motion.button>
         </div>
       ) : (
-        <div>
-          <h3 className="head-text">
-            Thank you for getting in touch!
-          </h3>
-        </div>
+        <motion.div
+          whileInView={{ opacity: [0, 1], y: [20, 0] }}
+          className="footer__success"
+        >
+          <span>✅</span>
+          <h3>Thanks for reaching out! I'll get back to you soon.</h3>
+        </motion.div>
       )}
     </>
   );
@@ -82,5 +110,5 @@ const Footer = () => {
 export default AppWrap(
   MotionWrap(Footer, 'app__footer'),
   'contact',
-  'app__whitebg',
+  'app__primarybg',
 );

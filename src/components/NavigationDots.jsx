@@ -1,19 +1,21 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/anchor-has-content */
-
 import React from 'react';
 
-const NavigationDots = ({ active }) => (
-  <div className="app__navigation">
-    {['home', 'about', 'work', 'skills', 'testimonial', 'contact'].map((item, index) => (
-      <a
-        href={`#${item}`}
-        key={item + index}
-        className="app__navigation-dot"
-        style={active === item ? { backgroundColor: '#313BAC' } : {}}
-      />
-    ))}
-  </div>
-);
+const NavigationDots = ({ active }) => {
+  const sections = ['home', 'about', 'work', 'skills', 'contact'];
+
+  return (
+    <div className="app__navigation">
+      {sections.map((item) => (
+        <a
+          href={`#${item}`}
+          key={item}
+          className="app__navigation-dot"
+          style={active === item ? { backgroundColor: '#3b82f6' } : {}}
+          title={item}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default NavigationDots;

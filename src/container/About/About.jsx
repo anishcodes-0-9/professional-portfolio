@@ -1,43 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-
 import { AppWrap, MotionWrap } from '../../wrapper';
+import { aboutCards, certifications } from '../../data/anishData';
 import './About.scss';
-import { urlFor, client } from '../../client';
 
-const About = () => {
-  const [abouts, setAbouts] = useState([]);
+const About = () => (
+  <>
+    <h2 className="head-text">
+      About <span>Me</span>
+    </h2>
+    <p className="about__subtitle">
+      A Full Stack Engineer who bridges scalable backend systems with polished frontend experiences.
+      Currently shaping how AI writes trustworthy code.
+    </p>
 
-  useEffect(() => {
-    const query = '*[_type == "abouts"]';
+    <div className="app__profiles">
+      {aboutCards.map((card, index) => (
+        <motion.div
+          whileInView={{ opacity: [0, 1], y: [30, 0] }}
+          whileHover={{ y: -6 }}
+          transition={{ duration: 0.5, delay: index * 0.1, type: 'tween' }}
+          className="app__profile-item"
+          key={card.title}
+        >
+          <div className="profile-item__emoji">{card.emoji}</div>
+          <h2 className="bold-text">{card.title}</h2>
+          <p className="p-text">{card.description}</p>
+        </motion.div>
+      ))}
+    </div>
 
-    client.fetch(query).then((data) => {
-      setAbouts(data);
-    });
-  }, []);
-
-  return (
-    <>
-      <h2 className="head-text">I Know that <span>Good Design</span> <br />means  <span>Good Business</span></h2>
-
-      <div className="app__profiles">
-        {abouts.map((about, index) => (
-          <motion.div
-            whileInView={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.5, type: 'tween' }}
-            className="app__profile-item"
-            key={about.title + index}
-          >
-            <img src={urlFor(about.imgUrl)} alt={about.title} />
-            <h2 className="bold-text" style={{ marginTop: 20 }}>{about.title}</h2>
-            <p className="p-text" style={{ marginTop: 10 }}>{about.description}</p>
-          </motion.div>
+    <div className="about__certs">
+      <h3 className="about__certs-title">Certifications</h3>
+      <div className="about__certs-list">
+        {certifications.map((cert) => (
+          <div className="cert-badge" key={cert.name} style={{ borderColor: cert.color + '44' }}>
+            <span className="cert-badge__dot" style={{ background: cert.color }} />
+            <span className="cert-badge__name">{cert.name}</span>
+            <span className="cert-badge__level">{cert.level}</span>
+          </div>
         ))}
       </div>
-    </>
-  );
-};
+    </div>
+  </>
+);
 
 export default AppWrap(
   MotionWrap(About, 'app__about'),

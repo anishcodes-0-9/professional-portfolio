@@ -5,15 +5,16 @@
 }
 
 .app__skills-container {
-  width: 80%;
+  width: 90%;
   margin-top: 3rem;
-
   display: flex;
   flex-direction: row;
+  gap: 4rem;
 
   @media screen and (max-width: 900px) {
     width: 100%;
     flex-direction: column;
+    gap: 2.5rem;
   }
 }
 
@@ -22,136 +23,134 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: flex-start;
-
-  margin-right: 5rem;
+  align-content: flex-start;
+  gap: 0.85rem;
 
   @media screen and (max-width: 900px) {
-    margin-right: 0;
     justify-content: center;
-    align-items: center;
   }
 }
 
 .app__skills-item {
   flex-direction: column;
   text-align: center;
+  gap: 0.4rem;
+  transition: transform 0.2s ease;
 
-  margin: 1rem;
+  &:hover {
+    transform: translateY(-4px);
+  }
 
-  transition: all 0.3s ease-in-out;
+  .skill-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
 
-  div {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background-color: #fef4f5;
-
-    img {
-      width: 50%;
-      height: 50%;
-    }
-
-    &:hover {
-      box-shadow: 0 0 25px #fef4f5;
-    }
-
-    @media screen and (min-width: 2000px) {
-      width: 150px;
-      height: 150px;
-    }
-
-    @media screen and (max-width: 450px) {
-      width: 70px;
-      height: 70px;
+    .skill-icon__letter {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--secondary-color);
+      opacity: 0.8;
     }
   }
 
   p {
+    font-size: 0.72rem;
     font-weight: 500;
-    margin-top: 0.5rem;
-  }
-
-  @media screen and (min-width: 2000px) {
-    margin: 1rem 2rem;
-
-    p {
-      margin-top: 1rem;
-    }
+    color: var(--lightGray-color);
+    margin-top: 0.25rem;
   }
 }
 
 .app__skills-exp {
   flex: 1;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
   flex-direction: column;
+  gap: 1.75rem;
+}
 
-  @media screen and (max-width: 900px) {
-    margin-top: 2rem;
-  }
+.skills__exp-heading {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--lightGray-color);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
 }
 
 .app__skills-exp-item {
-  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 1rem 0;
+  gap: 1.5rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 72px;
+    top: 0;
+    bottom: -1.75rem;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(59,130,246,0.3), transparent);
+  }
+
+  &:last-child::before { display: none; }
+}
+
+.app__skills-exp-year {
+  width: 72px;
+  flex-shrink: 0;
+
+  p {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-align: right;
+    padding-top: 0.15rem;
+    white-space: nowrap;
+  }
 }
 
 .app__skills-exp-works {
   flex: 1;
-
-  .app__skills-exp-work {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    cursor: pointer;
-
-    h4 {
-      font-weight: 500;
-    }
-
-    p {
-      font-weight: 400;
-      color: var(--gray-color);
-      margin-top: 5px;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.app__skills-exp-year {
-  margin-right: 3rem;
+.app__skills-exp-work {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  transition: border-color 0.2s ease;
 
-  p {
-    font-weight: 800;
+  &:hover {
+    border-color: rgba(59, 130, 246, 0.35);
+  }
+
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white-color);
+    margin-bottom: 0.2rem;
+  }
+
+  .work__company {
     color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 0.78rem;
+    margin-bottom: 0.5rem;
   }
 
-  @media screen and (max-width: 450px) {
-    margin-right: 1rem;
-  }
-}
-
-.skills-tooltip {
-  max-width: 300px !important;
-  background-color: var(--white-color) !important;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1) !important;
-  border-radius: 5px !important;
-  padding: 1rem !important;
-  color: var(--gray-color) !important;
-  text-align: center !important;
-  line-height: 1.5 !important;
-  opacity: 1 !important;
-
-  @media screen and (min-width: 2000px) {
-    font-size: 1.75rem !important;
-    max-width: 500px !important;
-    line-height: 2 !important;
+  .work__desc {
+    font-size: 0.78rem;
+    color: var(--gray-color);
+    line-height: 1.55;
   }
 }

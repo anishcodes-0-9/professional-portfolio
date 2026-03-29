@@ -1,71 +1,109 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
 import { AppWrap } from '../../wrapper';
-import { images } from '../../constants';
+import { personalInfo } from '../../data/anishData';
 import './Header.scss';
 
-const scaleVariants = {
-  whileInView: {
-    scale: [0, 1],
-    opacity: [0, 1],
-    transition: {
-      duration: 1,
-      ease: 'easeInOut',
-    },
-  },
-};
+const roles = ['Full Stack Engineer', 'Backend Architect', 'AI Enthusiast', 'Cloud Developer'];
 
-const Header = () => (
-  <div className="app__header app__flex">
-    <motion.div
-      whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-      transition={{ duration: 0.5 }}
-      className="app__header-info"
-    >
-      <div className="app__header-badge">
-        <div className="badge-cmp app__flex">
-          <span>👋</span>
-          <div style={{ marginLeft: 20 }}>
-            <p className="p-text">Hello, I am</p>
-            <h1 className="head-text">Micael</h1>
+const Header = () => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [typing, setTyping] = useState(true);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+    let timeout;
+
+    if (typing) {
+      if (displayed.length < currentRole.length) {
+        timeout = setTimeout(() => setDisplayed(currentRole.slice(0, displayed.length + 1)), 70);
+      } else {
+        timeout = setTimeout(() => setTyping(false), 1800);
+      }
+    } else {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40);
+      } else {
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+        setTyping(true);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayed, typing, roleIndex]);
+
+  return (
+    <div className="app__header app__flex">
+      {/* Animated grid background */}
+      <div className="header__grid-bg" />
+
+      <motion.div
+        whileInView={{ x: [-60, 0], opacity: [0, 1] }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        className="app__header-info"
+      >
+        <p className="header__greeting">Hello World 👋 — I'm</p>
+        <h1 className="header__name">{personalInfo.name}</h1>
+        <h2 className="header__role">
+          <span className="typed-text">{displayed}</span>
+          <span className="cursor">|</span>
+        </h2>
+        <p className="header__summary">{personalInfo.summary}</p>
+
+        <div className="header__actions">
+          <a href="#work" className="btn btn--primary">View Projects</a>
+          <a href="#contact" className="btn btn--ghost">Get in Touch</a>
+        </div>
+
+        <div className="header__meta">
+          <span>📍 {personalInfo.location}</span>
+          <span className="header__available">
+            <span className="pulse-dot" /> Available for opportunities
+          </span>
+        </div>
+      </motion.div>
+
+      <motion.div
+        whileInView={{ opacity: [0, 1], scale: [0.9, 1] }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="app__header-visual"
+      >
+        <div className="header__avatar-container">
+          <div className="header__avatar-glow" />
+          <div className="header__avatar">
+            <span className="avatar__initials">AK</span>
+          </div>
+          <div className="header__tech-orbit">
+            {['⚛️', '☕', '🐍', '☁️'].map((icon, i) => (
+              <div
+                key={i}
+                className="orbit-item"
+                style={{ '--orbit-index': i }}
+              >
+                {icon}
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="tag-cmp app__flex">
-          <p className="p-text">Web Developer</p>
-          <p className="p-text">Freelancer</p>
+        <div className="header__stats">
+          <div className="stat">
+            <span className="stat__number">3+</span>
+            <span className="stat__label">Years exp</span>
+          </div>
+          <div className="stat">
+            <span className="stat__number">10M+</span>
+            <span className="stat__label">Users served</span>
+          </div>
+          <div className="stat">
+            <span className="stat__number">3×</span>
+            <span className="stat__label">AWS Certified</span>
+          </div>
         </div>
-      </div>
-    </motion.div>
-
-    <motion.div
-      whileInView={{ opacity: [0, 1] }}
-      transition={{ duration: 0.5, delayChildren: 0.5 }}
-      className="app__header-img"
-    >
-      <img src={images.profile} alt="profile_bg" />
-      <motion.img
-        whileInView={{ scale: [0, 1] }}
-        transition={{ duration: 1, ease: 'easeInOut' }}
-        src={images.circle}
-        alt="profile_circle"
-        className="overlay_circle"
-      />
-    </motion.div>
-
-    <motion.div
-      variants={scaleVariants}
-      whileInView={scaleVariants.whileInView}
-      className="app__header-circles"
-    >
-      {[images.flutter, images.redux, images.sass].map((circle, index) => (
-        <div className="circle-cmp app__flex" key={`circle-${index}`}>
-          <img src={circle} alt="profile_bg" />
-        </div>
-      ))}
-    </motion.div>
-  </div>
-);
+      </motion.div>
+    </div>
+  );
+};
 
 export default AppWrap(Header, 'home');
