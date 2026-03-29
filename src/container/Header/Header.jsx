@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { AppWrap } from '../../wrapper';
-import { personalInfo } from '../../data/anishData';
-import './Header.scss';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { AppWrap } from "../../wrapper";
+import { personalInfo } from "../../data/anishData";
+import "./Header.scss";
 
 const roles = personalInfo.taglines;
 
 const Header = () => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
+  const [displayed, setDisplayed] = useState("");
   const [typing, setTyping] = useState(true);
 
   useEffect(() => {
@@ -17,7 +17,10 @@ const Header = () => {
 
     if (typing) {
       if (displayed.length < currentRole.length) {
-        timeout = setTimeout(() => setDisplayed(currentRole.slice(0, displayed.length + 1)), 70);
+        timeout = setTimeout(
+          () => setDisplayed(currentRole.slice(0, displayed.length + 1)),
+          70,
+        );
       } else {
         timeout = setTimeout(() => setTyping(false), 1800);
       }
@@ -31,7 +34,7 @@ const Header = () => {
     return () => clearTimeout(timeout);
   }, [displayed, typing, roleIndex]);
 
-  const techBadges = ['Java', 'Spring Boot', 'React', 'AWS', 'K8s'];
+  const techBadges = ["Java", "Spring Boot", "React", "AWS", "K8s"];
 
   return (
     <div className="app__header app__flex">
@@ -75,7 +78,8 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          Full Stack Engineer building scalable distributed systems for 10M+ users.
+          Full Stack Engineer building scalable distributed systems for 10M+
+          users.
           <br />
           3+ years at Cognizant · AWS Certified · Currently at Alignerr
         </motion.p>
@@ -87,7 +91,9 @@ const Header = () => {
           transition={{ delay: 1 }}
         >
           {techBadges.map((b) => (
-            <span key={b} className="header__badge">{b}</span>
+            <span key={b} className="header__badge">
+              {b}
+            </span>
           ))}
         </motion.div>
 
@@ -97,8 +103,12 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
         >
-          <a href="#work" className="cta-primary">View Projects</a>
-          <a href="#contact" className="cta-secondary">Get in Touch</a>
+          <a href="#work" className="cta-primary">
+            View Projects
+          </a>
+          <a href="#contact" className="cta-secondary">
+            Get in Touch
+          </a>
         </motion.div>
       </motion.div>
 
@@ -109,10 +119,9 @@ const Header = () => {
         transition={{ delay: 0.6, duration: 0.8 }}
       >
         {[
-          { num: '3+', label: 'Years Exp' },
-          { num: '10M+', label: 'Users Served' },
-          { num: '3×', label: 'AWS Certified' },
-          { num: '4.5/5', label: 'Alignerr Score' },
+          { num: "3+", label: "Years Exp" },
+          { num: "10M+", label: "Users Served" },
+          { num: "3×", label: "AWS Certified" },
         ].map((stat) => (
           <div key={stat.label} className="header__stat-card">
             <span className="stat-num">{stat.num}</span>
@@ -132,4 +141,4 @@ const Header = () => {
   );
 };
 
-export default AppWrap(Header, 'home');
+export default AppWrap(Header, "home");

@@ -4,6 +4,43 @@ import { AppWrap, MotionWrap } from '../../wrapper';
 import { skills, experiences } from '../../data/anishData';
 import './Skills.scss';
 
+// Map skill names to their devicon class names
+const deviconMap = {
+  Java:         'java',
+  'Spring Boot':'spring',
+  React:        'react',
+  'Next.js':    'nextjs',
+  'Node.js':    'nodejs',
+  Python:       'python',
+  JavaScript:   'javascript',
+  TypeScript:   'typescript',
+  PostgreSQL:   'postgresql',
+  MongoDB:      'mongodb',
+  Redis:        'redis',
+  Docker:       'docker',
+  Kubernetes:   'kubernetes',
+  AWS:          'amazonwebservices',
+  Terraform:    'terraform',
+  Dynatrace:    'dynatrace',
+  'Vue.js':     'vuejs',
+  GraphQL:      'graphql',
+};
+
+const SkillIcon = ({ name }) => {
+  const icon = deviconMap[name];
+  if (icon) {
+    return (
+      <i
+        className={`devicon-${icon}-plain colored`}
+        title={name}
+        aria-label={name}
+      />
+    );
+  }
+  // Fallback: first 2 letters
+  return <span className="skill-initial">{name.slice(0, 2)}</span>;
+};
+
 const Skills = () => (
   <>
     <h2 className="head-text">
@@ -21,11 +58,8 @@ const Skills = () => (
             whileHover={{ y: -4 }}
             className="app__skills-item app__flex"
           >
-            <div
-              className="skill-icon"
-              style={{ background: skill.bgColor }}
-            >
-              <span className="skill-initial">{skill.name.slice(0, 2)}</span>
+            <div className="skill-icon app__flex">
+              <SkillIcon name={skill.name} />
             </div>
             <p className="p-text">{skill.name}</p>
           </motion.div>

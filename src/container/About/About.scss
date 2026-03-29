@@ -14,6 +14,7 @@
   margin: 1rem auto 0;
 }
 
+/* ── Role cards ──────────────────────────────── */
 .app__profiles {
   display: flex;
   justify-content: center;
@@ -41,7 +42,6 @@
     box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
   }
 
-  /* JSX uses .profile-emoji */
   .profile-emoji {
     font-size: 2rem;
     line-height: 1;
@@ -65,50 +65,59 @@
   }
 }
 
-/* ── Certifications block ─────────────────────────────────── */
+/* ── Certifications 2×2 grid ──────────────────── */
 .about__certs {
   margin-top: 3.5rem;
   width: 100%;
+  max-width: 860px;
 
-  /* JSX uses .certs__label */
   .certs__label {
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--white-color);
     text-align: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
   }
 
-  /* JSX uses .certs__list */
   .certs__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media screen and (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
   }
 
-  /* JSX uses .cert__badge */
   .cert__badge {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.1rem 1.4rem;
     border: 1px solid;
-    border-radius: 100px;
+    border-radius: 14px;
     background: var(--card-bg);
+    transition: all 0.25s ease;
 
-    /* JSX uses .cert__name */
-    .cert__name {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--white-color);
+    &:hover {
+      box-shadow: 0 6px 24px rgba(59, 130, 246, 0.12);
+      transform: translateY(-2px);
     }
 
-    /* JSX uses .cert__level */
+    .cert__name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white-color);
+      line-height: 1.35;
+    }
+
     .cert__level {
-      font-size: 0.7rem;
+      font-size: 0.74rem;
       color: var(--gray-color);
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
   }
 }

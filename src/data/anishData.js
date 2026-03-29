@@ -225,7 +225,7 @@ export const skills = [
   { name: 'Kubernetes', bgColor: '#e8f4ff' },
   { name: 'AWS', bgColor: '#fff8e8' },
   { name: 'Terraform', bgColor: '#f0e8ff' },
-  { name: 'Prometheus', bgColor: '#fff0e8' },
+  { name: 'Dynatrace', bgColor: '#e8f0ff' },
   { name: 'Vue.js', bgColor: '#f0fff4' },
   { name: 'GraphQL', bgColor: '#ffe8f8' },
 ];
