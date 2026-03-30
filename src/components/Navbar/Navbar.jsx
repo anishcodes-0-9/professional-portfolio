@@ -18,7 +18,9 @@ const Navbar = () => {
   return (
     <nav className={`app__navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className='app__navbar-logo'>
-        <span className='logo-text'>AK<span className='logo-dot'>.</span></span>
+        <a href='#home' className='logo-text'>
+          AK<span className='logo-dot'>.</span>
+        </a>
       </div>
 
       <ul className='app__navbar-links'>
