@@ -31,7 +31,7 @@ const Navbar = () => {
       </ul>
 
       <a
-        href='https://drive.google.com/file/d/your-resume-link'
+        href='/Anish_Krishnan_Resume.pdf'
         target='_blank'
         rel='noreferrer'
         className='app__navbar-resume'
