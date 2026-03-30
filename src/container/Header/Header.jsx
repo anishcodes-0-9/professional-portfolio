@@ -10,6 +10,7 @@ const Header = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [typing, setTyping] = useState(true);
+  const [isProjectMenuOpen, setIsProjectMenuOpen] = useState(false);
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -34,7 +35,42 @@ const Header = () => {
     return () => clearTimeout(timeout);
   }, [displayed, typing, roleIndex]);
 
-  const techBadges = ["Java", "Spring Boot", "React", "AWS", "K8s"];
+  useEffect(() => {
+    if (!isProjectMenuOpen) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsProjectMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isProjectMenuOpen]);
+
+  const techBadges = ["Java", "Python", "JavaScript", "MySQL", "AWS"];
+
+  const navigateToSection = (sectionId, search = window.location.search) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${search}#${sectionId}`,
+    );
+  };
+
+  const openProjectTab = (tab) => {
+    window.dispatchEvent(
+      new CustomEvent("portfolio:open-work-tab", {
+        detail: { tab },
+      }),
+    );
+    setIsProjectMenuOpen(false);
+    navigateToSection("work", `?tab=${tab}`);
+  };
 
   return (
     <div className="app__header app__flex">
@@ -103,13 +139,57 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
         >
-          <a href="#work" className="cta-primary">
+          <button
+            type="button"
+            className="cta-primary"
+            onClick={() => setIsProjectMenuOpen((open) => !open)}
+            aria-expanded={isProjectMenuOpen}
+            aria-controls="project-type-menu"
+          >
             View Projects
-          </a>
-          <a href="#contact" className="cta-secondary">
+          </button>
+          <button
+            type="button"
+            className="cta-secondary"
+            onClick={() => navigateToSection("contact")}
+          >
             Get in Touch
-          </a>
+          </button>
         </motion.div>
+
+        {isProjectMenuOpen && (
+          <div
+            className="header__project-menu-backdrop"
+            onClick={() => setIsProjectMenuOpen(false)}
+          >
+            <motion.div
+              id="project-type-menu"
+              className="header__project-menu"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <p className="header__project-menu-label">Choose project type</p>
+              <div className="header__project-menu-actions">
+                <button
+                  type="button"
+                  className="header__project-option header__project-option--primary"
+                  onClick={() => openProjectTab("enterprise")}
+                >
+                  Enterprise Projects
+                </button>
+                <button
+                  type="button"
+                  className="header__project-option"
+                  onClick={() => openProjectTab("personal")}
+                >
+                  Personal Projects
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
       </motion.div>
 
       <motion.div
@@ -121,7 +201,7 @@ const Header = () => {
         {[
           { num: "4+", label: "Years Exp" },
           { num: "10M+", label: "Users Served" },
-          { num: "3×", label: "AWS Certified" },
+          { num: "3x", label: "AWS Certified" },
         ].map((stat) => (
           <div key={stat.label} className="header__stat-card">
             <span className="stat-num">{stat.num}</span>
