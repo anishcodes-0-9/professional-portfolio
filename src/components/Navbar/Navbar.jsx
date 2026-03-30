@@ -17,15 +17,15 @@ const Navbar = () => {
 
   return (
     <nav className={`app__navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className='app__navbar-logo'>
-        <a href='#home' className='logo-text'>
-          AK<span className='logo-dot'>.</span>
+      <div className="app__navbar-logo">
+        <a href="#home" className="logo-text">
+          AK<span className="logo-dot">.</span>
         </a>
       </div>
 
-      <ul className='app__navbar-links'>
+      <ul className="app__navbar-links">
         {navLinks.map((item) => (
-          <li className='app__flex p-text' key={`link-${item}`}>
+          <li className="app__flex p-text" key={`link-${item}`}>
             <div />
             <a href={`#${item}`}>{item}</a>
           </li>
@@ -33,15 +33,15 @@ const Navbar = () => {
       </ul>
 
       <a
-        href='/Anish_Krishnan_Resume.pdf'
-        target='_blank'
-        rel='noreferrer'
-        className='app__navbar-resume'
+        href="/Anish_Krishnan_Resume.pdf"
+        target="_blank"
+        rel="noreferrer"
+        className="app__navbar-resume"
       >
         Resume ↗
       </a>
 
-      <div className='app__navbar-menu'>
+      <div className="app__navbar-menu">
         <HiMenuAlt4 onClick={() => setToggle(true)} />
         {toggle && (
           <motion.div

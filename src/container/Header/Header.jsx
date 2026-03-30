@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { AppWrap } from "../../wrapper";
-import { personalInfo } from "../../data/anishData";
-import "./Header.scss";
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { AppWrap } from '../../wrapper';
+import { personalInfo } from '../../data/anishData';
+import './Header.scss';
 
 const roles = personalInfo.taglines;
 
 const Header = () => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
+  const [displayed, setDisplayed] = useState('');
   const [typing, setTyping] = useState(true);
   const [isProjectMenuOpen, setIsProjectMenuOpen] = useState(false);
 
@@ -41,35 +41,35 @@ const Header = () => {
     }
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         setIsProjectMenuOpen(false);
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isProjectMenuOpen]);
 
-  const techBadges = ["Java", "Python", "JavaScript", "MySQL", "AWS"];
+  const techBadges = ['Java', 'Python', 'JavaScript', 'MySQL', 'AWS'];
 
   const navigateToSection = (sectionId, search = window.location.search) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     window.history.replaceState(
       null,
-      "",
+      '',
       `${window.location.pathname}${search}#${sectionId}`,
     );
   };
 
   const openProjectTab = (tab) => {
     window.dispatchEvent(
-      new CustomEvent("portfolio:open-work-tab", {
+      new CustomEvent('portfolio:open-work-tab', {
         detail: { tab },
       }),
     );
     setIsProjectMenuOpen(false);
-    navigateToSection("work", `?tab=${tab}`);
+    navigateToSection('work', `?tab=${tab}`);
   };
 
   return (
@@ -151,7 +151,7 @@ const Header = () => {
           <button
             type="button"
             className="cta-secondary"
-            onClick={() => navigateToSection("contact")}
+            onClick={() => navigateToSection('contact')}
           >
             Get in Touch
           </button>
@@ -175,14 +175,14 @@ const Header = () => {
                 <button
                   type="button"
                   className="header__project-option header__project-option--primary"
-                  onClick={() => openProjectTab("enterprise")}
+                  onClick={() => openProjectTab('enterprise')}
                 >
                   Enterprise Projects
                 </button>
                 <button
                   type="button"
                   className="header__project-option"
-                  onClick={() => openProjectTab("personal")}
+                  onClick={() => openProjectTab('personal')}
                 >
                   Personal Projects
                 </button>
@@ -203,9 +203,9 @@ const Header = () => {
           <span className="header__monogram-dot">.</span>
         </div>
         {[
-          { num: "4+", label: "Years Exp" },
-          { num: "10M+", label: "Users Served" },
-          { num: "3x", label: "AWS Certified" },
+          { num: '4+', label: 'Years Exp' },
+          { num: '10M+', label: 'Users Served' },
+          { num: '3x', label: 'AWS Certified' },
         ].map((stat) => (
           <div key={stat.label} className="header__stat-card">
             <span className="stat-num">{stat.num}</span>
@@ -225,4 +225,4 @@ const Header = () => {
   );
 };
 
-export default AppWrap(Header, "home");
+export default AppWrap(Header, 'home');
