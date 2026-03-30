@@ -1,35 +1,76 @@
-import React, { useState } from "react";
-import { BsGithub, BsLinkedin, BsEnvelope } from "react-icons/bs";
-import { AppWrap, MotionWrap } from "../../wrapper";
-import { personalInfo } from "../../data/anishData";
-import "./Footer.scss";
+import React, { useState } from 'react';
+import { BsGithub, BsLinkedin, BsEnvelope } from 'react-icons/bs';
+import { AppWrap, MotionWrap } from '../../wrapper';
+import { personalInfo } from '../../data/anishData';
+import './Footer.scss';
+
+const FORMSPREE_FORM_ID = process.env.REACT_APP_FORMSPREE_FORM_ID;
+const HAS_FORMSPREE = Boolean(
+  FORMSPREE_FORM_ID && FORMSPREE_FORM_ID !== 'YOUR_FORM_ID',
+);
 
 const Footer = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+    name: '',
+    email: '',
+    message: '',
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submissionMode, setSubmissionMode] = useState('form');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const openMailClient = () => {
+    const subject = encodeURIComponent(
+      `Portfolio inquiry from ${formData.name}`,
+    );
+    const body = encodeURIComponent(
+      [
+        `Name: ${formData.name}`,
+        `Email: ${formData.email}`,
+        '',
+        formData.message,
+      ].join('\n'),
+    );
+
+    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
+  };
+
   const handleSubmit = async () => {
     if (!formData.name || !formData.email || !formData.message) return;
+
     setLoading(true);
+
     try {
-      await fetch("https://formspree.io/f/YOUR_FORM_ID", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      if (HAS_FORMSPREE) {
+        const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Form submission failed');
+        }
+
+        setSubmissionMode('form');
+      } else {
+        openMailClient();
+        setSubmissionMode('mailto');
+      }
+
       setSubmitted(true);
-    } catch (err) {
-      console.error(err);
+    } catch {
+      openMailClient();
+      setSubmissionMode('mailto');
+      setSubmitted(true);
     } finally {
       setLoading(false);
     }
@@ -116,13 +157,17 @@ const Footer = () => {
               onClick={handleSubmit}
               disabled={loading}
             >
-              {loading ? "Sending..." : "Send Message →"}
+              {loading ? 'Sending...' : 'Send Message →'}
             </button>
           </div>
         ) : (
           <div className="footer__success">
             <span>🎉</span>
-            <h3>Message sent! I&apos;ll get back to you soon.</h3>
+            <h3>
+              {submissionMode === 'form'
+                ? "Message sent! I'll get back to you soon."
+                : 'Your email draft is ready to send.'}
+            </h3>
           </div>
         )}
       </div>
@@ -131,7 +176,7 @@ const Footer = () => {
 };
 
 export default AppWrap(
-  MotionWrap(Footer, "app__footer"),
-  "contact",
-  "app__primarybg",
+  MotionWrap(Footer, 'app__footer'),
+  'contact',
+  'app__primarybg',
 );
