@@ -381,12 +381,14 @@
 // ── Certification Card ─────────────────────────
 .cert-card {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(59, 130, 246, 0.12);
+  border: 1px solid color-mix(in srgb, var(--cert-accent, rgba(59, 130, 246, 0.12)) 48%, rgba(255, 255, 255, 0.08));
   border-radius: 16px;
   padding: 1.5rem 1.75rem;
   transition: border-color 0.2s;
 
-  &:hover { border-color: rgba(59, 130, 246, 0.3); }
+  &:hover {
+    border-color: color-mix(in srgb, var(--cert-accent, #3b82f6) 70%, rgba(255, 255, 255, 0.12));
+  }
 
   &__header {
     display: flex;

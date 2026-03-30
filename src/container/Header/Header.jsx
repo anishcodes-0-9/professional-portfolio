@@ -170,7 +170,7 @@ const Header = () => {
               transition={{ duration: 0.2 }}
               onClick={(event) => event.stopPropagation()}
             >
-              <p className="header__project-menu-label">Choose project type</p>
+              <p className="header__project-menu-label">Choose projects type</p>
               <div className="header__project-menu-actions">
                 <button
                   type="button"
@@ -198,6 +198,10 @@ const Header = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
       >
+        <div className="header__monogram" aria-hidden="true">
+          <span className="header__monogram-ak">AK</span>
+          <span className="header__monogram-dot">.</span>
+        </div>
         {[
           { num: "4+", label: "Years Exp" },
           { num: "10M+", label: "Users Served" },

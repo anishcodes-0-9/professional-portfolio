@@ -215,6 +215,7 @@ const CertsTab = () => (
       <motion.div
         key={cert.name}
         className="cert-card"
+        style={{ '--cert-accent': cert.color }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.08 }}
