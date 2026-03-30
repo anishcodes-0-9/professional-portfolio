@@ -10,7 +10,7 @@ export const personalInfo = {
   email: 'anishkrishnan72@gmail.com',
   linkedin: 'https://www.linkedin.com/in/anishkrishnan09/',
   github: 'https://github.com/anishcodes-0-9',
-  portfolio: 'https://anish-portfolio-gamma-steel.vercel.app',
+  portfolio: 'https://anish-krishnan-portfolio.vercel.app/',
   summary:
     'Full Stack Developer with 4+ years building scalable distributed systems for 10M+ users. I specialize in Java Spring Boot, React, and cloud-native architectures. Currently freelancing at Alignerr evaluating AI-generated code for trust-sensitive systems.',
 };
@@ -155,7 +155,7 @@ export const personalProjects = [
       'A Three.js powered interactive room with AI assistant, mini games, and dynamic environment. Clickable objects reveal different sections of the portfolio.',
     tags: ['Three.js', 'React', 'AI', 'WebGL'],
     github: 'https://github.com/anishcodes-0-9/Anish-Portfolio',
-    live: 'https://anish-portfolio-gamma-steel.vercel.app',
+    live: 'https://anish-3d-room-gamma-steel.vercel.app/',
   },
   {
     title: 'AI Support System',
@@ -308,10 +308,10 @@ ENTERPRISE PROJECTS:
 4. Macy's POS (Jul–Oct 2025): POS system UI, SQL tuning, trust-critical releases
 
 PERSONAL PROJECTS:
-- 3D Interactive Portfolio (Three.js, React, AI assistant)
+- 3D Interactive Room (Three.js, React, AI assistant)
 - AI Support System (Python, LLM, FastAPI, RAG)
 - GitHub Issue Analyzer with LLM Processing
-- Distributed Task Queue System (Java, Spring Boot, Redis)
+- Developer Onboarding AI agent (Python, TypeScript, LLM)
 
 CERTIFICATIONS:
 - AWS Cloud Practitioner (Foundational) — ID: E9M0RKJKWM4E1DK3
