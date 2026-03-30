@@ -24,6 +24,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #0a0f1e;
   color: #fcfcfc;
+  overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

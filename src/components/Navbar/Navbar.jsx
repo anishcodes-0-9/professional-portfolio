@@ -57,6 +57,16 @@ const Navbar = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/Anish_Krishnan_Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setToggle(false)}
+                >
+                  resume
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}
