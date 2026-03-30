@@ -17,7 +17,6 @@ const Footer = () => {
   const handleSubmit = async () => {
     if (!formData.name || !formData.email || !formData.message) return;
     setLoading(true);
-
     try {
       await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
@@ -34,71 +33,71 @@ const Footer = () => {
 
   return (
     <>
-      <h2 className="head-text">
+      <h2 className='head-text'>
         Let&apos;s <span>Connect</span>
       </h2>
-      <p className="footer__subtitle">
+      <p className='footer__subtitle'>
         Open to full-time roles, freelance projects, and interesting conversations.
       </p>
 
-      <div className="footer__links">
-        <a href={`mailto:${personalInfo.email}`} className="footer__link-card">
+      <div className='footer__links'>
+        <a href={`mailto:${personalInfo.email}`} className='footer__link-card'>
           <BsEnvelope />
           <div>
-            <span className="link-label">Email</span>
-            <span className="link-value">{personalInfo.email}</span>
+            <span className='link-label'>Email</span>
+            <span className='link-value'>{personalInfo.email}</span>
           </div>
         </a>
-        <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="footer__link-card">
+        <a href={personalInfo.linkedin} target='_blank' rel='noreferrer' className='footer__link-card'>
           <BsLinkedin />
           <div>
-            <span className="link-label">LinkedIn</span>
-            <span className="link-value">anish-krishnan</span>
+            <span className='link-label'>LinkedIn</span>
+            <span className='link-value'>anish-krishnan</span>
           </div>
         </a>
-        <a href={personalInfo.github} target="_blank" rel="noreferrer" className="footer__link-card">
+        <a href={personalInfo.github} target='_blank' rel='noreferrer' className='footer__link-card'>
           <BsGithub />
           <div>
-            <span className="link-label">GitHub</span>
-            <span className="link-value">AnishKrishnan73</span>
+            <span className='link-label'>GitHub</span>
+            <span className='link-value'>AnishKrishnan73</span>
           </div>
         </a>
       </div>
 
-      <div className="footer__form-wrapper">
+      <div className='footer__form-wrapper'>
         {!submitted ? (
-          <div className="footer__form">
-            <div className="form__row">
-              <div className="form__field">
+          <div className='footer__form'>
+            <div className='form__row'>
+              <div className='form__field'>
                 <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
+                  type='text'
+                  name='name'
+                  placeholder='Your Name'
                   value={formData.name}
                   onChange={handleChange}
                 />
               </div>
-              <div className="form__field">
+              <div className='form__field'>
                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
+                  type='email'
+                  name='email'
+                  placeholder='Your Email'
                   value={formData.email}
                   onChange={handleChange}
                 />
               </div>
             </div>
-            <div className="form__field form__field--full">
+            <div className='form__field form__field--full'>
               <textarea
-                name="message"
-                placeholder="Your Message"
+                name='message'
+                placeholder='Your Message'
                 value={formData.message}
                 onChange={handleChange}
               />
             </div>
             <button
-              type="button"
-              className="footer__submit-btn"
+              type='button'
+              className='footer__submit-btn'
               onClick={handleSubmit}
               disabled={loading}
             >
@@ -106,7 +105,7 @@ const Footer = () => {
             </button>
           </div>
         ) : (
-          <div className="footer__success">
+          <div className='footer__success'>
             <span>🎉</span>
             <h3>Message sent! I&apos;ll get back to you soon.</h3>
           </div>

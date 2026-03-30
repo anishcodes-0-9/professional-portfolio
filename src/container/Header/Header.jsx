@@ -119,7 +119,7 @@ const Header = () => {
         transition={{ delay: 0.6, duration: 0.8 }}
       >
         {[
-          { num: "3+", label: "Years Exp" },
+          { num: "4+", label: "Years Exp" },
           { num: "10M+", label: "Users Served" },
           { num: "3×", label: "AWS Certified" },
         ].map((stat) => (

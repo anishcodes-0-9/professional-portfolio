@@ -12,7 +12,7 @@ const QUICK_QUESTIONS = [
 ];
 
 const TypingDots = () => (
-  <div className="typing-dots">
+  <div className='typing-dots'>
     <span /><span /><span />
   </div>
 );
@@ -101,8 +101,8 @@ const Chatbot = () => {
   return (
     <>
       <motion.button
-        type="button"
-        className="chatbot__fab"
+        type='button'
+        className='chatbot__fab'
         onClick={() => setOpen((o) => !o)}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
@@ -111,31 +111,31 @@ const Chatbot = () => {
         {open ? (
           <span style={{ fontSize: '1.1rem', fontWeight: 700 }}>✕</span>
         ) : (
-          <span role="img" aria-label="chat">🤖</span>
+          <span role='img' aria-label='chat'>🤖</span>
         )}
       </motion.button>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            className="chatbot__window"
+            className='chatbot__window'
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            <div className="chatbot__header">
-              <div className="chatbot__avatar">AK</div>
-              <div className="chatbot__header-info">
+            <div className='chatbot__header'>
+              <div className='chatbot__avatar'>AK</div>
+              <div className='chatbot__header-info'>
                 <h4>Ask Anish&apos;s AI</h4>
-                <span className="chatbot__status">
-                  <span className="status-dot" /> Online
+                <span className='chatbot__status'>
+                  <span className='status-dot' /> Online
                 </span>
               </div>
-              <button type="button" className="chatbot__close" onClick={() => setOpen(false)}>✕</button>
+              <button type='button' className='chatbot__close' onClick={() => setOpen(false)}>✕</button>
             </div>
 
-            <div className="chatbot__messages">
+            <div className='chatbot__messages'>
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
@@ -148,7 +148,7 @@ const Chatbot = () => {
                 </motion.div>
               ))}
               {loading && (
-                <div className="chatbot__bubble chatbot__bubble--assistant">
+                <div className='chatbot__bubble chatbot__bubble--assistant'>
                   <TypingDots />
                 </div>
               )}
@@ -156,29 +156,29 @@ const Chatbot = () => {
             </div>
 
             {messages.length === 1 && (
-              <div className="chatbot__quickq">
+              <div className='chatbot__quickq'>
                 {QUICK_QUESTIONS.map((q) => (
-                  <button type="button" key={q} className="quickq-btn" onClick={() => sendMessage(q)}>
+                  <button type='button' key={q} className='quickq-btn' onClick={() => sendMessage(q)}>
                     {q}
                   </button>
                 ))}
               </div>
             )}
 
-            <div className="chatbot__input-row">
+            <div className='chatbot__input-row'>
               <input
                 ref={inputRef}
-                type="text"
-                placeholder="Ask about Anish..."
+                type='text'
+                placeholder='Ask about Anish...'
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="chatbot__input"
+                className='chatbot__input'
                 disabled={loading}
               />
               <button
-                type="button"
-                className="chatbot__send"
+                type='button'
+                className='chatbot__send'
                 onClick={() => sendMessage()}
                 disabled={loading || !input.trim()}
               >

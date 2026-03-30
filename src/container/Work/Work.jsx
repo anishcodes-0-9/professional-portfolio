@@ -19,25 +19,25 @@ const TABS = [
 ];
 
 const WorkHistoryTab = () => (
-  <div className="tab-content">
+  <div className='tab-content'>
     {workHistory.map((job, i) => (
       <motion.div
         key={`${job.company}-${job.role}`}
-        className="history-card"
+        className='history-card'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.08 }}
       >
-        <div className="history-card__header">
-          <div className="history-card__logo">{job.logo}</div>
-          <div className="history-card__meta">
-            <h3 className="history-card__company">{job.company}</h3>
-            <p className="history-card__role">{job.role}</p>
-            <span className="history-card__period">{job.period}</span>
+        <div className='history-card__header'>
+          <div className='history-card__logo'>{job.logo}</div>
+          <div className='history-card__meta'>
+            <h3 className='history-card__company'>{job.company}</h3>
+            <p className='history-card__role'>{job.role}</p>
+            <span className='history-card__period'>{job.period}</span>
           </div>
         </div>
-        <p className="history-card__desc">{job.description}</p>
-        <ul className="history-card__bullets">
+        <p className='history-card__desc'>{job.description}</p>
+        <ul className='history-card__bullets'>
           {job.bullets.map((b, bi) => (
             <li key={bi}>{b}</li>
           ))}
@@ -48,31 +48,31 @@ const WorkHistoryTab = () => (
 );
 
 const EnterpriseTab = () => (
-  <div className="tab-content">
+  <div className='tab-content'>
     {enterpriseProjects.map((proj, i) => (
       <motion.div
         key={proj.title}
-        className="enterprise-card"
+        className='enterprise-card'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.08 }}
       >
-        <div className="enterprise-card__header">
-          <span className="enterprise-card__emoji">{proj.emoji}</span>
+        <div className='enterprise-card__header'>
+          <span className='enterprise-card__emoji'>{proj.emoji}</span>
           <div>
-            <h3 className="enterprise-card__title">{proj.title}</h3>
-            <span className="enterprise-card__period">{proj.period}</span>
+            <h3 className='enterprise-card__title'>{proj.title}</h3>
+            <span className='enterprise-card__period'>{proj.period}</span>
           </div>
         </div>
-        <p className="enterprise-card__desc">{proj.description}</p>
-        <ul className="enterprise-card__bullets">
+        <p className='enterprise-card__desc'>{proj.description}</p>
+        <ul className='enterprise-card__bullets'>
           {proj.bullets.map((b, bi) => (
             <li key={bi}>{b}</li>
           ))}
         </ul>
-        <div className="enterprise-card__tags">
+        <div className='enterprise-card__tags'>
           {proj.tags.map((t) => (
-            <span key={t} className="chip chip--blue">{t}</span>
+            <span key={t} className='chip chip--blue'>{t}</span>
           ))}
         </div>
       </motion.div>
@@ -81,39 +81,39 @@ const EnterpriseTab = () => (
 );
 
 const PersonalTab = () => (
-  <div className="tab-content">
-    <p className="tab-content__subtitle">
+  <div className='tab-content'>
+    <p className='tab-content__subtitle'>
       Some things I&apos;ve built while experimenting with systems, AI, and interactive interfaces.
     </p>
     {personalProjects.map((proj, i) => (
       <motion.div
         key={proj.title}
-        className="personal-card"
+        className='personal-card'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.08 }}
       >
-        <div className="personal-card__top">
-          <h3 className="personal-card__title">{proj.title}</h3>
-          <div className="personal-card__links">
+        <div className='personal-card__top'>
+          <h3 className='personal-card__title'>{proj.title}</h3>
+          <div className='personal-card__links'>
             {proj.github && (
-              <a href={proj.github} target="_blank" rel="noreferrer" className="icon-link" title="View on GitHub">
+              <a href={proj.github} target='_blank' rel='noreferrer' className='icon-link' title='View on GitHub'>
                 <BsGithub />
                 <span>View on GitHub</span>
               </a>
             )}
             {proj.live && (
-              <a href={proj.live} target="_blank" rel="noreferrer" className="icon-link icon-link--live" title="Live Demo">
+              <a href={proj.live} target='_blank' rel='noreferrer' className='icon-link icon-link--live' title='Live Demo'>
                 <BsBoxArrowUpRight />
                 <span>Live Demo</span>
               </a>
             )}
           </div>
         </div>
-        <p className="personal-card__desc">{proj.description}</p>
-        <div className="personal-card__tags">
+        <p className='personal-card__desc'>{proj.description}</p>
+        <div className='personal-card__tags'>
           {proj.tags.map((t) => (
-            <span key={t} className="chip chip--gray">{t}</span>
+            <span key={t} className='chip chip--gray'>{t}</span>
           ))}
         </div>
       </motion.div>
@@ -122,32 +122,32 @@ const PersonalTab = () => (
 );
 
 const CertsTab = () => (
-  <div className="tab-content">
+  <div className='tab-content'>
     {certifications.map((cert, i) => (
       <motion.div
         key={cert.name}
-        className="cert-card"
+        className='cert-card'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.08 }}
       >
-        <div className="cert-card__header">
-          <span className="cert-card__emoji">{cert.emoji}</span>
-          <h3 className="cert-card__name">{cert.name}</h3>
+        <div className='cert-card__header'>
+          <span className='cert-card__emoji'>{cert.emoji}</span>
+          <h3 className='cert-card__name'>{cert.name}</h3>
         </div>
-        <div className="cert-card__row">
-          <span className="cert-card__label">Issuing Organization:</span>
-          <span className="cert-card__value">{cert.org}</span>
+        <div className='cert-card__row'>
+          <span className='cert-card__label'>Issuing Organization:</span>
+          <span className='cert-card__value'>{cert.org}</span>
         </div>
-        <div className="cert-card__row">
-          <span className="cert-card__label">Credential ID:</span>
-          <code className="cert-card__id">{cert.credentialId}</code>
+        <div className='cert-card__row'>
+          <span className='cert-card__label'>Credential ID:</span>
+          <code className='cert-card__id'>{cert.credentialId}</code>
         </div>
-        <div className="cert-card__actions">
-          <a href={cert.viewUrl} target="_blank" rel="noreferrer" className="cert-btn cert-btn--primary">
+        <div className='cert-card__actions'>
+          <a href={cert.viewUrl} target='_blank' rel='noreferrer' className='cert-btn cert-btn--primary'>
             View Certificate
           </a>
-          <a href={cert.verifyUrl} target="_blank" rel="noreferrer" className="cert-btn cert-btn--secondary">
+          <a href={cert.verifyUrl} target='_blank' rel='noreferrer' className='cert-btn cert-btn--secondary'>
             Verify Credential
           </a>
         </div>
@@ -157,21 +157,21 @@ const CertsTab = () => (
 );
 
 const BlogsTab = () => (
-  <div className="tab-content tab-content--centered">
+  <div className='tab-content tab-content--centered'>
     <motion.div
-      className="coming-soon"
+      className='coming-soon'
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4 }}
     >
-      <span className="coming-soon__icon">✍️</span>
-      <h3 className="coming-soon__title">Blogs Coming Soon</h3>
-      <p className="coming-soon__text">
+      <span className='coming-soon__icon'>✍️</span>
+      <h3 className='coming-soon__title'>Blogs Coming Soon</h3>
+      <p className='coming-soon__text'>
         Writing about distributed systems, AI evaluation, and full-stack engineering.
         <br />
         Stay tuned — first post dropping soon.
       </p>
-      <span className="coming-soon__badge">Coming Soon</span>
+      <span className='coming-soon__badge'>Coming Soon</span>
     </motion.div>
   </div>
 );
@@ -189,25 +189,25 @@ const Work = () => {
 
   return (
     <>
-      <h2 className="head-text">My <span>Work</span></h2>
+      <h2 className='head-text'>My <span>Work</span></h2>
 
-      <div className="work-tabs">
+      <div className='work-tabs'>
         {TABS.map((tab) => (
           <button
-            type="button"
+            type='button'
             key={tab.id}
             className={`work-tab ${activeTab === tab.id ? 'work-tab--active' : ''}`}
             onClick={() => setActiveTab(tab.id)}
           >
-            <span className="work-tab__icon">{tab.icon}</span>
-            <span className="work-tab__label">{tab.label}</span>
-            {tab.soon && <span className="work-tab__soon">Soon</span>}
+            <span className='work-tab__icon'>{tab.icon}</span>
+            <span className='work-tab__label'>{tab.label}</span>
+            {tab.soon && <span className='work-tab__soon'>Soon</span>}
           </button>
         ))}
       </div>
 
-      <div className="work-panel">
-        <AnimatePresence mode="wait">
+      <div className='work-panel'>
+        <AnimatePresence mode='wait'>
           <motion.div
             key={activeTab}
             initial={{ opacity: 0, y: 10 }}
