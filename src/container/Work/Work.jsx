@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BsGithub, BsBoxArrowUpRight } from 'react-icons/bs';
+import { FaAws } from 'react-icons/fa';
+import { SiCognizant, SiGithub, SiMacys } from 'react-icons/si';
 import { AppWrap, MotionWrap } from '../../wrapper';
 import {
   workHistory,
@@ -9,6 +11,88 @@ import {
   certifications,
 } from '../../data/anishData';
 import './Work.scss';
+
+const BrandMark = ({ brand, label }) => {
+  const marks = {
+    alignerr: (
+      <div className="brand-mark brand-mark--alignerr" aria-label={label} title={label}>
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="M24 7.5 36.5 29H28l-4-6.9-4 6.9h-8.5L24 7.5Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.8"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+          <path
+            d="M19.7 29h8.6L24 36.4 19.7 29Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.8"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+          <path
+            d="M24 7.5h8.7L19.6 29h-8.1L24 7.5Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.8"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
+    ),
+    claude: (
+      <div className="brand-mark brand-mark--claude" aria-label={label} title={label}>
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="currentColor">
+            <circle cx="24" cy="12.5" r="4.2" />
+            <circle cx="24" cy="35.5" r="4.2" />
+            <circle cx="14.2" cy="18" r="4.2" />
+            <circle cx="33.8" cy="18" r="4.2" />
+            <circle cx="14.2" cy="30" r="4.2" />
+            <circle cx="33.8" cy="30" r="4.2" />
+          </g>
+          <circle cx="24" cy="24" r="5.2" fill="#0f172a" />
+        </svg>
+      </div>
+    ),
+    cognizant: (
+      <div className="brand-mark brand-mark--cognizant" aria-label={label} title={label}>
+        <SiCognizant />
+      </div>
+    ),
+    directv: (
+      <div className="brand-mark brand-mark--directv" aria-label={label} title={label}>
+        <span className="brand-mark__directv">D</span>
+      </div>
+    ),
+    payments: (
+      <div className="brand-mark brand-mark--payments" aria-label={label} title={label}>
+        <span className="brand-mark__card" />
+      </div>
+    ),
+    macys: (
+      <div className="brand-mark brand-mark--macys" aria-label={label} title={label}>
+        <SiMacys />
+      </div>
+    ),
+    aws: (
+      <div className="brand-mark brand-mark--aws" aria-label={label} title={label}>
+        <FaAws />
+      </div>
+    ),
+    github: (
+      <div className="brand-mark brand-mark--github" aria-label={label} title={label}>
+        <SiGithub />
+      </div>
+    ),
+  };
+
+  return marks[brand] ?? <span>{label?.slice(0, 1)}</span>;
+};
 
 const TABS = [
   { id: 'history', label: 'Work History', icon: '🏢' },
@@ -29,7 +113,9 @@ const WorkHistoryTab = () => (
         transition={{ delay: i * 0.08 }}
       >
         <div className="history-card__header">
-          <div className="history-card__logo">{job.logo}</div>
+          <div className="history-card__logo">
+            <BrandMark brand={job.logoKey} label={job.company} />
+          </div>
           <div className="history-card__meta">
             <h3 className="history-card__company">{job.company}</h3>
             <p className="history-card__role">{job.role}</p>
@@ -58,7 +144,9 @@ const EnterpriseTab = () => (
         transition={{ delay: i * 0.08 }}
       >
         <div className="enterprise-card__header">
-          <span className="enterprise-card__emoji">{proj.emoji}</span>
+          <span className="enterprise-card__emoji">
+            <BrandMark brand={proj.logoKey} label={proj.title} />
+          </span>
           <div>
             <h3 className="enterprise-card__title">{proj.title}</h3>
             <span className="enterprise-card__period">{proj.period}</span>
@@ -132,7 +220,9 @@ const CertsTab = () => (
         transition={{ delay: i * 0.08 }}
       >
         <div className="cert-card__header">
-          <span className="cert-card__emoji">{cert.emoji}</span>
+          <span className="cert-card__emoji">
+            <BrandMark brand={cert.logoKey} label={cert.name} />
+          </span>
           <h3 className="cert-card__name">{cert.name}</h3>
         </div>
         <div className="cert-card__row">

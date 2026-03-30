@@ -142,7 +142,6 @@
   }
 
   &__logo {
-    font-size: 1.75rem;
     width: 48px;
     height: 48px;
     border-radius: 12px;
@@ -229,7 +228,6 @@
   }
 
   &__emoji {
-    font-size: 1.75rem;
     width: 48px;
     height: 48px;
     border-radius: 12px;
@@ -397,7 +395,14 @@
     margin-bottom: 1rem;
   }
 
-  &__emoji { font-size: 1.4rem; }
+  &__emoji {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
 
   &__name {
     font-family: var(--font-display);
@@ -446,6 +451,124 @@
     gap: 0.6rem;
     margin-top: 1.1rem;
     flex-wrap: wrap;
+  }
+}
+
+.brand-mark {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+
+  svg {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
+  &--alignerr {
+    color: #111827;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(226, 232, 240, 0.95));
+  }
+
+  &--claude {
+    color: #d97706;
+    background: linear-gradient(135deg, rgba(255, 247, 237, 0.96), rgba(254, 215, 170, 0.88));
+  }
+
+  &--cognizant {
+    color: #1f70c1;
+    background: rgba(31, 112, 193, 0.08);
+  }
+
+  &--directv {
+    position: relative;
+    color: #7fb6ff;
+    background: linear-gradient(135deg, rgba(23, 37, 84, 0.65), rgba(30, 64, 175, 0.22));
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      border: 2px solid rgba(127, 182, 255, 0.75);
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+    }
+
+    &::before {
+      transform: rotate(-12deg);
+    }
+
+    &::after {
+      width: 18px;
+      height: 18px;
+      transform: rotate(-12deg);
+    }
+  }
+
+  &--payments {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(251, 191, 36, 0.3));
+  }
+
+  &--macys {
+    color: #e21836;
+    background: rgba(226, 24, 54, 0.08);
+  }
+
+  &--aws {
+    color: #ff9900;
+    background: rgba(255, 153, 0, 0.08);
+  }
+
+  &--github {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.brand-mark__directv {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-mark__card {
+  width: 26px;
+  height: 18px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #fde68a, #fef3c7);
+  border: 1px solid rgba(146, 64, 14, 0.2);
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    border-radius: 999px;
+  }
+
+  &::before {
+    top: 4px;
+    height: 3px;
+    background: rgba(120, 53, 15, 0.45);
+  }
+
+  &::after {
+    bottom: 4px;
+    width: 8px;
+    height: 3px;
+    left: auto;
+    background: rgba(120, 53, 15, 0.28);
   }
 }
 
