@@ -158,12 +158,12 @@ export const personalProjects = [
     live: 'https://anish-3d-room-gamma-steel.vercel.app/',
   },
   {
-    title: 'AI Support System',
+    title: 'Storyboard AI',
     description:
-      'Simulates an e-commerce support assistant capable of handling customer queries. Built with clean layered architecture and designed to avoid hallucinations by grounding responses in real database data.',
-    tags: ['Python', 'LLM', 'FastAPI', 'RAG'],
-    github: 'https://github.com/anishcodes-0-9/ai-support-system',
-    live: null,
+      'Storyboard AI is a full-stack AI product that turns a rough prompt into a polished, presentation-ready storyboard.',
+    tags: ['TypeScript', 'JavaScript', 'CSS', 'HTML', 'LLM'],
+    github: 'https://github.com/anishcodes-0-9/alchemyst-dev-onboarding-agent',
+    live: 'https://storyboard-ai-4f1d.onrender.com/',
   },
   {
     title: 'GitHub Issue Analyzer with Local Caching + LLM Processing',
@@ -174,11 +174,11 @@ export const personalProjects = [
     live: null,
   },
   {
-    title: 'dev-onboarding-ai-agent',
+    title: 'AI Support System',
     description:
-      'A distributed task queue built with Python & TypeScript, supporting priority queues, retry logic, and dead-letter queues for resilient background processing.',
-    tags: ['Python', 'TypeScript', 'JavaScript', 'LLM'],
-    github: 'https://github.com/anishcodes-0-9/alchemyst-dev-onboarding-agent',
+      'Simulates an e-commerce support assistant capable of handling customer queries. Built with clean layered architecture and designed to avoid hallucinations by grounding responses in real database data.',
+    tags: ['Python', 'LLM', 'FastAPI', 'RAG'],
+    github: 'https://github.com/anishcodes-0-9/ai-support-system',
     live: null,
   },
 ];
