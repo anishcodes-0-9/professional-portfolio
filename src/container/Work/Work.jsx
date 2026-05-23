@@ -64,6 +64,11 @@ const BrandMark = ({ brand, label }) => {
         <SiCognizant />
       </div>
     ),
+    debut: (
+      <div className="brand-mark brand-mark--directv" aria-label={label} title={label}>
+        <span className="brand-mark__directv">DI</span>
+      </div>
+    ),
     directv: (
       <div className="brand-mark brand-mark--directv" aria-label={label} title={label}>
         <span className="brand-mark__directv">D</span>

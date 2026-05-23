@@ -151,15 +151,15 @@ const getLocalFallbackResponse = (question) => {
   }
 
   if (q.includes('skill') || q.includes('stack') || q.includes('backend')) {
-    return 'Anish\'s strongest backend skills include Java, Spring Boot, Node.js, REST APIs, microservices, PostgreSQL, MySQL, MongoDB, Redis, and distributed tracing. He also works across React, Next.js, AWS, Docker, Kubernetes, Terraform, and AI evaluation workflows.';
+    return 'Anish\'s strongest backend skills include Java, Spring Boot, Node.js, REST APIs, API versioning, microservices, PostgreSQL, MySQL, MongoDB, and distributed tracing. He also works across React, Next.js, AWS, Docker, Kubernetes, Terraform, incident debugging, and AI evaluation workflows.';
   }
 
   if (q.includes('project') || q.includes('built')) {
-    return 'Anish has worked on enterprise systems like Claude AI Evaluation via Alignerr, DIRECTV\'s high-availability platform, LN Payments, and Macy\'s POS system. On the personal side, he has built a 3D interactive portfolio, an AI support system, a GitHub issue analyzer, and an AI onboarding agent.';
+    return 'Anish has worked on enterprise systems like Claude AI Evaluation via Alignerr, DIRECTV\'s high-availability platform, LN Payments, and Macy\'s POS system. On the personal side, he has built a 3D interactive portfolio, Storyboard AI, an AI support system, and a GitHub issue analyzer.';
   }
 
   if (q.includes('work history') || q.includes('worked') || q.includes('experience')) {
-    return 'Anish has 4+ years of experience. He is currently freelancing at Alignerr on AI evaluation and previously worked at Cognizant across DIRECTV, LN Payments, and Macy\'s engagements.';
+    return 'Anish has 4+ years of experience. He is currently a Senior Software Engineer at Debut Infotech, previously worked at Alignerr on AI evaluation, and before that was at Cognizant across DIRECTV, LN Payments, and Macy\'s engagements.';
   }
 
   if (q.includes('location') || q.includes('based')) {

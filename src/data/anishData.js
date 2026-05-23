@@ -5,39 +5,39 @@
 export const personalInfo = {
   name: 'Anish Krishnan',
   firstName: 'Anish',
-  taglines: ['Full Stack Engineer', 'Backend Architect', 'AI Enthusiast'],
+  taglines: ['Senior Software Engineer', 'Full Stack Engineer', 'AI Evaluation Specialist'],
   location: 'Chandigarh, India',
   email: 'anishkrishnan72@gmail.com',
   linkedin: 'https://www.linkedin.com/in/anishkrishnan09/',
   github: 'https://github.com/anishcodes-0-9',
   portfolio: 'https://anish-krishnan-portfolio.vercel.app/',
   summary:
-    'Full Stack Developer with 4+ years building scalable distributed systems for 10M+ users. I specialize in Java Spring Boot, React, and cloud-native architectures. Currently freelancing at Alignerr evaluating AI-generated code for trust-sensitive systems.',
+    'Full Stack Engineer with 4+ years building distributed systems and web applications serving 10M+ users. Experienced in Java, Python, React, and cloud infrastructure, with hands-on work in ML integration and AI evaluation. Proven track record of reducing latency, improving reliability, and shipping production features across payments, media, and retail domains.',
 };
 
 export const aboutCards = [
   {
-    title: 'Backend Engineer',
+    title: 'Systems & Backend',
     description:
-      'Designed microservices with Java Spring Boot and Node.js that serve 10M+ users. Expert in RESTful APIs, distributed tracing, and system reliability.',
+      'Builds distributed backend systems with Java, Spring Boot, Node.js, REST APIs, API versioning, and defensive coding patterns for high-reliability products.',
     emoji: '⚙️',
   },
   {
-    title: 'Frontend Craftsman',
+    title: 'Frontend Delivery',
     description:
-      'Built high-performance UIs with React, Next.js and Vue.js, focusing on accessibility, scalability and great user experience.',
+      'Ships recruiter-ready and customer-facing experiences with React, Next.js, Vue.js, Three.js, HTML, CSS, and Tailwind, with a strong focus on performance and usability.',
     emoji: '🎨',
   },
   {
-    title: 'Cloud & DevOps',
+    title: 'Cloud & Observability',
     description:
-      'AWS Certified Developer. Proficient with Docker, Kubernetes, GitHub Actions, Jenkins and Terraform for production deployments.',
+      'Works across AWS, Docker, Kubernetes, Jenkins, GitHub Actions, Terraform, logs, metrics, distributed tracing, Dynatrace, and incident debugging for production systems.',
     emoji: '☁️',
   },
   {
-    title: 'AI Evaluator',
+    title: 'AI & ML Tooling',
     description:
-      'At Alignerr, I evaluate AI-generated full-stack solutions against real-world standards — correctness, safety, scalability and adversarial robustness.',
+      'Brings hands-on experience in Python ML tooling, LLM evaluation, prompt engineering, Hugging Face, Claude, GitHub Copilot, and workflow automation with n8n.',
     emoji: '🤖',
   },
 ];
@@ -45,44 +45,59 @@ export const aboutCards = [
 // ── Work History ──────────────────────────────
 export const workHistory = [
   {
+    company: 'Debut Infotech',
+    logoKey: 'debut',
+    role: 'Senior Software Engineer',
+    period: 'May 2026 — Present',
+    description:
+      'Leading full-stack development for the company website and backend platform using Next.js, React, and Node.js.',
+    bullets: [
+      'Led frontend and backend development of the company website using Next.js, React, and Node.js, delivering performant SEO-optimised pages with server-side rendering and dynamic routing',
+      'Architected and maintained scalable REST APIs and backend services in Node.js, establishing coding standards and best practices adopted across the engineering team',
+      'Mentored engineers through code reviews, technical design discussions, and sprint planning, improving team velocity and overall delivery quality',
+      'Drove end-to-end feature ownership from requirements to production deployment, ensuring high reliability and zero critical post-release defects',
+    ],
+  },
+  {
     company: 'Alignerr',
     logoKey: 'alignerr',
-    role: 'Software Engineer – Freelance',
-    period: 'Dec 2025 — Present',
+    role: 'Software Engineer (Freelance)',
+    period: 'Dec 2025 — Apr 2026',
     description:
-      'AI system evaluation and code quality improvement for Claude (Anthropic).',
+      'Evaluated AI-generated backend and full-stack systems for correctness, safety, scalability, and trust-sensitive behavior.',
     bullets: [
-      'Evaluated AI-generated code across real-world repositories for correctness and production readiness',
-      'Identified logical bugs, edge-case failures, and poor abstractions in model outputs',
-      'Guided model behavior toward real engineering workflows including code review, testing, and iteration',
-      'Worked with Claude Code CLI (claude-hfi) to simulate PR-level development cycles',
+      'Evaluated 100+ AI-generated backend and full-stack solutions against real-world engineering standards, flagging correctness, safety, and scalability issues in Python and Node.js codebases',
+      'Assessed front-end behavior including state assumptions, data consistency, and integration boundaries affecting user trust and system reliability',
+      'Compared multiple implementations and selected solutions based on trade-offs in performance, scalability, and risk, improving average solution quality scores by 20%',
+      'Designed and validated prompts simulating attack vectors, edge cases, and misuse scenarios, improving robustness of AI-driven systems',
+      'Applied structured reasoning around system failures, ambiguous inputs, and adversarial behavior, aligned with Trust & Risk Engineering principles',
     ],
   },
   {
     company: 'Cognizant',
     logoKey: 'cognizant',
-    role: 'Programmer Analyst – Full Stack',
-    period: 'Jan 2022 — Oct 2025',
+    role: 'Programmer Analyst (Full-Stack Engineer)',
+    period: 'Aug 2022 — Oct 2025',
     description:
-      "Full-stack engineer across DIRECTV, LN Payments, and Macy's engagements.",
+      'Worked across DIRECTV, LN Payments, and Macy’s engagements, shipping backend services, operational tooling, and production-grade UI flows.',
     bullets: [
-      'Built and maintained Spring Boot microservices for DIRECTV serving 10M+ users',
-      'Designed payment flows and async background jobs for LN Payments platform',
-      "Built production-grade POS UI components for Macy's with strict correctness requirements",
-      'Implemented distributed tracing, Prometheus metrics, and CI/CD pipelines with Jenkins & GitHub Actions',
+      'Collaborated with Product, QA, and DevOps across agile sprints to deliver 20+ features on schedule with zero critical post-release defects',
+      'Designed and operated Spring Boot, React, and Node-based systems across media, payments, and retail domains with strong reliability expectations',
+      'Worked deeply with SQL tuning, data integrity flows, distributed tracing, logs, and operational debugging across production environments',
+      'Supported trust-critical releases by partnering with product and QA while improving API contracts, integration boundaries, and release confidence',
     ],
   },
   {
     company: 'Cognizant',
     logoKey: 'cognizant',
     role: 'Programmer Analyst Trainee',
-    period: 'Jan 2022 — Jun 2022',
+    period: 'Jan 2022 — Jul 2022',
     description:
       'Foundational full-stack development training and real project onboarding.',
     bullets: [
-      'Built full-stack applications using Spring Boot and React during intensive training programme',
-      'Applied OOP principles, design patterns, and unit testing in Java',
-      'Collaborated on Git-based workflows with code reviews and agile sprints',
+      'Developed backend services and APIs with emphasis on clean architecture, defensive coding, and robust error handling',
+      'Wrote Python scripts for test data generation and automated validation, cutting manual QA effort by about 25% across the team',
+      'Wrote unit and integration tests achieving 80%+ code coverage, ensuring reliability and maintainability across services',
     ],
   },
 ];
@@ -92,14 +107,15 @@ export const enterpriseProjects = [
   {
     title: 'Claude AI Evaluation (Anthropic via Alignerr)',
     logoKey: 'claude',
-    period: 'Dec 2025 — Present',
+    period: 'Dec 2025 — Apr 2026',
     description:
-      'Working as a contractor contributing to the evaluation and improvement of AI-generated code using the Claude Code CLI (claude-hfi). Iteratively refined model outputs across real-world codebases, ensuring solutions met production-level engineering standards including correctness, edge-case handling, and maintainability while guiding the model to behave like a real software engineer.',
+      'Evaluated AI-generated backend and full-stack solutions used for trust-sensitive engineering scenarios, focusing on correctness, safety, system behavior, and implementation trade-offs.',
     bullets: [
-      'Evaluated AI-generated code across real Git-based codebases for correctness and production readiness',
-      'Identified failure modes in model outputs including logical bugs, poor abstractions, and missing edge-case handling',
-      'Improved model workflows by enforcing practices like self-review, testing, and iterative refinement',
-      'Worked across Python and JavaScript stacks with focus on API design, data integrity, and security',
+      'Evaluated 100+ AI-generated backend and full-stack solutions against real-world engineering standards across Python and Node.js codebases',
+      'Assessed front-end behavior including state assumptions, data consistency, and integration boundaries affecting user trust and system reliability',
+      'Compared multiple implementations based on performance, scalability, and risk trade-offs, improving average solution quality scores by 20%',
+      'Designed prompts simulating attack vectors, edge cases, and misuse scenarios to improve robustness in AI-driven systems',
+      'Applied structured reasoning around ambiguous inputs and adversarial behavior aligned with Trust & Risk Engineering principles',
     ],
     tags: ['AI Evaluation', 'Python', 'Claude Code CLI', 'LLM'],
   },
@@ -108,12 +124,12 @@ export const enterpriseProjects = [
     logoKey: 'directv',
     period: 'Nov 2023 — Jun 2025',
     description:
-      "Designed and maintained Spring Boot + React services for DIRECTV's internal platform serving millions of concurrent users. Owned distributed tracing, observability, and API reliability improvements across multiple team boundaries.",
+      'Designed and operated high-availability Spring Boot + React services consumed by 5+ internal teams, with a strong focus on observability, uptime, and incident response.',
     bullets: [
-      'Built and operated microservices with Spring Boot serving 10M+ users with high availability',
-      'Implemented distributed tracing with Dynatrace and Prometheus for production issue debugging',
-      'Improved API contract consistency across 6+ internal teams through standardised patterns',
-      'Delivered CI/CD automation reducing deployment time by 40% using Jenkins and GitHub Actions',
+      'Designed and operated high-availability Spring Boot + React services consumed by 5+ internal teams, maintaining 99.99% uptime over 18 months',
+      'Automated infrastructure health checks and log analysis using Python scripts, reducing manual debugging time for distributed service failures by 45%',
+      'Debugged distributed production issues using logs, metrics, and tracing, cutting incident resolution time from hours to under 30 minutes',
+      'Improved system reliability by refining API contracts and integration boundaries, eliminating a recurring class of integration failures',
     ],
     tags: ['Spring Boot', 'React', 'Microservices', 'AWS', 'DevOps'],
   },
@@ -122,12 +138,12 @@ export const enterpriseProjects = [
     logoKey: 'payments',
     period: 'Aug 2022 — Oct 2023',
     description:
-      'Built UI and backend for a trust-sensitive payments platform handling high-value transaction flows. Ensured data integrity and fault tolerance across async payment processing pipelines.',
+      'Built UI and backend services for a payments platform handling more than $2M in daily transactions, prioritizing correctness, async processing, and data consistency.',
     bullets: [
-      'Designed and implemented payment workflows with Spring Boot and PostgreSQL',
-      'Built async background job processing ensuring transactional data integrity under load',
-      'Created a React-based payments dashboard with real-time status updates',
-      'Collaborated with QA and security team on PCI-DSS compliant flows',
+      'Built UI and backend services for a payments platform handling $2M+ in daily transactions, prioritizing correctness and data consistency',
+      'Implemented asynchronous workflows and background jobs using Spring Boot, processing 50K+ events per day with zero message loss',
+      'Ensured data integrity across transactional systems and internal tooling, reducing reconciliation errors by 60%',
+      'Created product flows that balanced speed, trust, and operational stability for payment processing teams',
     ],
     tags: ['Spring Boot', 'PostgreSQL', 'React', 'Async Jobs', 'Payments'],
   },
@@ -136,12 +152,12 @@ export const enterpriseProjects = [
     logoKey: 'macys',
     period: 'Jul 2025 — Oct 2025',
     description:
-      "Contributed production-grade UI components and backend integrations for Macy's large-scale Point-of-Sale system operating in real retail environments with strict uptime and correctness demands.",
+      'Built production-grade UI components and data-quality tooling for large-scale retail POS systems where correctness and performance directly affected store operations.',
     bullets: [
-      'Built reusable React components for POS checkout flows with zero-tolerance for UI regressions',
-      'Analysed and optimised SQL queries reducing average latency by 35%',
-      'Worked with QA on automated regression suites for trust-critical release gates',
-      'Integrated REST APIs connecting POS frontend with inventory and payment backends',
+      'Built production-grade UI components for large-scale POS systems, meeting strict correctness and performance benchmarks across 500+ retail endpoints',
+      'Investigated data mismatches and latency issues by analyzing SQL queries and transactional flows, resolving 15+ recurring production defects',
+      'Wrote Python scripts to reconcile and validate POS transaction data, catching data integrity issues before they surfaced in production',
+      'Collaborated with product and QA to ship stable, trust-critical releases under tight timelines',
     ],
     tags: ['React', 'SQL', 'REST APIs', 'POS', 'Java'],
   },
@@ -227,34 +243,45 @@ export const certifications = [
 // ── Skills (used in Skills section) ──────────
 export const skills = [
   { name: 'Java', bgColor: '#f0f4ff' },
+  { name: 'Python', bgColor: '#fffbe8' },
+  { name: 'JavaScript', bgColor: '#fffbe8' },
   { name: 'Spring Boot', bgColor: '#f0fff4' },
   { name: 'React', bgColor: '#e8f4ff' },
   { name: 'Next.js', bgColor: '#f5f5f5' },
   { name: 'Node.js', bgColor: '#f0fff4' },
-  { name: 'Python', bgColor: '#fffbe8' },
-  { name: 'JavaScript', bgColor: '#fffbe8' },
   { name: 'TypeScript', bgColor: '#e8f4ff' },
   { name: 'PostgreSQL', bgColor: '#e8f0ff' },
+  { name: 'MySQL', bgColor: '#e8f0ff' },
   { name: 'MongoDB', bgColor: '#f0fff4' },
-  { name: 'Redis', bgColor: '#fff0f0' },
   { name: 'Docker', bgColor: '#e8f4ff' },
-  { name: 'Kubernetes', bgColor: '#e8f4ff' },
   { name: 'AWS', bgColor: '#fff8e8' },
+  { name: 'Kubernetes', bgColor: '#e8f4ff' },
   { name: 'Terraform', bgColor: '#f0e8ff' },
   { name: 'Dynatrace', bgColor: '#e8f0ff' },
   { name: 'Vue.js', bgColor: '#f0fff4' },
-  { name: 'GraphQL', bgColor: '#ffe8f8' },
+  { name: 'Hugging Face', bgColor: '#fff8e8' },
+  { name: 'Claude', bgColor: '#fff0e8' },
 ];
 
 // ── Skills section experience timeline ───────
 export const experiences = [
   {
-    year: '2025 – Now',
+    year: '2026 – Now',
+    works: [
+      {
+        name: 'Senior Software Engineer',
+        company: 'Debut Infotech',
+        desc: 'Leading website and backend platform engineering with Next.js, React, and Node.js, while driving API standards, delivery quality, and team mentorship.',
+      },
+    ],
+  },
+  {
+    year: '2025 – 2026',
     works: [
       {
         name: 'Software Engineer (Freelance)',
         company: 'Alignerr',
-        desc: 'Evaluating AI-generated backend and full-stack solutions. Writing adversarial prompts, reviewing Python/JS API logic, and assessing trust-critical system behaviour.',
+        desc: 'Evaluated AI-generated backend and full-stack solutions, reviewed Python and Node.js implementations, and designed prompt-based attack scenarios for trust-sensitive systems.',
       },
     ],
   },
@@ -262,9 +289,9 @@ export const experiences = [
     year: '2022 – 2025',
     works: [
       {
-        name: 'Programmer Analyst – Full Stack',
+        name: 'Programmer Analyst (Full-Stack Engineer)',
         company: 'Cognizant',
-        desc: "Worked across DIRECTV, LN Payments and Macy's. Built Spring Boot microservices, React UIs, payment flows, and POS systems for millions of users.",
+        desc: 'Worked across DIRECTV, LN Payments, and Macy’s. Built high-availability services, payment workflows, operational tooling, and trust-critical retail interfaces.',
       },
     ],
   },
@@ -286,43 +313,43 @@ You are Anish Krishnan's personal portfolio assistant. Answer questions about An
 Keep answers to 2-4 sentences. Use third person when describing Anish (e.g., "Anish has..." or "He specialised in...").
 
 ABOUT ANISH:
-- Full Stack Engineer based in Chandigarh, India
+- Senior Software Engineer and Full Stack Engineer based in Chandigarh, India
 - 4+ years professional experience
-- Currently freelancing at Alignerr (Dec 2025 – Present) evaluating AI-generated code for Anthropic
-- Previously Programmer Analyst at Cognizant (Jan 2022 – Oct 2025)
-- Education: Chitkara University, 8.68/10 GPA
+- Currently at Debut Infotech (May 2026 – Present) leading website and backend platform development
+- Previously worked at Alignerr (Dec 2025 – Apr 2026) and Cognizant (Jan 2022 – Oct 2025)
+- Education: Chitkara University, Rajpura (Aug 2018 – May 2022), 8.68/10 GPA
 
 TECH STACK:
 - Languages: Java, Python, JavaScript, TypeScript
-- Backend: Spring Boot, REST APIs, Microservices, Node.js, JWT
+- Backend: Spring Boot, REST APIs, API versioning, Microservices, Node.js, JWT
 - Frontend: React, Next.js, Vue.js, ThreeJS, HTML, CSS, Tailwind
-- Databases: PostgreSQL, MySQL, MongoDB, Redis
+- Databases: PostgreSQL, MySQL, MongoDB, SQL performance tuning
+- Observability: Logs, Metrics, Distributed Tracing, Dynatrace, Incident Debugging
 - Cloud/DevOps: AWS (3 certs), Docker, Kubernetes, GitHub Actions, Jenkins, Terraform
-- Observability: Prometheus, Grafana, Dynatrace, Distributed Tracing
-- AI Tooling: LLM evaluation, Prompt design, n8n, Claude Code CLI, GitHub Copilot
+- AI/ML Tooling: Python (pandas, NumPy, scikit-learn), LLM evaluation, Prompt engineering, Hugging Face, n8n, Claude, GitHub Copilot
 
 ENTERPRISE PROJECTS:
-1. Claude AI Evaluation for Anthropic via Alignerr (Dec 2025–Present): Evaluating AI-generated code, adversarial prompt design
-2. DIRECTV (Nov 2023–Jun 2025): High-availability Spring Boot + React platform, 10M+ users, distributed tracing
-3. LN Payments (Aug 2022–Oct 2023): Payments platform backend, async workflows, data integrity
-4. Macy's POS (Jul–Oct 2025): POS system UI, SQL tuning, trust-critical releases
+1. Claude AI Evaluation for Anthropic via Alignerr (Dec 2025–Apr 2026): Evaluated AI-generated code, system behavior, prompt robustness, and solution trade-offs
+2. DIRECTV (Nov 2023–Jun 2025): High-availability Spring Boot + React platform with 99.99% uptime and deep observability work
+3. LN Payments (Aug 2022–Oct 2023): Payments platform handling $2M+ daily transactions, async workflows, and reconciliation accuracy
+4. Macy's POS (Jul–Oct 2025): POS system UI, SQL debugging, data validation, and trust-critical releases
 
 PERSONAL PROJECTS:
 - 3D Interactive Room (Three.js, React, AI assistant)
+- Storyboard AI (TypeScript, JavaScript, CSS, HTML, LLM)
 - AI Support System (Python, LLM, FastAPI, RAG)
 - GitHub Issue Analyzer with LLM Processing
-- Developer Onboarding AI agent (Python, TypeScript, LLM)
 
 CERTIFICATIONS:
 - AWS Cloud Practitioner (Foundational) — ID: E9M0RKJKWM4E1DK3
 - AWS Certified Developer (Associate) — ID: 0dc9259e497a4306afb539cb6d2cd9fd
 - AWS Certified AI Practitioner — ID: 3760f0aef37341198dd4f7f39e0dfe71
-- GitHub Copilot Certification — ID: xkNgR7ca
+- GitHub Copilot Certification — ID: cbb9dd25-c996-4b5d-a141-f357969b88f9
 
 CONTACT:
 - Email: anishkrishnan72@gmail.com
-- GitHub: github.com/AnishKrishnan73
-- LinkedIn: linkedin.com/in/anish-krishnan-/
+- GitHub: github.com/anishcodes-0-9
+- LinkedIn: linkedin.com/in/anishkrishnan09
 - Location: Chandigarh, India
 
 Be helpful, professional, and friendly. If you don't know something specific, suggest they contact Anish directly.

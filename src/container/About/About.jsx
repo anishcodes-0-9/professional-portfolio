@@ -10,7 +10,7 @@ const About = () => (
       About <span>Me</span>
     </h2>
     <p className="about__subtitle">
-      Full Stack Engineer · Backend Architect · AI Evaluator
+      Senior Software Engineer · Full Stack Builder · AI Evaluation Specialist
     </p>
 
     <div className="app__profiles">

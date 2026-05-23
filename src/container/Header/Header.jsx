@@ -51,7 +51,7 @@ const Header = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isProjectMenuOpen]);
 
-  const techBadges = ['Java', 'Python', 'JavaScript', 'MySQL', 'AWS'];
+  const techBadges = ['Java', 'Python', 'React', 'Node.js', 'AWS'];
 
   const navigateToSection = (sectionId, search = window.location.search) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -114,10 +114,10 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          Full Stack Engineer building scalable distributed systems for 10M+
-          users.
+          Senior software engineer building distributed systems, modern web
+          platforms, and AI-aware tooling for production use.
           <br />
-          3+ years at Cognizant · AWS Certified · Currently at Alignerr
+          Debut Infotech · Alignerr · Cognizant · 3x AWS Certified
         </motion.p>
 
         <motion.div
