@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { BsStars } from 'react-icons/bs';
-import { HiPaperAirplane, HiSparkles } from 'react-icons/hi';
-import { RiRobotLine } from 'react-icons/ri';
+import {
+  Sparkles, Send, Bot, X,
+} from 'lucide-react';
 import {
   certifications,
   chatbotContext,
@@ -277,7 +277,7 @@ const Chatbot = () => {
         title="Chat with Anish's AI assistant"
       >
         <span className="chatbot__fab-icon">
-          {open ? <HiSparkles /> : <RiRobotLine />}
+          {open ? <Sparkles size={18} strokeWidth={2} /> : <Bot size={18} strokeWidth={2} />}
         </span>
         <span className="chatbot__fab-label">Ask Anish&apos;s AI</span>
       </motion.button>
@@ -313,7 +313,7 @@ const Chatbot = () => {
                 onClick={() => closeChat({ reset: true })}
                 aria-label="Close chatbot"
               >
-                ✕
+                <X size={16} strokeWidth={2} />
               </button>
             </div>
 
@@ -342,7 +342,7 @@ const Chatbot = () => {
             {messages.length === 1 && (
               <div className="chatbot__suggested">
                 <div className="chatbot__suggested-label">
-                  <BsStars />
+                  <Sparkles size={14} strokeWidth={2} />
                   <span>Suggested questions</span>
                 </div>
                 <div className="chatbot__suggested-list">
@@ -379,7 +379,7 @@ const Chatbot = () => {
                 disabled={loading || !input.trim()}
                 aria-label="Send message"
               >
-                <HiPaperAirplane />
+                <Send size={16} strokeWidth={2} />
               </button>
             </div>
           </motion.div>
