@@ -1,9 +1,15 @@
 import React, { useLayoutEffect } from 'react';
-import { About, Footer, Header, Skills, Work, Chatbot } from './container';
+import { MotionConfig } from 'framer-motion';
+import {
+  About, Footer, Header, Skills, Work, Testimonials, Chatbot,
+} from './container';
 import { Navbar } from './components';
+import useLenis from './hooks/useLenis';
 import './App.scss';
 
 const App = () => {
+  useLenis();
+
   useLayoutEffect(() => {
     const { pathname, hash, search } = window.location;
 
@@ -14,15 +20,18 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      <Navbar />
-      <Header />
-      <About />
-      <Work />
-      <Skills />
-      <Footer />
-      <Chatbot />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="app">
+        <Navbar />
+        <Header />
+        <About />
+        <Work />
+        <Skills />
+        <Testimonials />
+        <Footer />
+        <Chatbot />
+      </div>
+    </MotionConfig>
   );
 };
 
