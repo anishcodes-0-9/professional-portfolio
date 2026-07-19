@@ -1,0 +1,101 @@
+.app__testimonials {
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.1rem, 2.5vw, 1.5rem);
+  width: 100%;
+  max-width: 68.75rem;
+  margin-top: clamp(2.25rem, 5vw, 3rem);
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+    max-width: 34rem;
+  }
+}
+
+// Deliberately un-tinted, un-washed — a plain elevated surface with a single
+// quote glyph as the only decoration, so it reads distinct from the
+// gradient-washed cards used in About/Work.
+.testimonial-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.85rem 1.75rem 1.6rem;
+  border-radius: 22px;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--shadow-2);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-3);
+  }
+
+  &__mark {
+    width: 26px;
+    height: 26px;
+    color: var(--secondary-color);
+    opacity: 0.55;
+  }
+
+  &__quote {
+    margin: 0;
+    font-size: var(--text-base);
+    color: var(--lightGray-color);
+    line-height: 1.7;
+    font-style: normal;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 0.4rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+  }
+
+  &__avatar {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--white-color);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.35), rgba(6, 182, 212, 0.25));
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  &__name {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--white-color);
+  }
+
+  &__role {
+    font-size: var(--text-xs);
+    color: var(--gray-color);
+  }
+
+  @media screen and (max-width: 560px) {
+    padding: 1.5rem 1.35rem;
+  }
+}
