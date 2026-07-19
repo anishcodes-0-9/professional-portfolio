@@ -29,6 +29,9 @@
 body {
   background-color: var(--primary-color);
   color: var(--white-color);
+  background-image:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 30%),
+    radial-gradient(circle at 85% 12%, rgba(6, 182, 212, 0.05), transparent 24%);
 }
 
 .app {
@@ -85,6 +88,7 @@ body {
 }
 
 .head-text {
+  position: relative;
   font-family: var(--font-display);
   font-size: 2.75rem;
   font-weight: 800;
@@ -92,6 +96,18 @@ body {
   color: var(--white-color);
   text-transform: capitalize;
   letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 92px;
+    height: 4px;
+    margin: 0.9rem auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.9), rgba(6, 182, 212, 0.85));
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.28);
+  }
 
   span {
     color: var(--secondary-color);

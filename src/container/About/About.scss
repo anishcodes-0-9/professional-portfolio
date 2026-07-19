@@ -26,35 +26,63 @@
 }
 
 .app__profile-item {
+  position: relative;
+  overflow: hidden;
   width: 220px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   padding: 1.75rem 1.5rem;
-  background: var(--card-bg);
+  background:
+    linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.9));
   border: 1px solid var(--card-border);
-  border-radius: 16px;
+  border-radius: 20px;
+  box-shadow:
+    0 18px 45px rgba(2, 6, 23, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
   transition: all 0.3s ease;
   cursor: default;
 
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), transparent 48%, rgba(6, 182, 212, 0.08));
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
   &:hover {
     border-color: rgba(59, 130, 246, 0.4);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+    box-shadow:
+      0 22px 50px rgba(59, 130, 246, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
   }
 
   .profile-emoji {
+    position: relative;
+    z-index: 1;
     font-size: 2rem;
     line-height: 1;
   }
 
   h3,
   h2 {
+    position: relative;
+    z-index: 1;
     font-size: 1rem;
     font-weight: 700;
     color: var(--white-color);
   }
 
   p {
+    position: relative;
+    z-index: 1;
     font-size: 0.82rem;
     color: var(--gray-color);
     line-height: 1.6;
@@ -92,21 +120,41 @@
   }
 
   .cert__badge {
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
     padding: 1.1rem 1.4rem;
     border: 1px solid;
-    border-radius: 14px;
-    background: var(--card-bg);
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.88));
+    box-shadow:
+      0 16px 42px rgba(2, 6, 23, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
     transition: all 0.25s ease;
 
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), transparent 55%);
+      pointer-events: none;
+    }
+
     &:hover {
-      box-shadow: 0 6px 24px rgba(59, 130, 246, 0.12);
+      box-shadow: 0 16px 34px rgba(59, 130, 246, 0.14);
       transform: translateY(-2px);
     }
 
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+
     .cert__name {
+      position: relative;
+      z-index: 1;
       font-size: 0.88rem;
       font-weight: 700;
       color: var(--white-color);
@@ -114,6 +162,8 @@
     }
 
     .cert__level {
+      position: relative;
+      z-index: 1;
       font-size: 0.74rem;
       color: var(--gray-color);
       font-weight: 500;

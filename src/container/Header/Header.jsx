@@ -77,6 +77,8 @@ const Header = () => {
       <div className="header__grid-bg" />
       <div className="header__orb header__orb--blue" />
       <div className="header__orb header__orb--cyan" />
+      <div className="header__spotlight" />
+      <div className="header__beam" />
 
       <motion.div
         className="app__header-content"
@@ -92,6 +94,28 @@ const Header = () => {
         >
           <span className="greeting-wave">👋</span>
           <span>Hi, I&apos;m</span>
+        </motion.div>
+
+        <motion.div
+          className="header__signal-bar"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <button
+            type="button"
+            className="header__signal-pill header__signal-pill--live"
+            onClick={() => navigateToSection('contact')}
+          >
+            Available for full-time and freelance roles
+          </button>
+          <button
+            type="button"
+            className="header__signal-pill header__signal-pill--action"
+            onClick={() => openProjectTab('enterprise')}
+          >
+            See latest enterprise work
+          </button>
         </motion.div>
 
         <motion.h1
@@ -119,6 +143,26 @@ const Header = () => {
           <br />
           Debut Infotech · Alignerr · Cognizant · 3x AWS Certified
         </motion.p>
+
+        <motion.div
+          className="header__highlights"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.95, duration: 0.6 }}
+        >
+          <div className="header__highlight-card">
+            <span className="header__highlight-label">Focus</span>
+            <strong>Distributed products</strong>
+          </div>
+          <div className="header__highlight-card">
+            <span className="header__highlight-label">Strength</span>
+            <strong>Reliability + scale</strong>
+          </div>
+          <div className="header__highlight-card">
+            <span className="header__highlight-label">Edge</span>
+            <strong>AI evaluation</strong>
+          </div>
+        </motion.div>
 
         <motion.div
           className="header__badges"
