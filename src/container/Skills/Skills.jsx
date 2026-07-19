@@ -19,9 +19,12 @@ import {
   SiVuedotjs,
 } from 'react-icons/si';
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { skills, experiences } from '../../data/anishData';
+import { fadeUp, staggerContainer, viewportOnce } from '../../wrapper/variants';
+import { skillGroups } from '../../data/anishData';
 import './Skills.scss';
 
+// Real technology logos, kept as brand-accurate marks rather than folded
+// into the generic Lucide icon set — recognizability is the point here.
 const logos = {
   Java: { icon: FaJava, color: '#f89820' },
   'Spring Boot': { icon: SiSpringboot, color: '#6db33f' },
@@ -57,46 +60,41 @@ const SkillIcon = ({ name }) => {
 const Skills = () => (
   <>
     <h2 className="head-text">
-      Skills & <span>Experience</span>
+      Skills & <span>Tools</span>
     </h2>
+    <p className="skills__subtitle">
+      Grouped by how much real weight each one carries across the work
+      above — not an alphabetical wall of logos.
+    </p>
 
     <div className="app__skills-container">
-      <motion.div className="app__skills-list">
-        {skills.map((skill, i) => (
-          <motion.div
-            key={skill.name}
-            whileInView={{ opacity: 1, scale: 1 }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3, delay: i * 0.04 }}
-            whileHover={{ y: -4 }}
-            className="app__skills-item app__flex"
-          >
-            <div className="skill-icon app__flex">
-              <SkillIcon name={skill.name} />
-            </div>
-            <p className="p-text">{skill.name}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      <div className="app__skills-exp">
-        {experiences.map((exp) => (
-          <div className="app__skills-exp-item" key={exp.year}>
-            <div className="app__skills-exp-year">
-              <p className="bold-text">{exp.year}</p>
-            </div>
-            <div className="app__skills-exp-works">
-              {exp.works.map((work) => (
-                <div className="app__skills-exp-work" key={work.name}>
-                  <h4 className="bold-text">{work.name}</h4>
-                  <p className="p-text company">{work.company}</p>
-                  <p className="p-text desc">{work.desc}</p>
+      {skillGroups.map((group) => (
+        <motion.div
+          className={`skills-tier skills-tier--${group.tier === 'Core stack' ? 'core' : 'secondary'}`}
+          key={group.tier}
+          variants={staggerContainer(0.04)}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+        >
+          <h3 className="skills-tier__label">{group.tier}</h3>
+          <div className="skills-tier__list">
+            {group.skills.map((name) => (
+              <motion.div
+                key={name}
+                variants={fadeUp}
+                whileHover={{ y: -3 }}
+                className="app__skills-item app__flex"
+              >
+                <div className="skill-icon app__flex">
+                  <SkillIcon name={name} />
                 </div>
-              ))}
-            </div>
+                <p className="p-text">{name}</p>
+              </motion.div>
+            ))}
           </div>
-        ))}
-      </div>
+        </motion.div>
+      ))}
     </div>
   </>
 );

@@ -4,72 +4,114 @@
   flex-direction: column;
 }
 
-.app__skills-container {
-  width: min(100%, 70rem);
-  margin-top: clamp(2.25rem, 5vw, 3rem);
-  display: flex;
-  flex-direction: row;
-  gap: clamp(2.5rem, 6vw, 4rem);
-
-  @media screen and (max-width: 900px) {
-    width: 100%;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
+.skills__subtitle {
+  max-width: min(100%, 34rem);
+  text-align: center;
+  color: var(--lightGray-color);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  margin: 0.75rem auto 0;
 }
 
-.app__skills-list {
-  flex: 1;
+.app__skills-container {
+  width: min(100%, 56rem);
+  margin: clamp(2.25rem, 5vw, 3rem) auto 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  gap: 1rem;
-  min-width: 0;
+  flex-direction: column;
+  gap: clamp(1.75rem, 4vw, 2.25rem);
+}
 
-  @media screen and (max-width: 900px) {
-    justify-content: center;
+.skills-tier {
+  &__label {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
   }
 
-  @media screen and (max-width: 560px) {
-    gap: 0.85rem;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Core tier reads first and largest — the other tiers are supporting
+     context, not equal-weight peers. */
+  &--core {
+    .skills-tier__label {
+      color: var(--white-color);
+      font-size: var(--text-md);
+    }
+
+    .app__skills-item {
+      flex: 0 1 6.5rem;
+
+      .skill-icon {
+        width: clamp(4.75rem, 9vw, 5.25rem);
+        height: clamp(4.75rem, 9vw, 5.25rem);
+        border-radius: 18px;
+        border-color: rgba(59, 130, 246, 0.28);
+
+        svg,
+        i {
+          font-size: 2.5rem;
+        }
+
+        svg {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+      }
+
+      p {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--white-color);
+      }
+    }
+  }
+
+  &--secondary {
+    .app__skills-item {
+      flex: 0 1 5.25rem;
+
+      .skill-icon {
+        width: clamp(3.5rem, 6vw, 3.9rem);
+        height: clamp(3.5rem, 6vw, 3.9rem);
+        border-radius: 13px;
+
+        svg {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+      }
+
+      p {
+        font-size: var(--text-xs);
+      }
+    }
   }
 }
 
 .app__skills-item {
   flex-direction: column;
   text-align: center;
+  align-items: center;
   gap: 0.5rem;
-  transition: transform 0.2s ease;
-
-  flex: 0 1 5.75rem;
   min-width: 0;
 
   .skill-icon {
-    width: clamp(4.25rem, 8vw, 4.75rem);
-    height: clamp(4.25rem, 8vw, 4.75rem);
-    border-radius: 16px;
     border: 1px solid var(--card-border);
     background: var(--card-bg);
     display: flex;
     align-items: center;
     justify-content: center;
 
-    /* Devicon colored icons */
-    i {
-      font-size: 2.2rem;
-      line-height: 1;
-    }
-
-    svg {
-      width: 2.3rem;
-      height: 2.3rem;
-    }
-
-    /* Fallback text initials */
     .skill-initial {
       font-family: var(--font-display);
-      font-size: 1.3rem;
       font-weight: 800;
       color: var(--secondary-color);
       opacity: 0.85;
@@ -78,137 +120,15 @@
   }
 
   p {
-    font-size: 0.7rem;
-    font-weight: 500;
     color: var(--lightGray-color);
     max-width: 100%;
     text-align: center;
     overflow-wrap: anywhere;
   }
-
-  @media screen and (max-width: 560px) {
-    flex-basis: calc(33.333% - 0.6rem);
-    min-width: min(5.5rem, 100%);
-
-    .skill-icon {
-      width: 4.25rem;
-      height: 4.25rem;
-      border-radius: 14px;
-
-      svg {
-        width: 2rem;
-        height: 2rem;
-      }
-    }
-  }
 }
 
-/* ── Experience timeline ────────────────────── */
-.app__skills-exp {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-  min-width: 0;
-}
-
-.app__skills-exp-item {
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 72px;
-    top: 0;
-    bottom: -1.75rem;
-    width: 1px;
-    background: linear-gradient(to bottom, rgba(59,130,246,0.3), transparent);
-  }
-
-  &:last-child::before { display: none; }
-
-  @media screen and (max-width: 640px) {
-    flex-direction: column;
-    gap: 0.75rem;
-    padding-left: 1rem;
-
-    &::before {
-      left: 0.2rem;
-      top: 0.85rem;
-      bottom: -1.2rem;
-    }
-  }
-}
-
-.app__skills-exp-year {
-  width: 72px;
-  flex-shrink: 0;
-
-  p {
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--secondary-color);
-    text-align: right;
-    padding-top: 0.15rem;
-    white-space: nowrap;
-  }
-
-  @media screen and (max-width: 640px) {
-    width: auto;
-
-    p {
-      text-align: left;
-      padding-top: 0;
-      padding-left: 0.9rem;
-    }
-  }
-}
-
-.app__skills-exp-works {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.app__skills-exp-work {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
-  transition: border-color 0.2s ease;
-
-  &:hover {
-    border-color: rgba(59, 130, 246, 0.35);
-  }
-
-  h4 {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--white-color);
-    margin-bottom: 0.2rem;
-    overflow-wrap: anywhere;
-  }
-
-  p.company {
-    color: var(--secondary-color);
-    font-weight: 600;
-    font-size: 0.78rem;
-    margin-bottom: 0.5rem;
-  }
-
-  p.desc {
-    font-size: 0.78rem;
-    color: var(--gray-color);
-    line-height: 1.55;
-  }
-
-  @media screen and (max-width: 560px) {
-    padding: 0.9rem 1rem;
+@media screen and (max-width: 640px) {
+  .skills-tier__list {
+    justify-content: center;
   }
 }
