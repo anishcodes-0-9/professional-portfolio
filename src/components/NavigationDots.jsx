@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NavigationDots = ({ active }) => {
-  const sections = ['home', 'about', 'work', 'skills', 'contact'];
+  const sections = ['home', 'about', 'work', 'skills', 'testimonials', 'contact'];
 
   return (
     <div className="app__navigation">
@@ -9,11 +9,11 @@ const NavigationDots = ({ active }) => {
         <a
           href={`#${item}`}
           key={item}
-          className="app__navigation-dot"
-          style={active === item ? { color: '#3b82f6' } : {}}
+          className={`app__navigation-dot ${active === item ? 'app__navigation-dot--active' : ''}`}
           aria-label={`Navigate to ${item} section`}
+          aria-current={active === item ? 'true' : undefined}
         >
-          <span className="sr-only">{item}</span>
+          <span className="app__navigation-dot-tooltip">{item}</span>
         </a>
       ))}
     </div>
