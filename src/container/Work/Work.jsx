@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BsGithub, BsBoxArrowUpRight } from 'react-icons/bs';
+import {
+  ArrowUpRight, Briefcase, Zap, Wrench, Award, PenLine,
+} from 'lucide-react';
 import { FaAws } from 'react-icons/fa';
 import { SiCognizant, SiGithub, SiMacys } from 'react-icons/si';
 import { AppWrap, MotionWrap } from '../../wrapper';
+import { fadeUp, staggerContainer } from '../../wrapper/variants';
 import {
   workHistory,
   enterpriseProjects,
@@ -100,22 +103,27 @@ const BrandMark = ({ brand, label }) => {
 };
 
 const TABS = [
-  { id: 'history', label: 'Work History', icon: '🏢' },
-  { id: 'enterprise', label: 'Enterprise Projects', icon: '⚡' },
-  { id: 'personal', label: 'Personal Projects', icon: '🛠️' },
-  { id: 'certs', label: 'Certifications', icon: '🏆' },
-  { id: 'blogs', label: 'Blogs', icon: '✍️', soon: true },
+  { id: 'history', label: 'Work History', Icon: Briefcase },
+  { id: 'enterprise', label: 'Enterprise Projects', Icon: Zap },
+  { id: 'personal', label: 'Personal Projects', Icon: Wrench },
+  { id: 'certs', label: 'Certifications', Icon: Award },
+  {
+    id: 'blogs', label: 'Blogs', Icon: PenLine, soon: true,
+  },
 ];
 
 const WorkHistoryTab = () => (
-  <div className="tab-content">
-    {workHistory.map((job, i) => (
+  <motion.div
+    className="tab-content"
+    variants={staggerContainer(0.08)}
+    initial="hidden"
+    animate="show"
+  >
+    {workHistory.map((job) => (
       <motion.div
         key={`${job.company}-${job.role}`}
         className="history-card"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.08 }}
+        variants={fadeUp}
       >
         <div className="history-card__header">
           <div className="history-card__logo">
@@ -135,18 +143,21 @@ const WorkHistoryTab = () => (
         </ul>
       </motion.div>
     ))}
-  </div>
+  </motion.div>
 );
 
 const EnterpriseTab = () => (
-  <div className="tab-content">
-    {enterpriseProjects.map((proj, i) => (
+  <motion.div
+    className="tab-content"
+    variants={staggerContainer(0.08)}
+    initial="hidden"
+    animate="show"
+  >
+    {enterpriseProjects.map((proj) => (
       <motion.div
         key={proj.title}
         className="enterprise-card"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.08 }}
+        variants={fadeUp}
       >
         <div className="enterprise-card__header">
           <span className="enterprise-card__emoji">
@@ -170,34 +181,37 @@ const EnterpriseTab = () => (
         </div>
       </motion.div>
     ))}
-  </div>
+  </motion.div>
 );
 
 const PersonalTab = () => (
-  <div className="tab-content">
+  <motion.div
+    className="tab-content"
+    variants={staggerContainer(0.08)}
+    initial="hidden"
+    animate="show"
+  >
     <p className="tab-content__subtitle">
       Some things I&apos;ve built while experimenting with systems, AI, and interactive interfaces.
     </p>
-    {personalProjects.map((proj, i) => (
+    {personalProjects.map((proj) => (
       <motion.div
         key={proj.title}
         className="personal-card"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.08 }}
+        variants={fadeUp}
       >
         <div className="personal-card__top">
           <h3 className="personal-card__title">{proj.title}</h3>
           <div className="personal-card__links">
             {proj.github && (
               <a href={proj.github} target="_blank" rel="noreferrer" className="icon-link" title="View on GitHub">
-                <BsGithub />
+                <SiGithub size={13} />
                 <span>View on GitHub</span>
               </a>
             )}
             {proj.live && (
               <a href={proj.live} target="_blank" rel="noreferrer" className="icon-link icon-link--live" title="Live Demo">
-                <BsBoxArrowUpRight />
+                <ArrowUpRight size={15} strokeWidth={2.25} />
                 <span>Live Demo</span>
               </a>
             )}
@@ -211,19 +225,22 @@ const PersonalTab = () => (
         </div>
       </motion.div>
     ))}
-  </div>
+  </motion.div>
 );
 
 const CertsTab = () => (
-  <div className="tab-content">
-    {certifications.map((cert, i) => (
+  <motion.div
+    className="tab-content"
+    variants={staggerContainer(0.08)}
+    initial="hidden"
+    animate="show"
+  >
+    {certifications.map((cert) => (
       <motion.div
         key={cert.name}
         className="cert-card"
         style={{ '--cert-accent': cert.color }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.08 }}
+        variants={fadeUp}
       >
         <div className="cert-card__header">
           <span className="cert-card__emoji">
@@ -249,18 +266,18 @@ const CertsTab = () => (
         </div>
       </motion.div>
     ))}
-  </div>
+  </motion.div>
 );
 
 const BlogsTab = () => (
   <div className="tab-content tab-content--centered">
     <motion.div
       className="coming-soon"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      <span className="coming-soon__icon">✍️</span>
+      <PenLine size={36} strokeWidth={1.5} className="coming-soon__icon" />
       <h3 className="coming-soon__title">Blogs Coming Soon</h3>
       <p className="coming-soon__text">
         Writing about distributed systems, AI evaluation, and full-stack engineering.
@@ -337,9 +354,16 @@ const Work = () => {
             className={`work-tab ${activeTab === tab.id ? 'work-tab--active' : ''}`}
             onClick={() => handleTabClick(tab.id)}
           >
-            <span className="work-tab__icon">{tab.icon}</span>
+            <tab.Icon className="work-tab__icon" size={15} strokeWidth={2} />
             <span className="work-tab__label">{tab.label}</span>
             {tab.soon && <span className="work-tab__soon">Soon</span>}
+            {activeTab === tab.id && (
+              <motion.span
+                layoutId="work-tab-pill"
+                className="work-tab__pill"
+                transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+              />
+            )}
           </button>
         ))}
       </div>
