@@ -1,55 +1,62 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import {
+  Server, Palette, Cloud, Bot,
+} from 'lucide-react';
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { aboutCards, certifications } from '../../data/anishData';
+import { fadeUp, staggerContainer, viewportOnce } from '../../wrapper/variants';
+import { aboutCards } from '../../data/anishData';
 import './About.scss';
 
+const ICONS = {
+  '⚙️': Server,
+  '🎨': Palette,
+  '☁️': Cloud,
+  '🤖': Bot,
+};
+
 const About = () => (
-  <>
-    <h2 className="head-text">
-      About <span>Me</span>
-    </h2>
-    <p className="about__subtitle">
-      Senior Software Engineer · Full Stack Builder · AI Evaluation Specialist
-    </p>
-
-    <div className="app__profiles">
-      {aboutCards.map((card, index) => (
-        <motion.div
-          whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 30 }}
-          whileHover={{ y: -6 }}
-          transition={{ duration: 0.4, delay: index * 0.1 }}
-          className="app__profile-item"
-          key={card.title}
-        >
-          <div className="profile-emoji">{card.emoji}</div>
-          <h3 className="bold-text">{card.title}</h3>
-          <p className="p-text">{card.description}</p>
-        </motion.div>
-      ))}
+  <div className="about__layout">
+    <div className="about__intro">
+      <span className="section-eyebrow">About</span>
+      <h2 className="head-text about__heading">
+        Systems-minded <span>engineer</span>
+      </h2>
+      <p className="about__subtitle">
+        I like the parts of engineering most people skip — the API contract,
+        the failure mode, the metric that tells you something actually
+        broke. Four years across backend systems, production interfaces,
+        and — more recently — evaluating how AI-generated code holds up
+        under real scrutiny.
+      </p>
     </div>
 
-    <div className="about__certs">
-      <h4 className="certs__label">Certifications</h4>
-      <div className="certs__list">
-        {certifications.map((cert) => (
-          <div
-            key={cert.name}
-            className="cert__badge"
-            style={{
-              borderColor: cert.org === 'GitHub'
-                ? 'rgba(255,255,255,0.2)'
-                : `${cert.color}55`,
-            }}
+    <motion.div
+      className="app__profiles"
+      variants={staggerContainer(0.1)}
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportOnce}
+    >
+      {aboutCards.map((card) => {
+        const Icon = ICONS[card.emoji] ?? Server;
+        return (
+          <motion.div
+            variants={fadeUp}
+            whileHover={{ y: -6 }}
+            className="app__profile-item gradient-border"
+            key={card.title}
           >
-            <span className="cert__name">{cert.name}</span>
-            <span className="cert__level">{cert.org}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </>
+            <div className="profile-icon">
+              <Icon size={22} strokeWidth={1.75} />
+            </div>
+            <h3 className="bold-text">{card.title}</h3>
+            <p className="p-text">{card.description}</p>
+          </motion.div>
+        );
+      })}
+    </motion.div>
+  </div>
 );
 
 export default AppWrap(
