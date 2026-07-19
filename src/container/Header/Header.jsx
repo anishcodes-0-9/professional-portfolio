@@ -1,39 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 import { AppWrap } from '../../wrapper';
+import { MagneticButton as Magnetic } from '../../components';
 import { personalInfo } from '../../data/anishData';
 import './Header.scss';
 
 const roles = personalInfo.taglines;
 
+const STATS = [
+  {
+    num: '10M+', label: 'Users served in production', tone: 'primary',
+  },
+  { num: '4+', label: 'Years experience' },
+  { num: '3x', label: 'AWS certified' },
+];
+
 const Header = () => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
-  const [typing, setTyping] = useState(true);
   const [isProjectMenuOpen, setIsProjectMenuOpen] = useState(false);
+  const heroRef = useRef(null);
 
   useEffect(() => {
-    const currentRole = roles[roleIndex];
-    let timeout;
-
-    if (typing) {
-      if (displayed.length < currentRole.length) {
-        timeout = setTimeout(
-          () => setDisplayed(currentRole.slice(0, displayed.length + 1)),
-          70,
-        );
-      } else {
-        timeout = setTimeout(() => setTyping(false), 1800);
-      }
-    } else if (displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40);
-    } else {
+    const interval = setInterval(() => {
       setRoleIndex((i) => (i + 1) % roles.length);
-      setTyping(true);
-    }
+    }, 2800);
 
-    return () => clearTimeout(timeout);
-  }, [displayed, typing, roleIndex]);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (!isProjectMenuOpen) {
@@ -50,6 +44,22 @@ const Header = () => {
 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isProjectMenuOpen]);
+
+  useEffect(() => {
+    const node = heroRef.current;
+    if (!node || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return undefined;
+    }
+
+    const handlePointerMove = (event) => {
+      const rect = node.getBoundingClientRect();
+      node.style.setProperty('--mx', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+      node.style.setProperty('--my', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+    };
+
+    node.addEventListener('pointermove', handlePointerMove);
+    return () => node.removeEventListener('pointermove', handlePointerMove);
+  }, []);
 
   const techBadges = ['Java', 'Python', 'React', 'Node.js', 'AWS'];
 
@@ -73,114 +83,82 @@ const Header = () => {
   };
 
   return (
-    <div className="app__header app__flex">
-      <div className="header__grid-bg" />
-      <div className="header__orb header__orb--blue" />
-      <div className="header__orb header__orb--cyan" />
-      <div className="header__spotlight" />
-      <div className="header__beam" />
+    <div className="app__header app__flex" ref={heroRef}>
+      <div className="header__glow" aria-hidden="true" />
+      <div className="header__grid" aria-hidden="true" />
 
       <motion.div
         className="app__header-content"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
         <motion.div
-          className="header__greeting"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          <span className="greeting-wave">👋</span>
-          <span>Hi, I&apos;m</span>
-        </motion.div>
-
-        <motion.div
           className="header__signal-bar"
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
+          transition={{ delay: 0.15, duration: 0.5 }}
         >
           <button
             type="button"
             className="header__signal-pill header__signal-pill--live"
             onClick={() => navigateToSection('contact')}
-            aria-label="Available for full-time and freelance roles"
+            aria-label="Open to new roles — go to contact section"
           >
-            <span className="header__signal-text header__signal-text--full">
-              Available for full-time and freelance roles
-            </span>
-            <span className="header__signal-text header__signal-text--compact">
-              Available for roles
-            </span>
+            Open to new roles
           </button>
           <button
             type="button"
             className="header__signal-pill header__signal-pill--action"
             onClick={() => openProjectTab('enterprise')}
-            aria-label="See latest enterprise work"
+            aria-label="See enterprise work"
           >
-            <span className="header__signal-text header__signal-text--full">
-              See latest enterprise work
-            </span>
-            <span className="header__signal-text header__signal-text--compact">
-              Enterprise work
-            </span>
+            Enterprise work ↗
           </button>
         </motion.div>
 
         <motion.h1
           className="header__name"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
+          transition={{ delay: 0.25, duration: 0.6 }}
         >
           Anish Krishnan
         </motion.h1>
 
-        <div className="header__role">
-          <span className="header__role-text">{displayed}</span>
-          <span className="header__cursor">|</span>
+        <div className="header__role" aria-live="polite">
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={roles[roleIndex]}
+              className="header__role-text"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {roles[roleIndex]}
+            </motion.span>
+          </AnimatePresence>
         </div>
 
         <motion.p
           className="header__summary"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
         >
-          Senior software engineer building distributed systems, modern web
-          platforms, and AI-aware tooling for production use.
+          I build distributed systems and production web platforms — currently
+          at Debut Infotech, previously Alignerr and Cognizant.
           <br />
-          Debut Infotech · Alignerr · Cognizant · 3x AWS Certified
+          Four years shipping backend services and interfaces that hold up
+          under real traffic.
         </motion.p>
 
         <motion.div
-          className="header__highlights"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.95, duration: 0.6 }}
-        >
-          <div className="header__highlight-card">
-            <span className="header__highlight-label">Focus</span>
-            <strong>Distributed products</strong>
-          </div>
-          <div className="header__highlight-card">
-            <span className="header__highlight-label">Strength</span>
-            <strong>Reliability + scale</strong>
-          </div>
-          <div className="header__highlight-card">
-            <span className="header__highlight-label">Edge</span>
-            <strong>AI evaluation</strong>
-          </div>
-        </motion.div>
-
-        <motion.div
           className="header__badges"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 0.55, duration: 0.5 }}
         >
           {techBadges.map((b) => (
             <span key={b} className="header__badge">
@@ -191,11 +169,12 @@ const Header = () => {
 
         <motion.div
           className="header__cta"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
         >
-          <button
+          <Magnetic
+            as="button"
             type="button"
             className="cta-primary"
             onClick={() => setIsProjectMenuOpen((open) => !open)}
@@ -203,14 +182,16 @@ const Header = () => {
             aria-controls="project-type-menu"
           >
             View Projects
-          </button>
-          <button
+            <ArrowRight size={16} strokeWidth={2.25} />
+          </Magnetic>
+          <Magnetic
+            as="button"
             type="button"
             className="cta-secondary"
             onClick={() => navigateToSection('contact')}
           >
             Get in Touch
-          </button>
+          </Magnetic>
         </motion.div>
 
         {isProjectMenuOpen && (
@@ -250,33 +231,36 @@ const Header = () => {
 
       <motion.div
         className="header__stats"
-        initial={{ opacity: 0, x: 60 }}
+        initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
+        transition={{ delay: 0.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="header__monogram" aria-hidden="true">
           <span className="header__monogram-ak">AK</span>
           <span className="header__monogram-dot">.</span>
         </div>
-        {[
-          { num: '4+', label: 'Years Exp' },
-          { num: '10M+', label: 'Users Served' },
-          { num: '3x', label: 'AWS Certified' },
-        ].map((stat) => (
-          <div key={stat.label} className="header__stat-card">
+
+        {STATS.map((stat) => (
+          <div
+            key={stat.label}
+            className={`header__stat-card ${stat.tone === 'primary' ? 'header__stat-card--primary' : ''}`}
+          >
             <span className="stat-num">{stat.num}</span>
             <span className="stat-label">{stat.label}</span>
           </div>
         ))}
       </motion.div>
 
-      <motion.div
+      <motion.a
+        href="#about"
         className="header__scroll"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
+        aria-label="Scroll to About section"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ delay: 1.1, duration: 0.6 }}
       >
-        <div className="scroll-dot" />
-      </motion.div>
+        <ArrowDown size={16} strokeWidth={2} className="header__scroll-icon" />
+      </motion.a>
     </div>
   );
 };
