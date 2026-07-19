@@ -128,6 +128,7 @@ const Footer = () => {
                 <input
                   type="text"
                   name="name"
+                  aria-label="Your name"
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={handleChange}
@@ -137,6 +138,7 @@ const Footer = () => {
                 <input
                   type="email"
                   name="email"
+                  aria-label="Your email"
                   placeholder="Your Email"
                   value={formData.email}
                   onChange={handleChange}
@@ -146,6 +148,7 @@ const Footer = () => {
             <div className="form__field form__field--full">
               <textarea
                 name="message"
+                aria-label="Your message"
                 placeholder="Your Message"
                 value={formData.message}
                 onChange={handleChange}

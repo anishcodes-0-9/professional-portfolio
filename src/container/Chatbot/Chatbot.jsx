@@ -364,6 +364,7 @@ const Chatbot = () => {
               <input
                 ref={inputRef}
                 type="text"
+                aria-label="Ask Anish's AI assistant"
                 placeholder="Ask about backend, projects, certifications, or contact..."
                 value={input}
                 onChange={(event) => setInput(event.target.value)}

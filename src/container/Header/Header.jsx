@@ -106,15 +106,27 @@ const Header = () => {
             type="button"
             className="header__signal-pill header__signal-pill--live"
             onClick={() => navigateToSection('contact')}
+            aria-label="Available for full-time and freelance roles"
           >
-            Available for full-time and freelance roles
+            <span className="header__signal-text header__signal-text--full">
+              Available for full-time and freelance roles
+            </span>
+            <span className="header__signal-text header__signal-text--compact">
+              Available for roles
+            </span>
           </button>
           <button
             type="button"
             className="header__signal-pill header__signal-pill--action"
             onClick={() => openProjectTab('enterprise')}
+            aria-label="See latest enterprise work"
           >
-            See latest enterprise work
+            <span className="header__signal-text header__signal-text--full">
+              See latest enterprise work
+            </span>
+            <span className="header__signal-text header__signal-text--compact">
+              Enterprise work
+            </span>
           </button>
         </motion.div>
 

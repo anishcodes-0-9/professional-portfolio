@@ -42,13 +42,30 @@ const Navbar = () => {
       </a>
 
       <div className="app__navbar-menu">
-        <HiMenuAlt4 onClick={() => setToggle(true)} />
+        <button
+          type="button"
+          className="app__navbar-menu-button"
+          onClick={() => setToggle(true)}
+          aria-label="Open navigation menu"
+          aria-expanded={toggle}
+          aria-controls="mobile-navigation"
+        >
+          <HiMenuAlt4 />
+        </button>
         {toggle && (
           <motion.div
+            id="mobile-navigation"
             whileInView={{ x: [300, 0] }}
             transition={{ duration: 0.85, ease: 'easeOut' }}
           >
-            <HiX onClick={() => setToggle(false)} />
+            <button
+              type="button"
+              className="app__navbar-close"
+              onClick={() => setToggle(false)}
+              aria-label="Close navigation menu"
+            >
+              <HiX />
+            </button>
             <ul>
               {navLinks.map((item) => (
                 <li key={item}>

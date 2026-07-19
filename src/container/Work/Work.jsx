@@ -325,11 +325,15 @@ const Work = () => {
     <>
       <h2 className="head-text">My <span>Work</span></h2>
 
-      <div className="work-tabs">
+      <div className="work-tabs" role="tablist" aria-label="Work sections">
         {TABS.map((tab) => (
           <button
             type="button"
             key={tab.id}
+            role="tab"
+            id={`work-tab-${tab.id}`}
+            aria-selected={activeTab === tab.id}
+            aria-controls="work-panel"
             className={`work-tab ${activeTab === tab.id ? 'work-tab--active' : ''}`}
             onClick={() => handleTabClick(tab.id)}
           >
@@ -340,7 +344,12 @@ const Work = () => {
         ))}
       </div>
 
-      <div className="work-panel">
+      <div
+        className="work-panel"
+        id="work-panel"
+        role="tabpanel"
+        aria-labelledby={`work-tab-${activeTab}`}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}

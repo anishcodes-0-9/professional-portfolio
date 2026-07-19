@@ -10,12 +10,12 @@
   color: var(--lightGray-color);
   font-size: 0.95rem;
   margin-top: 0.75rem;
-  max-width: 440px;
+  max-width: min(100%, 27.5rem);
   line-height: 1.6;
 
   @media screen and (max-width: 640px) {
     font-size: 0.9rem;
-    max-width: 320px;
+    max-width: min(100%, 20rem);
     margin-top: 0.55rem;
   }
 }
@@ -25,15 +25,16 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  margin: 2.5rem 0 0;
+  margin: clamp(2rem, 5vw, 2.5rem) 0 0;
   width: 100%;
-  max-width: 920px;
+  max-width: 57.5rem;
 
   .footer__link-card {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     padding: 0.9rem 1.4rem;
+    min-height: 4.75rem;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
@@ -54,6 +55,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.15rem;
+      min-width: 0;
     }
 
     .link-label {
@@ -68,6 +70,7 @@
       font-size: 0.84rem;
       font-weight: 500;
       color: var(--white-color);
+      overflow-wrap: anywhere;
     }
 
     &:hover {
@@ -98,7 +101,7 @@
 /* ── Form wrapper ────────────────────────────── */
 .footer__form-wrapper {
   width: 100%;
-  max-width: 850px;
+  max-width: 53.125rem;
   margin-top: 2.5rem;
 
   @media screen and (max-width: 560px) {
@@ -145,6 +148,7 @@
     color: var(--white-color);
     outline: none;
     display: block;
+    min-height: 2.75rem;
 
     &::placeholder {
       color: var(--gray-color);
@@ -172,6 +176,7 @@
 .footer__submit-btn {
   align-self: flex-start;
   padding: 0.85rem 2rem;
+  min-height: 2.75rem;
   border-radius: 10px;
   border: none;
   background: var(--secondary-color);

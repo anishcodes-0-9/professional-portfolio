@@ -6,7 +6,7 @@
 }
 
 .about__subtitle {
-  max-width: 560px;
+  max-width: min(100%, 35rem);
   text-align: center;
   color: var(--lightGray-color);
   font-size: 1rem;
@@ -20,15 +20,17 @@
   justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  margin-top: clamp(2.25rem, 5vw, 3rem);
   width: 100%;
 }
 
 .app__profile-item {
   position: relative;
   overflow: hidden;
-  width: 220px;
+  flex: 1 1 13.75rem;
+  max-width: 16rem;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -90,14 +92,15 @@
 
   @media screen and (max-width: 600px) {
     width: 100%;
+    max-width: none;
   }
 }
 
 /* ── Certifications 2×2 grid ──────────────────── */
 .about__certs {
-  margin-top: 3.5rem;
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
   width: 100%;
-  max-width: 860px;
+  max-width: 53.75rem;
 
   .certs__label {
     font-family: var(--font-display);
@@ -106,13 +109,13 @@
     color: var(--white-color);
     text-align: center;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
 
   .certs__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: clamp(0.85rem, 2vw, 1rem);
 
     @media screen and (max-width: 640px) {
       grid-template-columns: 1fr;
@@ -159,6 +162,7 @@
       font-weight: 700;
       color: var(--white-color);
       line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
     .cert__level {
