@@ -1,0 +1,107 @@
+/* ── Hero node-graph background ───────────────────────────
+   Atmospheric but meaningful technical layer: four fixed
+   "domain" nodes (frontend/backend/cloud/systems) stand for
+   real engineering categories, connected to a measured trace
+   toward the metric element. Every value here is tuned to stay
+   subordinate to the typography rendered on top of it. */
+
+.hero-graph {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Below the two-column breakpoint, content and metric stack into one
+   full-width column that now overlaps the same space the graph was
+   drawn for. Recede it to a quiet texture instead of repositioning
+   the whole layout — and drop the labels, which read fine as precision
+   detail in the spacious desktop composition but only add clutter
+   crossing through stacked body text. */
+.hero-graph--compact {
+  opacity: 0.28;
+}
+
+.hero-graph--compact .hero-graph__label {
+  display: none;
+}
+
+.hero-graph__edge {
+  fill: none;
+  stroke: var(--tertiary-color);
+  stroke-width: 1;
+  stroke-opacity: calc(0.42 + var(--proximity, 0) * 0.4);
+  vector-effect: non-scaling-stroke;
+  transition: stroke-opacity 0.2s var(--ease-out);
+}
+
+.hero-graph__edge--domain {
+  stroke: var(--secondary-color);
+  stroke-opacity: calc(0.55 + var(--proximity, 0) * 0.35);
+}
+
+.hero-graph__edge--pulse {
+  stroke: var(--accent-color);
+  stroke-opacity: 0.5;
+  stroke-dasharray: 7 230;
+}
+
+.hero-graph__edge--convergence {
+  stroke: var(--accent-color);
+  stroke-width: 1.25;
+}
+
+.hero-graph__node {
+  fill: var(--secondary-color);
+  opacity: calc(0.3 + var(--proximity, 0) * 0.45);
+  transition: opacity 0.2s var(--ease-out);
+}
+
+.hero-graph__node--domain {
+  fill: var(--accent-color);
+  opacity: calc(0.62 + var(--proximity, 0) * 0.35);
+}
+
+.hero-graph__node--minor {
+  opacity: calc(0.26 + var(--proximity, 0) * 0.4);
+}
+
+.hero-graph__label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  fill: var(--lightGray-color);
+  opacity: calc(0.42 + var(--proximity, 0) * 0.4);
+  transition: opacity 0.2s var(--ease-out);
+}
+
+/* ── Ambient + signal tiers ────────────────────────────────
+   Both CSS-only, so App.scss's global reduced-motion rule
+   neutralises them automatically even if this media query
+   were ever missed. Disabled outright at the "static" density
+   tier (small screens / no fine pointer) via the modifier
+   class, where the graph is a fixed textural layer only. The
+   convergence trace's one-time draw-in is animated separately
+   via Framer Motion (pathLength), which already respects the
+   app-level reducedMotion="user" MotionConfig. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-graph:not(.hero-graph--static) .hero-graph__node--domain {
+    animation: hero-graph-breathe 7s ease-in-out infinite;
+  }
+
+  .hero-graph:not(.hero-graph--static) .hero-graph__edge--pulse {
+    animation: hero-graph-signal 5.5s linear infinite;
+  }
+}
+
+@keyframes hero-graph-breathe {
+  0%, 100% { opacity: calc(0.62 + var(--proximity, 0) * 0.35); }
+  50% { opacity: calc(0.9 + var(--proximity, 0) * 0.1); }
+}
+
+@keyframes hero-graph-signal {
+  to { stroke-dashoffset: -237; }
+}

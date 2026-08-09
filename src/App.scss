@@ -1,6 +1,7 @@
 :root {
   --font-base: 'DM Sans', 'Inter', sans-serif;
-  --font-display: 'Syne', 'DM Sans', sans-serif;
+  --font-display: 'Satoshi', 'DM Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
 
   --primary-color: #0a0f1e;
   --secondary-color: #3b82f6;
@@ -84,8 +85,6 @@ img,
 svg {
   max-width: 100%;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 body {
   background-color: var(--primary-color);
@@ -233,6 +232,10 @@ body {
   font-size: var(--text-base);
   font-weight: 700;
   color: var(--white-color);
+}
+
+.mono {
+  font-family: var(--font-mono);
 }
 
 /* ── Gradient-mask border ─────────────────────
