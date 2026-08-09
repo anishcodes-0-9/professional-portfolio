@@ -260,34 +260,6 @@ export const skillGroups = [
 
 export const skills = skillGroups.flatMap((group) => group.skills.map((name) => ({ name })));
 
-// ── Testimonials ──────────────────────────────
-// PLACEHOLDER content — swap in real quotes/attributions
-// (LinkedIn recommendations, manager or reviewer sign-off)
-// before treating this section as production copy.
-export const testimonials = [
-  {
-    quote:
-      'Anish owns problems end to end — he does not just ship the feature, he tightens the API contract, writes the tests that would have caught the last incident, and mentors whoever picks it up next.',
-    name: 'Engineering Lead',
-    role: 'Debut Infotech',
-    initials: 'EL',
-  },
-  {
-    quote:
-      'What stood out in his AI evaluation work was the rigor: he would not sign off on a solution until he had tried to break it. That adversarial mindset is rare and exactly what trust-sensitive review needs.',
-    name: 'Review Program Manager',
-    role: 'Alignerr',
-    initials: 'RM',
-  },
-  {
-    quote:
-      "On DIRECTV and the Macy's POS work, Anish was the person you wanted paged during an incident — calm under pressure, fast at reading logs and metrics, and precise about the actual root cause.",
-    name: 'Senior Engineering Manager',
-    role: 'Cognizant',
-    initials: 'SM',
-  },
-];
-
 // ── Skills section experience timeline ───────
 export const experiences = [
   {

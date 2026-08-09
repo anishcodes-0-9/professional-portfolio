@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NavigationDots = ({ active }) => {
-  const sections = ['home', 'about', 'work', 'skills', 'testimonials', 'contact'];
+  const sections = ['home', 'about', 'work', 'skills', 'contact'];
 
   return (
     <div className="app__navigation">

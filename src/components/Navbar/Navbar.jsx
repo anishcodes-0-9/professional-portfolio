@@ -3,7 +3,7 @@ import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.scss';
 
-const NAV_LINKS = ['home', 'about', 'work', 'skills', 'testimonials', 'contact'];
+const NAV_LINKS = ['home', 'about', 'work', 'skills', 'contact'];
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);

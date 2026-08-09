@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from 'react';
 import { MotionConfig } from 'framer-motion';
 import {
-  About, Footer, Header, Skills, Work, Testimonials, Chatbot,
+  About, Footer, Header, Skills, Work, Chatbot,
 } from './container';
 import { Navbar } from './components';
 import useLenis from './hooks/useLenis';
@@ -27,7 +27,6 @@ const App = () => {
         <About />
         <Work />
         <Skills />
-        <Testimonials />
         <Footer />
         <Chatbot />
       </div>

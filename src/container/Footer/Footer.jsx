@@ -14,7 +14,7 @@ const HAS_FORMSPREE = Boolean(
   FORMSPREE_FORM_ID && FORMSPREE_FORM_ID !== 'YOUR_FORM_ID',
 );
 
-const NAV_LINKS = ['home', 'about', 'work', 'skills', 'testimonials'];
+const NAV_LINKS = ['home', 'about', 'work', 'skills'];
 
 const Footer = () => {
   const [formData, setFormData] = useState({
