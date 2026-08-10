@@ -2,6 +2,12 @@
 //  All personalised data for Anish Krishnan
 // ─────────────────────────────────────────────
 
+// Real, locally-captured previews of the live products — not fabricated
+// UI. Captured once from the verified live URLs below rather than
+// embedding the live sites (avoids iframe security/reliability issues).
+import threeDRoomPreview from '../assets/project-3d-interactive-room.png';
+import storyboardAiPreview from '../assets/project-storyboard-ai.png';
+
 export const personalInfo = {
   name: 'Anish Krishnan',
   firstName: 'Anish',
@@ -106,8 +112,12 @@ export const workHistory = [
 export const enterpriseProjects = [
   {
     title: 'Claude AI Evaluation (Anthropic via Alignerr)',
+    type: 'professional',
     logoKey: 'claude',
+    brandLabel: 'Claude',
     period: 'Dec 2025 — Apr 2026',
+    status: 'Production Experience',
+    confidential: true,
     description:
       'Evaluated AI-generated backend and full-stack solutions used for trust-sensitive engineering scenarios, focusing on correctness, safety, system behavior, and implementation trade-offs.',
     bullets: [
@@ -121,8 +131,12 @@ export const enterpriseProjects = [
   },
   {
     title: 'DIRECTV High-Availability Platform',
+    type: 'professional',
     logoKey: 'directv',
+    brandLabel: 'DIRECTV',
     period: 'Nov 2023 — Jun 2025',
+    status: 'Production Experience',
+    confidential: true,
     description:
       'Designed and operated high-availability Spring Boot + React services consumed by 5+ internal teams, with a strong focus on observability, uptime, and incident response.',
     bullets: [
@@ -135,8 +149,12 @@ export const enterpriseProjects = [
   },
   {
     title: 'LN Payments Platform',
-    logoKey: 'payments',
+    type: 'professional',
+    logoKey: 'lexisnexis',
+    brandLabel: 'LexisNexis',
     period: 'Aug 2022 — Oct 2023',
+    status: 'Production Experience',
+    confidential: true,
     description:
       'Built UI and backend services for a payments platform handling more than $2M in daily transactions, prioritizing correctness, async processing, and data consistency.',
     bullets: [
@@ -149,17 +167,21 @@ export const enterpriseProjects = [
   },
   {
     title: "Macy's POS System",
+    type: 'professional',
     logoKey: 'macys',
+    brandLabel: "Macy's",
     period: 'Jul 2025 — Oct 2025',
+    status: 'Production Experience',
+    confidential: true,
     description:
-      'Built production-grade UI components and data-quality tooling for large-scale retail POS systems where correctness and performance directly affected store operations.',
+      'Built production-grade UI components and data-quality tooling for a large-scale Enactor-based retail POS platform, where correctness and performance directly affected store operations.',
     bullets: [
-      'Built production-grade UI components for large-scale POS systems, meeting strict correctness and performance benchmarks across 500+ retail endpoints',
+      'Built production-grade UI components for a large-scale Enactor POS platform, meeting strict correctness and performance benchmarks across 500+ retail endpoints',
       'Investigated data mismatches and latency issues by analyzing SQL queries and transactional flows, resolving 15+ recurring production defects',
       'Wrote Python scripts to reconcile and validate POS transaction data, catching data integrity issues before they surfaced in production',
       'Collaborated with product and QA to ship stable, trust-critical releases under tight timelines',
     ],
-    tags: ['React', 'SQL', 'REST APIs', 'POS', 'Java'],
+    tags: ['React', 'SQL', 'REST APIs', 'POS', 'Enactor', 'Java'],
   },
 ];
 
@@ -167,33 +189,43 @@ export const enterpriseProjects = [
 export const personalProjects = [
   {
     title: '3D Interactive Room',
+    type: 'personal',
+    image: threeDRoomPreview,
+    status: 'Live Demo',
     description:
       'A Three.js powered interactive room with AI assistant, mini games, and dynamic environment. Clickable objects reveal different sections of the portfolio.',
-    tags: ['Three.js', 'React', 'AI', 'WebGL'],
-    github: 'https://github.com/anishcodes-0-9/Anish-Portfolio',
+    tags: ['Three.js', 'GSAP', 'AI', 'WebGL'],
+    github: 'https://github.com/anishcodes-0-9/3D-Interactive-Room',
     live: 'https://anish-3d-room-gamma-steel.vercel.app/',
   },
   {
     title: 'Storyboard AI',
+    type: 'personal',
+    image: storyboardAiPreview,
+    status: 'Live Demo',
     description:
       'Storyboard AI is a full-stack AI product that turns a rough prompt into a polished, presentation-ready storyboard.',
     tags: ['TypeScript', 'JavaScript', 'CSS', 'HTML', 'LLM'],
-    github: 'https://github.com/anishcodes-0-9/alchemyst-dev-onboarding-agent',
+    github: 'https://github.com/anishcodes-0-9/storyboard-ai',
     live: 'https://storyboard-ai-4f1d.onrender.com/',
   },
   {
     title: 'GitHub Issue Analyzer with Local Caching + LLM Processing',
+    type: 'personal',
+    status: 'Source Available',
     description:
       'Backend service that fetches and caches GitHub issues from a repository, then analyzes them using an LLM to extract insights through natural-language prompts.',
-    tags: ['Python', 'GitHub API', 'LLM', 'Redis'],
+    tags: ['Node.js', 'GitHub API', 'LLM', 'SQLite'],
     github: 'https://github.com/anishcodes-0-9/github-issue-analyzer',
     live: null,
   },
   {
     title: 'AI Support System',
+    type: 'personal',
+    status: 'Source Available',
     description:
       'Simulates an e-commerce support assistant capable of handling customer queries. Built with clean layered architecture and designed to avoid hallucinations by grounding responses in real database data.',
-    tags: ['Python', 'LLM', 'FastAPI', 'RAG'],
+    tags: ['TypeScript', 'LLM', 'Hono', 'RAG'],
     github: 'https://github.com/anishcodes-0-9/ai-support-system',
     live: null,
   },
@@ -332,10 +364,10 @@ ENTERPRISE PROJECTS:
 4. Macy's POS (Jul–Oct 2025): POS system UI, SQL debugging, data validation, and trust-critical releases
 
 PERSONAL PROJECTS:
-- 3D Interactive Room (Three.js, React, AI assistant)
+- 3D Interactive Room (Three.js, GSAP, AI assistant)
 - Storyboard AI (TypeScript, JavaScript, CSS, HTML, LLM)
-- AI Support System (Python, LLM, FastAPI, RAG)
-- GitHub Issue Analyzer with LLM Processing
+- AI Support System (TypeScript, LLM, Hono, RAG)
+- GitHub Issue Analyzer with LLM Processing (Node.js, SQLite)
 
 CERTIFICATIONS:
 - AWS Cloud Practitioner (Foundational) — ID: E9M0RKJKWM4E1DK3

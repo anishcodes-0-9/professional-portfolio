@@ -5,621 +5,942 @@
   align-items: stretch;
 }
 
-// ── Tab Bar ────────────────────────────────────
-.work-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: clamp(2rem, 5vw, 2.5rem) 0 0;
-  padding-bottom: 0;
-  border-bottom: 1px solid rgba(59, 130, 246, 0.12);
+.work__sheet {
   width: 100%;
-  max-width: 56.25rem;
-  min-width: 0;
-
-  @media screen and (max-width: 640px) {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 0.35rem;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-inline: contain;
-
-    &::-webkit-scrollbar {
-      height: 4px;
-    }
-  }
-}
-
-.work-tab {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.65rem 1.1rem;
-  min-height: 2.75rem;
-  background: transparent;
-  border: none;
-  margin-bottom: -1px;
-  color: var(--gray-color);
-  font-family: var(--font-base);
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease;
-  white-space: nowrap;
-  letter-spacing: 0;
-
-  &:hover {
-    color: var(--lightGray-color);
-    background: rgba(59, 130, 246, 0.06);
-    border-radius: 8px 8px 0 0;
-  }
-
-  &--active {
-    color: var(--secondary-color);
-
-    &:hover { background: transparent; }
-  }
-
-  &__pill {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    height: 2px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.55);
-  }
-
-  &__icon {
-    flex-shrink: 0;
-    opacity: 0.85;
-  }
-
-  &__soon {
-    font-size: 0.62rem;
-    padding: 0.15rem 0.45rem;
-    border-radius: 100px;
-    background: rgba(251, 191, 36, 0.15);
-    border: 1px solid rgba(251, 191, 36, 0.3);
-    color: #fbbf24;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    margin-left: 0.2rem;
-  }
-
-  @media screen and (max-width: 700px) {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-
-    &__icon { display: none; }
-  }
-}
-
-// ── Tab Panel ─────────────────────────────────
-.work-panel {
-  width: 100%;
-  max-width: 56.25rem;
-  min-width: 0;
-  margin-top: 2rem;
-}
-
-// ── Shared tab content ─────────────────────────
-.tab-content {
   display: flex;
   flex-direction: column;
+}
+
+.work__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ── Header ─────────────────────────────────────
+.work__header {
+  max-width: 40rem;
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+}
+
+.work__heading {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: 1.08;
+  color: #fff;
+  margin: 0.5rem 0 0.75rem;
+
+  span {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.work__subtitle {
+  font-family: var(--font-base);
+  font-size: var(--text-md);
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 34rem;
+  margin: 0;
+}
+
+// ── Pinned exhibition ──────────────────────────
+.work__pin {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+// The stage is a real flex column with two regions: a flexible main area
+// (track + decorations) and a fixed-size progress footer. The footer is a
+// genuine sibling with its own reserved space — not an absolutely
+// positioned overlay guessing at leftover room — so the two can never
+// occupy the same pixels regardless of how tall a plate's content gets.
+.work__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  // Neighboring plates that peek in from off-center should dissolve into
+  // the background at the stage edges, not get hard-clipped mid-shape —
+  // depth, not a broken edge.
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.9) 10%,
+    black 22%,
+    black 78%,
+    rgba(0, 0, 0, 0.9) 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.9) 10%,
+    black 22%,
+    black 78%,
+    rgba(0, 0, 0, 0.9) 90%,
+    transparent 100%
+  );
+}
+
+.work__stage-main {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// A faint horizontal rail the plates glide along — reinforces the
+// "exhibition track" reading and gives the empty stage space around the
+// active plate a reason to exist instead of feeling like dead air.
+.work__rail {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(59, 130, 246, 0.16) 20%,
+    rgba(59, 130, 246, 0.16) 80%,
+    transparent 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+// A restrained glow seated behind the active plate — supports it without
+// competing with it.
+.work__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(26rem, 44vw, 46rem);
+  height: clamp(26rem, 44vw, 46rem);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.09), transparent 68%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.work__track {
+  position: relative;
+  height: clamp(26rem, 66vh, 46rem);
+  // A hard ceiling against the stage's actual available space (stage
+  // height minus the real, rendered progress footer) — the clamp() above
+  // is only a preference; this is what actually prevents the track from
+  // ever pushing into the progress region on short viewports. Because
+  // this ceiling (and the plate's own internal flex priority — see
+  // .plate__visual) already guarantee no overflow, the preferred value
+  // above can lean generous without reopening the collision it used to
+  // cause: short viewports get capped down, tall viewports get to use
+  // the extra room instead of leaving it empty.
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+// Personal work gets a modestly larger visual stage — headroom for a
+// future screenshot/mockup, without ballooning past what the generated
+// placeholder visual actually needs today.
+.work__pin--personal .work__track {
+  height: clamp(27rem, 68vh, 48rem);
+  max-height: 100%;
+}
+
+.work__pin--personal .work__glow {
+  width: clamp(30rem, 50vw, 52rem);
+  height: clamp(30rem, 50vw, 52rem);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.13), transparent 68%);
+}
+
+.work__slot {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+
+  &.is-dominant {
+    z-index: 5;
+  }
+}
+
+// ── Plate anatomy ──────────────────────────────
+// No card rectangle — the frame is corner ticks and coordinate marks, the
+// same device About's manifest already uses.
+.plate {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0.5rem;
+}
+
+.plate__tick {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  opacity: 0.6;
+  transition: border-color 0.3s ease, opacity 0.3s ease;
+
+  &--tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+  &--tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+  &--bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+  &--br { bottom: 0; right: 0; border-left: none; border-top: none; }
+}
+
+.work__slot.is-live .plate__tick {
+  border-color: var(--accent-color);
+  opacity: 1;
+}
+
+// A restrained response when the pointer rests on the active plate — a
+// very slight glow. Neighbors don't react at all; hovering never fights
+// the scroll-driven state.
+.work__slot.is-dominant .plate {
+  transition: filter 0.3s ease;
+}
+
+.work__slot.is-dominant:hover .plate {
+  filter: drop-shadow(0 0 22px rgba(6, 182, 212, 0.14));
+}
+
+// flex: 1 1 auto with min-height: 0 means the visual is the ONE flexible
+// element in the plate — title/description/meta/CTA below it (all
+// flex: 0 0 auto) always get the space their actual content needs first;
+// the visual fills whatever is left over, up to max-height, and shrinks
+// below that whenever a longer description demands more room. Previously
+// this was a min-height floor, which guaranteed the opposite: the visual
+// held its ground and text/CTA got whatever was left, which is exactly
+// what let the CTA collide with the progress footer on short viewports.
+.plate__visual {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 60%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// A framed surface for personal work — deliberately built as the resting
+// place for a future screenshot/mockup/browser-frame image, so dropping
+// one in later (via project.image) needs no layout changes. The top
+// "chrome" bar reads as a product/app window rather than a schematic.
+.plate--personal .plate__visual {
+  max-height: 64%;
+  border: 1px solid rgba(59, 130, 246, 0.14);
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.04), transparent 65%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 22px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.14);
+    background:
+      radial-gradient(circle 3px at 14px 11px, rgba(59, 130, 246, 0.4) 99%, transparent 100%),
+      radial-gradient(circle 3px at 26px 11px, rgba(59, 130, 246, 0.25) 99%, transparent 100%),
+      radial-gradient(circle 3px at 38px 11px, rgba(59, 130, 246, 0.25) 99%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+
+.plate--personal .plate__monogram {
+  font-size: clamp(3.25rem, 10vw, 6rem);
+}
+
+// A real, locally-captured product preview (project.image) — sits inside
+// the same framed/chrome-bar surface as the generated fallback, so a
+// project with a real screenshot and one without read as the same system.
+.plate__visual--image {
+  overflow: hidden;
+}
+
+.plate__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
+}
+
+.plate__ghost-index {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(5rem, 16vw, 9.5rem);
+  color: rgba(255, 255, 255, 0.035);
+  z-index: 0;
+  pointer-events: none;
+  transition: color 0.4s ease;
+  user-select: none;
+}
+
+.work__slot.is-live .plate__ghost-index {
+  color: rgba(255, 255, 255, 0.06);
+}
+
+.plate__schematic {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: visible;
+}
+
+.plate__trace {
+  stroke: rgba(59, 130, 246, 0.28);
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.5s var(--ease-out), stroke 0.3s ease;
+}
+
+.plate__orbit-path {
+  fill: none;
+  stroke: rgba(59, 130, 246, 0.22);
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.7s var(--ease-out), stroke 0.3s ease;
+}
+
+.work__slot.is-live .plate__trace,
+.work__slot.is-live .plate__orbit-path {
+  stroke-dashoffset: 0;
+  stroke: var(--accent-color);
+}
+
+.plate__node-dot {
+  fill: rgba(59, 130, 246, 0.45);
+  transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.work__slot.is-live .plate__node-dot {
+  fill: var(--accent-color);
+  filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.55));
+}
+
+.plate__node-label {
+  font-size: 6.5px;
+  fill: rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  letter-spacing: 0.02em;
+}
+
+.work__slot.is-live .plate__node-label {
+  opacity: 1;
+}
+
+// The brand mark is the visual anchor for professional plates — sized to
+// dominate the schematic around it, not hide inside it.
+.plate__mark-group {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.plate__mark {
+  width: clamp(5.5rem, 11vw, 9rem);
+  height: clamp(5.5rem, 11vw, 9rem);
+  color: rgba(255, 255, 255, 0.55);
+  transition: transform 0.4s var(--ease-out), color 0.4s ease, filter 0.4s ease;
+
+  .brand-mark svg {
+    width: 3.1rem;
+    height: 3.1rem;
+  }
+}
+
+.plate__brand-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.4s ease;
+}
+
+.work__slot.is-live .plate__mark {
+  color: #fff;
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.3));
+}
+
+.work__slot.is-live .plate__brand-label {
+  color: var(--secondary-color);
+}
+
+.plate__monogram {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 11vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.plate__monogram-outline,
+.plate__monogram-fill {
+  display: block;
+  grid-area: 1 / 1;
+}
+
+.plate__monogram {
+  display: grid;
+}
+
+.plate__monogram-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
+  transition: -webkit-text-stroke-color 0.4s ease;
+}
+
+.plate__monogram-fill {
+  color: var(--secondary-color);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.work__slot.is-live .plate__monogram-fill {
+  opacity: 1;
+}
+
+.plate__linked {
+  position: absolute;
+  bottom: 6%;
+  right: 6%;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+}
+
+.plate__body {
+  margin-top: 0.75rem;
+  text-align: center;
+  max-width: 34rem;
+}
+
+.plate__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.4rem;
+}
+
+.plate__context {
+  font-family: var(--font-base);
+  font-size: 0.6em;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.plate__desc {
+  font-family: var(--font-base);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 30rem;
+  margin: 0 auto 0.75rem;
+  line-height: 1.5;
+}
+
+.plate__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.25rem;
-
-  &__subtitle {
-    font-size: 0.9rem;
-    color: var(--lightGray-color);
-    line-height: 1.6;
-    margin-bottom: 0.25rem;
-  }
-
-  &--centered {
-    align-items: center;
-    justify-content: center;
-    min-height: 300px;
-  }
+  margin-bottom: 0.6rem;
 }
 
-// ── Shared chip styles ─────────────────────────
-.chip {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 0.25rem 0.65rem;
-  border-radius: 100px;
-
-  &--blue {
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.25);
-    color: var(--secondary-color);
-  }
-
-  &--gray {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--lightGray-color);
-  }
-
-  &--cyan {
-    background: rgba(6, 182, 212, 0.1);
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    color: #06b6d4;
-  }
+.plate__meta-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
-// ── Work History Card ──────────────────────────
-.history-card {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.9));
-  border: 1px solid rgba(59, 130, 246, 0.12);
-  border-radius: 20px;
-  padding: 1.75rem;
-  box-shadow: var(--shadow-2);
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.09), transparent 52%, rgba(6, 182, 212, 0.06));
-    pointer-events: none;
-  }
-
-  &:hover {
-    border-color: rgba(59, 130, 246, 0.3);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-3);
-  }
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  &__logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(59, 130, 246, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  &__meta { flex: 1; }
-  &__meta { min-width: 0; }
-
-  &__company {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white-color);
-    margin: 0 0 0.15rem;
-    overflow-wrap: anywhere;
-  }
-
-  &__role {
-    font-size: 0.875rem;
-    color: var(--secondary-color);
-    font-weight: 600;
-    margin: 0 0 0.25rem;
-  }
-
-  &__period {
-    font-size: 0.75rem;
-    color: var(--gray-color);
-    font-weight: 500;
-  }
-
-  &__desc {
-    font-size: 0.875rem;
-    color: var(--lightGray-color);
-    line-height: 1.65;
-    margin-bottom: 1rem;
-  }
-
-  &__bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    li {
-      font-size: 0.85rem;
-      color: var(--lightGray-color);
-      line-height: 1.6;
-      padding-left: 1.25rem;
-      position: relative;
-
-      &::before {
-        content: '▸';
-        position: absolute;
-        left: 0;
-        color: var(--secondary-color);
-        font-size: 0.7rem;
-        top: 0.2rem;
-      }
-    }
-  }
-
-  @media screen and (max-width: 560px) {
-    padding: 1.1rem;
-
-    &__header {
-      gap: 0.8rem;
-    }
-
-    &__company {
-      font-size: 1rem;
-    }
-  }
+.plate__meta-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  opacity: 0.85;
 }
 
-// ── Enterprise Card ────────────────────────────
-.enterprise-card {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.9));
-  border: 1px solid rgba(59, 130, 246, 0.12);
-  border-radius: 20px;
-  padding: 1.75rem;
-  box-shadow: var(--shadow-2);
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.09), transparent 52%, rgba(6, 182, 212, 0.06));
-    pointer-events: none;
-  }
-
-  &:hover {
-    border-color: rgba(59, 130, 246, 0.3);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-3);
-  }
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-
-    > div {
-      min-width: 0;
-    }
-  }
-
-  &__emoji {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(59, 130, 246, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  &__title {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--white-color);
-    margin: 0 0 0.3rem;
-    line-height: 1.3;
-    overflow-wrap: anywhere;
-  }
-
-  &__period {
-    font-size: 0.75rem;
-    color: var(--gray-color);
-    font-weight: 500;
-  }
-
-  &__desc {
-    font-size: 0.875rem;
-    color: var(--lightGray-color);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  &__bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    li {
-      font-size: 0.85rem;
-      color: var(--lightGray-color);
-      line-height: 1.6;
-      padding-left: 1.25rem;
-      position: relative;
-
-      &::before {
-        content: '▸';
-        position: absolute;
-        left: 0;
-        color: var(--secondary-color);
-        font-size: 0.7rem;
-        top: 0.2rem;
-      }
-    }
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  @media screen and (max-width: 560px) {
-    padding: 1.1rem;
-
-    &__header {
-      gap: 0.8rem;
-    }
-
-    &__title {
-      font-size: 0.98rem;
-    }
-  }
+.plate__meta-value {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-// ── Personal Project Card ──────────────────────
-.personal-card {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.9));
-  border: 1px solid rgba(59, 130, 246, 0.12);
-  border-radius: 20px;
-  padding: 1.75rem;
-  box-shadow: var(--shadow-2);
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.09), transparent 52%, rgba(6, 182, 212, 0.06));
-    pointer-events: none;
-  }
-
-  &:hover {
-    border-color: rgba(59, 130, 246, 0.3);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-3);
-  }
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
-    min-width: 0;
-  }
-
-  &__title {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--white-color);
-    margin: 0;
-    flex: 1;
-    min-width: min(100%, 14rem);
-    overflow-wrap: anywhere;
-  }
-
-  &__links {
-    display: flex;
-    gap: 0.6rem;
-    flex-shrink: 0;
-    flex-wrap: wrap;
-  }
-
-  &__desc {
-    font-size: 0.875rem;
-    color: var(--lightGray-color);
-    line-height: 1.7;
-    margin-bottom: 1.1rem;
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  @media screen and (max-width: 560px) {
-    padding: 1.1rem;
-  }
+.plate__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
 }
 
-.icon-link {
+.plate__tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.9rem;
-  min-height: 2.75rem;
-  border-radius: 8px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  font-family: var(--font-base);
+  gap: 0.32rem;
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  padding: 0.18rem 0.55rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.plate__tag-icon {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.plate__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: center;
+}
+
+.plate__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
   text-decoration: none;
-  transition: all 0.2s;
-  background: var(--secondary-color);
-  color: #fff;
-  border: 1px solid var(--secondary-color);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
 
-  svg { font-size: 0.85rem; }
-
-  &:hover {
-    background: #2563eb;
-    border-color: #2563eb;
-    transform: translateY(-1px);
+  &:hover,
+  &:focus-visible {
+    border-color: var(--secondary-color);
   }
 
-  &--live {
-    background: transparent;
-    color: var(--secondary-color);
-    border: 1px solid rgba(59, 130, 246, 0.4);
-
-    &:hover {
-      background: rgba(59, 130, 246, 0.1);
-      border-color: var(--secondary-color);
-      transform: translateY(-1px);
-    }
-  }
-
-  @media screen and (max-width: 560px) {
-    width: 100%;
-    justify-content: center;
+  &--static {
+    color: rgba(255, 255, 255, 0.35);
+    cursor: default;
   }
 }
 
-// ── Certification Card ─────────────────────────
-.cert-card {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.9));
-  border: 1px solid color-mix(in srgb, var(--cert-accent, rgba(59, 130, 246, 0.12)) 48%, rgba(255, 255, 255, 0.08));
-  border-radius: 20px;
-  padding: 1.5rem 1.75rem;
-  box-shadow: var(--shadow-2);
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+// Keyboard focus must never land on a faded, hard-to-read plate.
+.work__slot:focus-within {
+  opacity: 1 !important;
+  transform: none !important;
+  z-index: 6;
+}
 
-  &::before {
+.work__slot:focus-within .plate__tick {
+  border-color: var(--accent-color);
+  opacity: 1;
+}
+
+// The plate itself resolving to full opacity on focus isn't enough — its
+// title/description/CTA carry their own scroll-linked contentOpacity
+// (steeper falloff than the plate, so neighbors never show legible
+// half-sentences). Without this, a keyboard user tabbing to a neighbor's
+// link would land on text that's still faded to zero.
+.work__slot:focus-within .plate__body,
+.work__slot:focus-within .plate__foot {
+  opacity: 1 !important;
+}
+
+// ── Progress indicator ─────────────────────────
+// A real flex sibling of .work__stage-main, not an absolutely positioned
+// overlay — its height is genuinely reserved from the stage's 100vh, so
+// the track/plate above it can never grow into the same pixels.
+.work__progress {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  padding: clamp(0.75rem, 2.5vh, 1.5rem) 0 clamp(1.25rem, 4vh, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 4;
+}
+
+.work__progress-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.work__progress-index {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.work__progress-current {
+  color: var(--accent-color);
+  font-size: 1.05rem;
+}
+
+.work__progress-sep {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.work__progress-track {
+  position: relative;
+  width: clamp(10rem, 16vw, 14rem);
+  height: 2px;
+  background-repeat: repeat-x;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.16) 0,
+    rgba(255, 255, 255, 0.16) 1px,
+    transparent 1px,
+    transparent 100%
+  );
+}
+
+.work__progress-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background-repeat: repeat-x;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--secondary-color) 0,
+    var(--accent-color) 1px,
+    transparent 1px,
+    transparent 100%
+  );
+}
+
+// Segmented exhibition index — one dot per project, not per scroll step.
+.work__progress-signal {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.work__progress-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.35s ease, transform 0.35s var(--ease-out), box-shadow 0.35s ease;
+
+  &.is-active {
+    background: var(--accent-color);
+    transform: scale(1.9);
+    box-shadow: 0 0 6px rgba(6, 182, 212, 0.65);
+  }
+}
+
+// ── Mobile / reduced-motion strip ──────────────
+.work__strip-wrapper {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.work__strip-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.work__strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 1rem 1rem;
+  margin: 0 -1rem;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+}
+
+.work__strip-item {
+  flex: 0 0 min(88vw, 26rem);
+  scroll-snap-align: center;
+  min-height: 24rem;
+  display: flex;
+
+  .plate {
+    height: auto;
+  }
+
+  .plate__visual {
+    min-height: 14rem;
+  }
+}
+
+.work__strip-index {
+  align-self: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+.work__strip-sep {
+  margin: 0 0.25rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+// ── Professional → Personal transition ─────────
+// A deliberate structural beat, not a heading dropped below the carousel:
+// a closing tag for the segment just finished, a single coordinate mark,
+// then the opening tag for the segment about to start.
+.work__divider {
+  max-width: 40rem;
+  // Asymmetric on purpose: a full close-out beat above (leaving the
+  // pinned exhibition that just ended), but no bottom margin — the next
+  // .work__pin supplies its own, deliberately smaller, top margin so the
+  // first personal project begins right after the transition instead of
+  // floating in a second, redundant gap.
+  margin: clamp(3rem, 7vw, 4.5rem) auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 2.25rem);
+  text-align: center;
+}
+
+.work__divider + .work__pin {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.work__divider-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.work__divider-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.work__divider-line {
+  width: 100%;
+  max-width: 16rem;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(59, 130, 246, 0.32) 50%,
+    transparent 100%
+  );
+}
+
+.work__divider-mark {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--accent-color);
+  transform: rotate(45deg);
+
+  &::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--cert-accent, #3b82f6) 12%, transparent), transparent 55%);
-    pointer-events: none;
-  }
-
-  &:hover {
-    border-color: color-mix(in srgb, var(--cert-accent, #3b82f6) 70%, rgba(255, 255, 255, 0.12));
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-3);
-  }
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    min-width: 0;
-  }
-
-  &__emoji {
-    width: 32px;
-    height: 32px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  &__name {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--white-color);
-    margin: 0;
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  &__row {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-    min-width: 0;
-  }
-
-  &__label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--gray-color);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
-  }
-
-  &__value {
-    font-size: 0.875rem;
-    color: var(--lightGray-color);
-    font-weight: 500;
-  }
-
-  &__id {
-    font-size: 0.78rem;
-    color: var(--lightGray-color);
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
-    font-family: 'Courier New', monospace;
-    word-break: break-all;
-    max-width: 100%;
-  }
-
-  &__actions {
-    display: flex;
-    gap: 0.6rem;
-    margin-top: 1.1rem;
-    flex-wrap: wrap;
-  }
-
-  @media screen and (max-width: 560px) {
-    padding: 1.1rem;
+    inset: -6px;
+    border: 1px solid rgba(59, 130, 246, 0.18);
   }
 }
 
+.work__divider-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  opacity: 0.85;
+}
+
+.work__divider-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: #fff;
+  margin: 0.15rem 0 0;
+
+  span {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.work__divider-subtitle {
+  font-family: var(--font-base);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 26rem;
+  margin: 0;
+}
+
+// ── Engineering Record ─────────────────────────
+.work__record {
+  margin-top: clamp(3rem, 7vw, 4.5rem);
+  padding-top: clamp(2rem, 5vw, 2.5rem);
+  border-top: 1px solid rgba(59, 130, 246, 0.12);
+  max-width: 48rem;
+}
+
+.work__record-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1.25rem;
+}
+
+.work__ledger {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.work__ledger-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.work__ledger-mark {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.work__ledger-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.work__ledger-role {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  color: #fff;
+  margin: 0 0 0.15rem;
+}
+
+.work__ledger-company {
+  font-size: 0.75rem;
+  color: var(--secondary-color);
+}
+
+.work__ledger-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0.35rem 0 0;
+  line-height: 1.5;
+}
+
+.work__ledger-period {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}
+
+.work__certs-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.75rem;
+}
+
+.work__certs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.work__cert {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--cert-accent, var(--secondary-color));
+  }
+}
+
+.work__cert-mark {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.work__cert-name {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+// ── Brand identity marks (shared: plate visuals + ledger + certs) ──────
 .brand-mark {
   width: 100%;
   height: 100%;
@@ -649,7 +970,10 @@
     background: rgba(31, 112, 193, 0.08);
   }
 
-  &--directv {
+  // Debut Infotech (current employer, Engineering Record only) — unrelated
+  // to the DIRECTV client engagement below; kept on its own class so
+  // changing one can never accidentally change the other.
+  &--debut {
     position: relative;
     color: #7fb6ff;
     background: linear-gradient(135deg, rgba(23, 37, 84, 0.65), rgba(30, 64, 175, 0.22));
@@ -677,6 +1001,13 @@
     }
   }
 
+  // Shared treatment for any brand rendered as a styled wordmark rather
+  // than a copied logo (DIRECTV, LexisNexis) — see BrandMark in Work.jsx.
+  &--wordmark {
+    color: #eaf2ff;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 64, 175, 0.5));
+  }
+
   &--payments {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(251, 191, 36, 0.3));
   }
@@ -697,11 +1028,22 @@
   }
 }
 
-.brand-mark__directv {
+.brand-mark__initials {
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 800;
   line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-mark__wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(0.58rem, 1.5vw, 0.82rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
   position: relative;
   z-index: 1;
 }
@@ -738,86 +1080,31 @@
   }
 }
 
-.cert-btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1.1rem;
-  min-height: 2.75rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  font-family: var(--font-base);
-  text-decoration: none;
-  transition: all 0.2s;
-  cursor: pointer;
-  border: none;
-
-  &--primary {
-    background: var(--secondary-color);
-    color: #fff;
-
-    &:hover {
-      background: #2563eb;
-      transform: translateY(-1px);
-    }
+// ── Responsive ──────────────────────────────────
+@media screen and (max-width: 1024px) {
+  .work__track {
+    height: clamp(22rem, 54vh, 32rem);
   }
 
-  &--secondary {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: var(--lightGray-color);
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-      color: var(--white-color);
-    }
+  .plate__mark {
+    width: clamp(3.75rem, 8vw, 6rem);
+    height: clamp(3.75rem, 8vw, 6rem);
   }
 
-  @media screen and (max-width: 560px) {
-    flex: 1 1 100%;
-    justify-content: center;
+  .plate__monogram {
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+
+  .plate__node-label {
+    display: none;
   }
 }
 
-// ── Coming Soon ────────────────────────────────
-.coming-soon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: clamp(2.5rem, 8vw, 4rem) clamp(1rem, 4vw, 2rem);
-  text-align: center;
-
-  &__icon { color: var(--secondary-color); opacity: 0.7; }
-
-  &__title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--white-color);
-    margin: 0;
-  }
-
-  &__text {
-    font-size: 0.95rem;
-    color: var(--lightGray-color);
-    line-height: 1.7;
-    max-width: 420px;
-    margin: 0;
-  }
-
-  &__badge {
-    font-size: 0.75rem;
-    padding: 0.35rem 1rem;
-    border-radius: 100px;
-    background: rgba(251, 191, 36, 0.1);
-    border: 1px solid rgba(251, 191, 36, 0.3);
-    color: #fbbf24;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 0.5rem;
+@media screen and (max-width: 640px) {
+  .work__pin,
+  .work__stage,
+  .work__track,
+  .work__progress {
+    display: none;
   }
 }

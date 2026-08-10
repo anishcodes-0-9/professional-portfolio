@@ -24,11 +24,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #0a0f1e;
   color: #fcfcfc;
-  overflow-x: hidden;
+  /* clip (not hidden) on the x-axis only — "hidden" forces the browser to
+     treat overflow-y as an implicit scroll container too, which silently
+     breaks position: sticky for any descendant (e.g. the Work carousel). */
+  overflow-x: clip;
 }
 
 #root {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::-webkit-scrollbar {
