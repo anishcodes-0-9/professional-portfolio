@@ -61,7 +61,8 @@ import {
 import BrandMark, { SiHono } from '../../components/shared/BrandMark';
 import ExperienceSectionHeader from './ExperienceSectionHeader';
 import ProjectSectionHeader from './ProjectSectionHeader';
-import ExperienceRecords from './ExperienceRecords';
+import ExperienceStory from './ExperienceStory';
+import SectionProgress from './SectionProgress';
 
 import './Work.scss';
 
@@ -192,66 +193,6 @@ const ProjectStrip = ({ projects, label }) => {
 };
 
 /* -------------------------------------------------------------------------- */
-/* Project Progress                                                           */
-/* -------------------------------------------------------------------------- */
-
-const ProjectProgress = ({
-  count,
-  totalSteps,
-  virtualPosition,
-  activeIndex,
-  label,
-}) => {
-  const fillScale = useTransform(virtualPosition, (value) => Math.min(1, Math.max(0, value / totalSteps)));
-
-  const tickSize = `${100 / Math.max(count, 1)}% 100%`;
-
-  return (
-    <div className="work__progress" aria-hidden="true">
-      {label && <span className="work__progress-label mono">{label}</span>}
-
-      <div className="work__progress-index mono">
-        <span className="work__progress-current">
-          {String(activeIndex + 1).padStart(2, '0')}
-        </span>
-
-        <span className="work__progress-sep">/</span>
-
-        <span className="work__progress-total">
-          {String(count).padStart(2, '0')}
-        </span>
-      </div>
-
-      <div
-        className="work__progress-track"
-        style={{
-          backgroundSize: tickSize,
-        }}
-      >
-        <motion.div
-          className="work__progress-fill"
-          style={{
-            scaleX: fillScale,
-            backgroundSize: tickSize,
-          }}
-        />
-      </div>
-
-      <div className="work__progress-signal">
-        {Array.from({ length: count }, (_, index) => (
-          <span
-            key={index}
-            className={`work__progress-dot ${
-              index === activeIndex ? 'is-active' : ''
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
 /* Project Carousel                                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -313,7 +254,7 @@ const ProjectCarousel = ({ projects, label, variant }) => {
           />
         </div>
 
-        <ProjectProgress
+        <SectionProgress
           count={count}
           totalSteps={totalSteps}
           virtualPosition={virtualPosition}
@@ -847,7 +788,7 @@ const Work = () => {
         viewport={viewportOnce}
       >
         <ExperienceSectionHeader />
-        <ExperienceRecords />
+        <ExperienceStory />
       </motion.div>
 
       {/* ------------------------------------------------------------------ */}
