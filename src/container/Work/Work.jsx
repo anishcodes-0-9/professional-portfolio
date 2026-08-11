@@ -63,6 +63,7 @@ import ExperienceSectionHeader from './ExperienceSectionHeader';
 import ProjectSectionHeader from './ProjectSectionHeader';
 import ExperienceStory from './ExperienceStory';
 import SectionProgress from './SectionProgress';
+import CredentialNetwork from './CredentialNetwork';
 
 import './Work.scss';
 
@@ -682,45 +683,6 @@ const ProjectCTA = ({ project }) => {
 };
 
 /* -------------------------------------------------------------------------- */
-/* Engineering Record                                                         */
-/* -------------------------------------------------------------------------- */
-
-const EngineeringRecord = () => (
-  <div className="work__record work__certs-only">
-    <motion.div
-      className="work__certs"
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="show"
-      viewport={viewportOnce}
-    >
-      <span className="work__certs-label mono">Certifications</span>
-
-      <div className="work__certs-row">
-        {certifications.map((cert) => (
-          <a
-            key={cert.name}
-            href={cert.viewUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="work__cert"
-            style={{
-              '--cert-accent': cert.color,
-            }}
-          >
-            <span className="work__cert-mark" aria-hidden="true">
-              <BrandMark brand={cert.logoKey} label={cert.name} />
-            </span>
-
-            <span className="work__cert-name">{cert.name}</span>
-          </a>
-        ))}
-      </div>
-    </motion.div>
-  </div>
-);
-
-/* -------------------------------------------------------------------------- */
 /* Main Work Component                                                        */
 /* -------------------------------------------------------------------------- */
 
@@ -855,10 +817,26 @@ const Work = () => {
       )}
 
       {/* ------------------------------------------------------------------ */}
-      {/* Certifications                                                     */}
+      {/* 04 / Certifications                                                */}
       {/* ------------------------------------------------------------------ */}
 
-      <EngineeringRecord />
+      {certifications.length > 0 && (
+        <motion.div
+          className="work__section work__certifications-section"
+          variants={staggerContainer(reduceMotion ? 0 : 0.08)}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+        >
+          <ProjectSectionHeader
+            sectionNumber={4}
+            sectionTitle="CERTIFICATIONS"
+            sectionSubtitle="Verified credentials from AWS and GitHub"
+          />
+
+          <CredentialNetwork reduceMotion={reduceMotion} />
+        </motion.div>
+      )}
     </div>
   );
 };
