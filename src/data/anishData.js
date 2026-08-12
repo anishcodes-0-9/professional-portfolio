@@ -273,24 +273,108 @@ export const certifications = [
 ];
 
 // ── Skills (used in Skills section) ──────────
-// Tiered by how much weight each tool actually carries across the work
-// history above — not alphabetical, not uniform.
-export const skillGroups = [
-  {
-    tier: 'Core stack',
-    skills: ['Java', 'Spring Boot', 'React', 'Node.js', 'Python', 'AWS'],
-  },
-  {
-    tier: 'Cloud & data',
-    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Docker', 'Kubernetes', 'Terraform', 'Dynatrace'],
-  },
-  {
-    tier: 'Also using',
-    skills: ['JavaScript', 'TypeScript', 'Next.js', 'Vue.js', 'Hugging Face', 'Claude'],
-  },
+// One canonical, ordered technology list — tier (importance-weighted,
+// used by Header's hero stack line) and domain (used by the Skills stack
+// map) are both derived views over this same source order, so neither
+// can drift from the other and neither needs an explicit sort. Order
+// matches the original three tier blocks concatenated, so skillGroups
+// below reproduces the exact same shape/order Header.jsx already depends
+// on (skillGroups.find(g => g.tier === 'Core stack').skills.slice(0,3)).
+const SKILL_RECORDS = [
+  { name: 'Java', tier: 'Core stack', domain: 'Backend' },
+  { name: 'Spring Boot', tier: 'Core stack', domain: 'Backend' },
+  { name: 'React', tier: 'Core stack', domain: 'Frontend' },
+  { name: 'Node.js', tier: 'Core stack', domain: 'Backend' },
+  { name: 'Python', tier: 'Core stack', domain: 'Backend' },
+  { name: 'AWS', tier: 'Core stack', domain: 'Cloud & DevOps' },
+  { name: 'PostgreSQL', tier: 'Cloud & data', domain: 'Databases' },
+  { name: 'MySQL', tier: 'Cloud & data', domain: 'Databases' },
+  { name: 'MongoDB', tier: 'Cloud & data', domain: 'Databases' },
+  { name: 'Docker', tier: 'Cloud & data', domain: 'Cloud & DevOps' },
+  { name: 'Kubernetes', tier: 'Cloud & data', domain: 'Cloud & DevOps' },
+  { name: 'Terraform', tier: 'Cloud & data', domain: 'Cloud & DevOps' },
+  { name: 'Dynatrace', tier: 'Cloud & data', domain: 'Cloud & DevOps' },
+  { name: 'JavaScript', tier: 'Also using', domain: 'Frontend' },
+  { name: 'TypeScript', tier: 'Also using', domain: 'Frontend' },
+  { name: 'Next.js', tier: 'Also using', domain: 'Frontend' },
+  { name: 'Vue.js', tier: 'Also using', domain: 'Frontend' },
+  { name: 'Hugging Face', tier: 'Also using', domain: 'AI & ML' },
+  { name: 'Claude', tier: 'Also using', domain: 'AI & ML' },
 ];
 
-export const skills = skillGroups.flatMap((group) => group.skills.map((name) => ({ name })));
+// One manually-verified alias for the single real case where a project
+// tag refers to the same technology under a longer name (not a generic
+// fuzzy matcher — that would risk false positives like 'JavaScript'
+// substring-matching 'Java').
+const USED_IN_ALIASES = { Claude: ['Claude Code CLI'] };
+
+const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Real technology → project/role associations, derived once from the
+// data that already exists elsewhere (project tags, role descriptions)
+// rather than hand-maintained — so this can never fall out of sync with
+// the work actually listed above, and never claims a relationship the
+// data doesn't support.
+const resolveUsedIn = (skillName) => {
+  const candidates = [skillName, ...(USED_IN_ALIASES[skillName] ?? [])];
+  const matches = [];
+
+  [...enterpriseProjects, ...personalProjects].forEach((project) => {
+    const hasTagMatch = project.tags?.some(
+      (tag) => candidates.some((candidate) => candidate.toLowerCase() === tag.toLowerCase()),
+    );
+
+    if (hasTagMatch) matches.push(project.title);
+  });
+
+  workHistory.forEach((job) => {
+    const hasDescriptionMatch = candidates.some(
+      (candidate) => new RegExp(`\\b${escapeRegExp(candidate)}\\b`, 'i').test(job.description),
+    );
+
+    if (hasDescriptionMatch) matches.push(`${job.company} (${job.role})`);
+  });
+
+  return matches;
+};
+
+// Grounded, real domain context — reused verbatim from the descriptions
+// already written for the About section rather than re-authored, so
+// nothing here is new copy. Databases has no equivalent existing
+// description anywhere in the data, so it's left null (omitted in the
+// UI) instead of inventing one.
+const DOMAIN_DESCRIPTIONS = {
+  Backend: aboutCards.find((card) => card.title === 'Systems & Backend')?.description,
+  Frontend: aboutCards.find((card) => card.title === 'Frontend Delivery')?.description,
+  'Cloud & DevOps': aboutCards.find((card) => card.title === 'Cloud & Observability')?.description,
+  'AI & ML': aboutCards.find((card) => card.title === 'AI & ML Tooling')?.description,
+  Databases: null,
+};
+
+const DOMAIN_ORDER = ['Frontend', 'Backend', 'Cloud & DevOps', 'Databases', 'AI & ML'];
+
+// Tier view — unchanged shape/order from the original hand-written
+// version. Header.jsx and Chatbot.jsx both consume this (or the flat
+// `skills` below) and are unaffected by the domain restructuring.
+export const skillGroups = ['Core stack', 'Cloud & data', 'Also using'].map((tier) => ({
+  tier,
+  skills: SKILL_RECORDS.filter((record) => record.tier === tier).map((record) => record.name),
+}));
+
+// Domain view — powers the Skills section's interactive stack map.
+export const skillDomains = DOMAIN_ORDER.map((domain) => ({
+  domain,
+  description: DOMAIN_DESCRIPTIONS[domain],
+  technologies: SKILL_RECORDS
+    .filter((record) => record.domain === domain)
+    .map((record) => ({
+      name: record.name,
+      tier: record.tier,
+      usedIn: resolveUsedIn(record.name),
+    })),
+}));
+
+export const skills = SKILL_RECORDS.map((record) => ({ name: record.name }));
 
 // ── Skills section experience timeline ───────
 export const experiences = [
