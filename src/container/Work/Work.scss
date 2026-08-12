@@ -24,9 +24,18 @@
 }
 
 // ── Header ─────────────────────────────────────
+// Shares the section-header content grid (max-width 40rem, centered,
+// text-align: center) so the intro sits in the same column as
+// "01 / PROFESSIONAL EXPERIENCE" and the other Work section headers below it
+// instead of hugging the left edge of the full-bleed .work__sheet.
 .work__header {
+  width: 100%;
   max-width: 40rem;
-  margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+  margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .work__heading {
@@ -1551,6 +1560,10 @@
 
 /* Update Section Headers for mobile */
 @media screen and (max-width: 640px) {
+  .work__header {
+    padding: 0 1rem;
+  }
+
   .work__section-header {
     margin: clamp(2rem, 5vw, 3rem) auto 1rem;
     padding: 0 1rem;
