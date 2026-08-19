@@ -262,11 +262,16 @@
   z-index: 2;
   text-align: right;
   min-width: 0;
+  /* Bottom-right anchored on wide screens, same corner as the fixed
+     chatbot FAB (~185px footprint from the viewport edge) — without
+     this, "Users served in production" renders half-covered on load. */
+  padding-right: 7rem;
 
   @media screen and (max-width: 1024px) {
     align-self: start;
     justify-self: start;
     text-align: left;
+    padding-right: 0;
   }
 }
 

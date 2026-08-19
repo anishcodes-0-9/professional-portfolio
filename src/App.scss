@@ -143,6 +143,11 @@ body {
 
 .app__primarybg {
   background-color: #0d1525;
+
+  /* Contact/Footer is the last section — without this, the fixed
+     chatbot FAB (~82px footprint) permanently covers the final
+     "Back to top" row once the page hits max scroll. */
+  padding-bottom: 7rem;
 }
 
 .app__tintbg {
