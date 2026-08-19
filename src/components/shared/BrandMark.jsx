@@ -1,6 +1,10 @@
 import React from 'react';
-import { SiCognizant, SiGithub, SiMacys } from 'react-icons/si';
+import { SiCognizant, SiGithub } from 'react-icons/si';
 import { FaAws } from 'react-icons/fa';
+
+import directvFavicon from '../../assets/logos/directv-favicon.png';
+import lexisnexisMark from '../../assets/logos/lexisnexis-mark.png';
+import omexLogo from '../../assets/logos/omex-logo.png';
 
 // Real Claude mark path data (Simple Icons, CC0) — split across lines
 // purely to satisfy the lint line-length rule; it's one path.
@@ -50,6 +54,27 @@ export const SiHono = ({ className, 'aria-hidden': ariaHidden }) => (
     <path d={HONO_MARK_PATH} />
   </svg>
 );
+
+// Real Debut Infotech icon mark — the two brand-color paths from the
+// company's own /_next/static/media/debut-logo.*.svg, with the wordmark
+// text paths dropped and the viewBox tightened to isolate just the "D"
+// glyph (path data itself is untouched/authentic).
+const DEBUT_ICON_PATHS = [
+  {
+    fill: '#f7933c',
+    d: 'm30.24 0h-4.903v4.305 2.513c0 2.367 2.207 4.305 4.903 4.305h4.904v-4.305-2.513c0-2.366-2.207-4.305-4.904-4.305z',
+  },
+  {
+    fill: '#244486',
+    d: 'm17.609 22.275h5.446v-7.997-.887h-5.431-.053-.054c-9.677.029-17.517 7.992-17.517 17.804 0 9.832 7.869 17.804 17.572 17.804 6.753 0 12.619-3.862 15.56-9.525 1.277-2.458 2.003-5.255 2.012-8.224v-.055-.054-8.866-8.884h-8.767v2.394 6.49 8.881.039s0 .026 0 .039c-.011 2.81-1.306 5.313-3.321 6.941-1.504 1.215-3.411 1.941-5.484 1.941-4.863 0-8.806-3.995-8.806-8.922 0-4.914 3.923-8.9 8.768-8.92.013-.001.025-.001.038-.001s.025.001.037.002z',
+  },
+];
+
+// Real Macy's star mark — the red path from the company's own production
+// nav logo.svg (assets.macysassets.com), viewBox tightened to isolate the
+// star from the wordmark text (path data itself is untouched/authentic).
+// Replaces the generic react-icons SiMacys approximation.
+const MACYS_STAR_PATH = 'M17.3 0-4 12.6H0l10.7 7.8-4 12.6 10.6-7.8 10.6 7.9-4-12.7 10.6-7.8H21.3L17.3 0Z';
 
 // Brand identity marks — real SVGs per company. Reused unchanged from
 // the previous Work implementation for both the enterprise project
@@ -103,33 +128,37 @@ const BrandMark = ({ brand, label }) => {
     ),
     debut: (
       <div className="brand-mark brand-mark--debut" aria-label={label} title={label}>
-        <span className="brand-mark__initials">DI</span>
+        <svg viewBox="0 0 36 49" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          {DEBUT_ICON_PATHS.map((p) => (
+            <path key={p.fill} d={p.d} fill={p.fill} />
+          ))}
+        </svg>
       </div>
     ),
-    // DIRECTV's own media-assets page restricts usage to press/media outlets,
-    // so the graphic mark isn't licensed for a personal portfolio. This
-    // renders the real product name as a styled wordmark instead of a copied
-    // logo — still unmistakable, without reproducing a trademarked asset.
+    // DIRECTV's own media-assets page restricts the full graphic mark to
+    // press/media outlets, so this uses their official favicon instead —
+    // fetched directly from directv.com/favicon.ico, the same "real asset,
+    // smallest safe form" approach used for OMEX/LexisNexis below.
     directv: (
-      <div className="brand-mark brand-mark--wordmark" aria-label={label} title={label}>
-        <span className="brand-mark__wordmark">DIRECTV</span>
+      <div className="brand-mark brand-mark--directv" aria-label={label} title={label}>
+        <img src={directvFavicon} alt="" className="brand-mark__img" />
       </div>
     ),
-    // Same reasoning as DIRECTV: LexisNexis's mark is trademarked and its
-    // brand-guidelines page is login-gated to authorized partners/press,
-    // not freely licensed — so this is the real name as styled text, not
-    // a copied logo.
+    // Real LexisNexis icon mark, cropped from the white-on-transparent
+    // lockup served on lexisnexis.com's own gateway page — a full brand
+    // guidelines download is login-gated to partners/press, but this is
+    // the company's own production asset, used at icon size only.
     lexisnexis: (
-      <div className="brand-mark brand-mark--wordmark" aria-label={label} title={label}>
-        <span className="brand-mark__wordmark">LexisNexis</span>
+      <div className="brand-mark brand-mark--lexisnexis" aria-label={label} title={label}>
+        <img src={lexisnexisMark} alt="" className="brand-mark__img" />
       </div>
     ),
-    // Same reasoning as DIRECTV/LexisNexis: no OMEX Industries logo asset
-    // is licensed for reuse here, so this is the real name as styled
-    // text, not a copied trademark.
+    // Real OMEX Industries logo, the light-on-navy lockup served from
+    // omexindustries.com's own /logo/ path (their "dark mode" variant,
+    // which is the one legible on this portfolio's dark surfaces).
     omex: (
-      <div className="brand-mark brand-mark--wordmark" aria-label={label} title={label}>
-        <span className="brand-mark__wordmark">OMEX</span>
+      <div className="brand-mark brand-mark--omex" aria-label={label} title={label}>
+        <img src={omexLogo} alt="" className="brand-mark__img" />
       </div>
     ),
     payments: (
@@ -139,7 +168,9 @@ const BrandMark = ({ brand, label }) => {
     ),
     macys: (
       <div className="brand-mark brand-mark--macys" aria-label={label} title={label}>
-        <SiMacys />
+        <svg viewBox="0 0 32 33" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d={MACYS_STAR_PATH} fill="#E11A2B" />
+        </svg>
       </div>
     ),
     aws: (

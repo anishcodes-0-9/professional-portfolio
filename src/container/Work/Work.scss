@@ -390,7 +390,8 @@
   color: rgba(255, 255, 255, 0.55);
   transition: transform 0.4s var(--ease-out), color 0.4s ease, filter 0.4s ease;
 
-  .brand-mark svg {
+  .brand-mark svg,
+  .brand-mark img {
     width: 3.1rem;
     height: 3.1rem;
   }
@@ -890,7 +891,8 @@
   width: 1.4rem;
   height: 1.4rem;
 
-  .brand-mark svg {
+  .brand-mark svg,
+  .brand-mark img {
     width: 0.95rem;
     height: 0.95rem;
   }
@@ -1037,9 +1039,14 @@
   border-radius: 12px;
   overflow: hidden;
 
-  svg {
+  svg,
+  img {
     width: 1.7rem;
     height: 1.7rem;
+  }
+
+  img {
+    object-fit: contain;
   }
 
   &--alignerr {
@@ -1059,40 +1066,30 @@
 
   // Debut Infotech (current employer, Engineering Record only) — unrelated
   // to the DIRECTV client engagement below; kept on its own class so
-  // changing one can never accidentally change the other.
+  // changing one can never accidentally change the other. The ring
+  // decoration that used to frame the plain "DI" initials is gone now
+  // that this renders the company's real icon mark, which already
+  // carries its own circular form.
   &--debut {
-    position: relative;
-    color: #7fb6ff;
     background: linear-gradient(135deg, rgba(23, 37, 84, 0.65), rgba(30, 64, 175, 0.22));
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      border: 2px solid rgba(127, 182, 255, 0.75);
-      border-left-color: transparent;
-      border-right-color: transparent;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-    }
-
-    &::before {
-      transform: rotate(-12deg);
-    }
-
-    &::after {
-      width: 18px;
-      height: 18px;
-      transform: rotate(-12deg);
-    }
   }
 
-  // Shared treatment for any brand rendered as a styled wordmark rather
-  // than a copied logo (DIRECTV, LexisNexis) — see BrandMark in Work.jsx.
-  &--wordmark {
-    color: #eaf2ff;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 64, 175, 0.5));
+  // DIRECTV's real favicon is a mid blue glyph on a transparent ground —
+  // tinted with their own brand blue, sampled from the favicon itself.
+  &--directv {
+    background: rgba(51, 122, 206, 0.14);
+  }
+
+  // LexisNexis's icon mark ships white-on-transparent, so it needs a dark
+  // backdrop — tinted toward their red rather than reusing DIRECTV's blue.
+  &--lexisnexis {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(153, 27, 42, 0.35));
+  }
+
+  // OMEX's real lockup already ships on a navy fill — matching that navy
+  // here keeps the asset's own background nearly seamless with the chip.
+  &--omex {
+    background: #013762;
   }
 
   &--payments {
@@ -1337,7 +1334,8 @@
   justify-content: center;
   filter: drop-shadow(0 0 16px rgba(59, 130, 246, 0.28));
 
-  .brand-mark svg {
+  .brand-mark svg,
+  .brand-mark img {
     width: 2rem;
     height: 2rem;
   }
@@ -1479,7 +1477,8 @@
   align-items: center;
   justify-content: center;
 
-  .brand-mark svg {
+  .brand-mark svg,
+  .brand-mark img {
     width: 1.3rem;
     height: 1.3rem;
   }
@@ -1597,7 +1596,8 @@
     width: 1.9rem;
     height: 1.9rem;
 
-    .brand-mark svg {
+    .brand-mark svg,
+    .brand-mark img {
       width: 1.1rem;
       height: 1.1rem;
     }
@@ -1624,24 +1624,10 @@
   }
 }
 
-.brand-mark__initials {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 800;
-  line-height: 1;
+.brand-mark__img {
   position: relative;
   z-index: 1;
-}
-
-.brand-mark__wordmark {
-  font-family: var(--font-display);
-  font-size: clamp(0.58rem, 1.5vw, 0.82rem);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  white-space: nowrap;
-  position: relative;
-  z-index: 1;
+  display: block;
 }
 
 .brand-mark__card {
@@ -1708,7 +1694,8 @@
     width: 3.25rem;
     height: 3.25rem;
 
-    .brand-mark svg {
+    .brand-mark svg,
+    .brand-mark img {
       width: 1.7rem;
       height: 1.7rem;
     }
@@ -1807,7 +1794,8 @@
     width: 1.7rem;
     height: 1.7rem;
 
-    .brand-mark svg {
+    .brand-mark svg,
+    .brand-mark img {
       width: 1.1rem;
       height: 1.1rem;
     }
