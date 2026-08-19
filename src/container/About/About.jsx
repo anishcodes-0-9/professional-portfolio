@@ -106,33 +106,35 @@ const About = () => {
         <span>Subject — Engineer Profile</span>
       </motion.div>
 
-      <div className="about__identity">
+      {/* whileInView lives here, not on the h2 below: a clip-path hidden
+          state (clipReveal) freezes Chromium's IntersectionObserver for
+          the element it's applied to, so it can never re-fire "show" once
+          scrolled into view. Triggering from this always-unclipped
+          wrapper and letting the heading inherit via variant propagation
+          sidesteps that entirely. */}
+      <motion.div
+        className="about__identity"
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+      >
         <motion.span
           className="about__ghost-mark"
           aria-hidden="true"
           style={{ y: ghostY }}
           variants={fadeIn}
-          initial="hidden"
-          whileInView="show"
-          viewport={viewportOnce}
         >
           02
         </motion.span>
 
         <span className="section-eyebrow">About</span>
 
-        <motion.h2
-          className="about__heading"
-          initial="hidden"
-          whileInView="show"
-          viewport={viewportOnce}
-          variants={clipReveal}
-        >
+        <motion.h2 className="about__heading" variants={clipReveal}>
           Systems-minded <span>engineer</span>,
           <br />
           shipped into production.
         </motion.h2>
-      </div>
+      </motion.div>
 
       <motion.p
         className="about__summary"
