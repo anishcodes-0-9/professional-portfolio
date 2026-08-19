@@ -108,15 +108,17 @@ const CredentialDetail = ({ cert, index, reduceMotion }) => (
       </div>
 
       <div className="credential__detail-actions">
-        <a
-          href={cert.viewUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="credential__detail-link mono"
-        >
-          View Certificate
-          <ArrowUpRight size={13} strokeWidth={2.25} />
-        </a>
+        {cert.viewUrl && (
+          <a
+            href={cert.viewUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="credential__detail-link mono"
+          >
+            View Certificate
+            <ArrowUpRight size={13} strokeWidth={2.25} />
+          </a>
+        )}
 
         {cert.verifyUrl && (
           <a

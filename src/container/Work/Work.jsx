@@ -835,7 +835,7 @@ const Work = () => {
           <ProjectSectionHeader
             sectionNumber={4}
             sectionTitle="CERTIFICATIONS"
-            sectionSubtitle="Verified credentials from AWS and GitHub"
+            sectionSubtitle="Verified credentials from AWS, GitHub, and Anthropic"
           />
 
           <CredentialNetwork reduceMotion={reduceMotion} />

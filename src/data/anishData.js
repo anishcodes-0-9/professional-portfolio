@@ -309,6 +309,44 @@ export const certifications = [
       'https://www.credly.com/earner/earned/badge/cbb9dd25-c996-4b5d-a141-f357969b88f9',
     color: '#FF9900',
   },
+  // Anthropic Academy (Skilljar) — verified directly against each
+  // certificate's own verify.skilljar.com page. No locally-hosted PDF
+  // exists for these, so there's no viewUrl; the Skilljar verification
+  // page itself is both the certificate and the proof, unlike the AWS/
+  // GitHub rows above which pair a local PDF with a separate verifier.
+  // Ordered chronologically by each certificate's real completion date.
+  {
+    name: 'Introduction to Model Context Protocol',
+    logoKey: 'claude',
+    org: 'Anthropic Education',
+    credentialId: '9d46zykggn26',
+    verifyUrl: 'https://verify.skilljar.com/c/9d46zykggn26',
+    color: '#d97706',
+  },
+  {
+    name: 'Introduction to Agent Skills',
+    logoKey: 'claude',
+    org: 'Anthropic Education',
+    credentialId: 'wg3b3932hj9n',
+    verifyUrl: 'https://verify.skilljar.com/c/wg3b3932hj9n',
+    color: '#d97706',
+  },
+  {
+    name: 'Claude Code in Action',
+    logoKey: 'claude',
+    org: 'Anthropic Education',
+    credentialId: 'ku2vhidgbap2',
+    verifyUrl: 'https://verify.skilljar.com/c/ku2vhidgbap2',
+    color: '#d97706',
+  },
+  {
+    name: 'Building with the Claude API',
+    logoKey: 'claude',
+    org: 'Anthropic Education',
+    credentialId: 'nkakgf5ka2yk',
+    verifyUrl: 'https://verify.skilljar.com/c/nkakgf5ka2yk',
+    color: '#d97706',
+  },
 ];
 
 // ── Skills (used in Skills section) ──────────
