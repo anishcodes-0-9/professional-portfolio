@@ -78,6 +78,17 @@
   transition: opacity 0.2s var(--ease-out);
 }
 
+/* The "backend" node's fixed viewBox position lands directly under the
+   H1 in this specific band — wide enough that the graph is no longer
+   compacted (labels shown again), narrow enough that the SVG hasn't
+   scaled up enough to clear the heading yet. Same "hide, don't force a
+   fit" call the compact tier already makes below 1024px. */
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .hero-graph__label[data-node-id="backend"] {
+    display: none;
+  }
+}
+
 /* ── Ambient + signal tiers ────────────────────────────────
    Both CSS-only, so App.scss's global reduced-motion rule
    neutralises them automatically even if this media query

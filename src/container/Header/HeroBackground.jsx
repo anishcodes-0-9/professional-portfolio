@@ -222,6 +222,7 @@ const HeroBackground = ({ metricAnchorRef }) => {
             />
             {node.tier === 'domain' && (
               <text
+                data-node-id={node.id}
                 x={node.x + DOMAIN_LABEL_OFFSET.dx}
                 y={node.y + DOMAIN_LABEL_OFFSET.dy}
                 className="hero-graph__label"
