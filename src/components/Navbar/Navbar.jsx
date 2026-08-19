@@ -60,7 +60,7 @@ const Navbar = () => {
       </ul>
 
       <a
-        href="/Anish_Krishnan_Resume.pdf"
+        href="/Anish_Krishnan_Resumè.pdf"
         target="_blank"
         rel="noreferrer"
         className="app__navbar-resume"
@@ -107,7 +107,7 @@ const Navbar = () => {
                 ))}
                 <li>
                   <a
-                    href="/Anish_Krishnan_Resume.pdf"
+                    href="/Anish_Krishnan_Resumè.pdf"
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => setToggle(false)}

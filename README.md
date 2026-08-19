@@ -152,7 +152,7 @@ Recommended flow:
 When updating the site after resume changes, review:
 
 - [`src/data/anishData.js`](./src/data/anishData.js)
-- [`public/Anish_Krishnan_Resume.pdf`](./public/Anish_Krishnan_Resume.pdf)
+- [`public/Anish_Krishnan_Resumè.pdf`](./public/Anish_Krishnan_Resumè.pdf)
 - project links
 - certification PDFs
 - chatbot phrasing and fallback responses

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Mail, CheckCircle2, ArrowUpRight, ArrowUp,
-} from 'lucide-react';
+import { Mail, CheckCircle2, ArrowUpRight, ArrowUp } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { fadeUp, staggerContainer, viewportOnce } from '../../wrapper/variants';
@@ -54,14 +52,17 @@ const Footer = () => {
 
     try {
       if (HAS_FORMSPREE) {
-        const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
+        const response = await fetch(
+          `https://formspree.io/f/${FORMSPREE_FORM_ID}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(formData),
           },
-          body: JSON.stringify(formData),
-        });
+        );
 
         if (!response.ok) {
           throw new Error('Form submission failed');
@@ -90,8 +91,8 @@ const Footer = () => {
         Let&apos;s <span>Connect</span>
       </h2>
       <p className="footer__subtitle">
-        Open to full-time roles, freelance work, and conversations about
-        hard engineering problems.
+        Open to full-time roles, freelance work, and conversations about hard
+        engineering problems.
       </p>
 
       <motion.div
@@ -101,7 +102,11 @@ const Footer = () => {
         whileInView="show"
         viewport={viewportOnce}
       >
-        <motion.a href={`mailto:${personalInfo.email}`} className="footer__link-card" variants={fadeUp}>
+        <motion.a
+          href={`mailto:${personalInfo.email}`}
+          className="footer__link-card"
+          variants={fadeUp}
+        >
           <Mail size={19} strokeWidth={1.75} />
           <div>
             <span className="link-label">Email</span>
@@ -225,10 +230,12 @@ const Footer = () => {
 
           <nav className="site-footer__nav" aria-label="Footer">
             {NAV_LINKS.map((item) => (
-              <a key={item} href={`#${item}`}>{item}</a>
+              <a key={item} href={`#${item}`}>
+                {item}
+              </a>
             ))}
             <a
-              href="/Anish_Krishnan_Resume.pdf"
+              href="/Anish_Krishnan_Resumè.pdf"
               target="_blank"
               rel="noreferrer"
               className="site-footer__resume"
@@ -239,10 +246,20 @@ const Footer = () => {
           </nav>
 
           <div className="site-footer__socials">
-            <a href={personalInfo.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
               <FaGithub size={17} />
             </a>
-            <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
               <FaLinkedin size={17} />
             </a>
           </div>
