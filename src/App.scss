@@ -48,6 +48,10 @@
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* .app__navbar is fixed and measures ~69-76px depending on breakpoint
+     and scroll state — this keeps anchor-jump targets clear of it. */
+  --nav-offset: 6rem;
 }
 
 * {
@@ -55,6 +59,14 @@
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+}
+
+#home,
+#about,
+#work,
+#skills,
+#contact {
+  scroll-margin-top: var(--nav-offset);
 }
 
 a,
