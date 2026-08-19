@@ -711,7 +711,7 @@ const Work = () => {
   const useNativeStrip = isMobile || reduceMotion;
 
   return (
-    <div className="work__sheet">
+    <div className="work__sheet" id="work">
       {/* ------------------------------------------------------------------ */}
       {/* Header                                                             */}
       {/* ------------------------------------------------------------------ */}
