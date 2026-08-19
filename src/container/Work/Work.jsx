@@ -28,6 +28,8 @@ import {
   SiNodedotjs,
   SiSqlite,
   SiGreensock,
+  SiNextdotjs,
+  SiTailwindcss,
 } from 'react-icons/si';
 
 import {
@@ -121,6 +123,8 @@ const TAG_ICON_MAP = {
   sqlite: SiSqlite,
   gsap: SiGreensock,
   hono: SiHono,
+  'next.js': SiNextdotjs,
+  'tailwind css': SiTailwindcss,
 };
 
 /* -------------------------------------------------------------------------- */

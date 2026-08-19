@@ -111,6 +111,45 @@ export const workHistory = [
 // ── Enterprise Projects ───────────────────────
 export const enterpriseProjects = [
   {
+    title: 'Debut Infotech Website',
+    type: 'professional',
+    logoKey: 'debut',
+    brandLabel: 'Debut Infotech',
+    period: 'May 2026 — Present',
+    status: 'Production Experience',
+    confidential: false,
+    description:
+      "Engineered the company's public marketing and SEO website — the primary platform for representing Debut Infotech's capabilities and generating inbound client interest — with Next.js, React, and Node.js.",
+    bullets: [
+      "Led frontend and backend development of the company's public marketing website using Next.js, React, and Node.js",
+      'Delivered SEO-optimised, server-rendered pages with dynamic routing to support organic visibility and inbound lead generation',
+      'Architected and maintained the REST APIs and backend services powering the site',
+      'Owns end-to-end delivery of site features from requirements through production deployment',
+    ],
+    tags: ['Next.js', 'React', 'Node.js', 'SEO'],
+    github: null,
+    live: 'https://www.debutinfotech.com/',
+  },
+  {
+    title: 'OMEX Industries Website',
+    type: 'professional',
+    logoKey: 'omex',
+    brandLabel: 'OMEX Industries',
+    period: 'May 2026 — Present',
+    status: 'Production Experience',
+    confidential: false,
+    description:
+      'Built the OMEX Industries production website from scratch, taking full engineering ownership from implementation through deployment, using Next.js, React, and Tailwind CSS.',
+    bullets: [
+      'Built the OMEX Industries website from scratch as a full-stack engineering effort, from implementation through production deployment',
+      'Implemented the frontend with Next.js, React, and Tailwind CSS',
+      'Took the site from initial build to a production-ready public website while at Debut Infotech',
+    ],
+    tags: ['Next.js', 'React', 'Tailwind CSS'],
+    github: null,
+    live: 'https://www.omexindustries.com/',
+  },
+  {
     title: 'Claude AI Evaluation (Anthropic via Alignerr)',
     type: 'professional',
     logoKey: 'claude',

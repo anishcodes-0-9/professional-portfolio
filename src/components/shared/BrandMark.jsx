@@ -124,6 +124,14 @@ const BrandMark = ({ brand, label }) => {
         <span className="brand-mark__wordmark">LexisNexis</span>
       </div>
     ),
+    // Same reasoning as DIRECTV/LexisNexis: no OMEX Industries logo asset
+    // is licensed for reuse here, so this is the real name as styled
+    // text, not a copied trademark.
+    omex: (
+      <div className="brand-mark brand-mark--wordmark" aria-label={label} title={label}>
+        <span className="brand-mark__wordmark">OMEX</span>
+      </div>
+    ),
     payments: (
       <div className="brand-mark brand-mark--payments" aria-label={label} title={label}>
         <span className="brand-mark__card" />
