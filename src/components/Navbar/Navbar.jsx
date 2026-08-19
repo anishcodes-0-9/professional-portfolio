@@ -84,19 +84,25 @@ const Navbar = () => {
           {toggle && (
             <motion.div
               id="mobile-navigation"
+              className="app__navbar-drawer"
               initial={{ x: 300 }}
               animate={{ x: 0 }}
               exit={{ x: 300 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
-              <button
-                type="button"
-                className="app__navbar-close"
-                onClick={() => setToggle(false)}
-                aria-label="Close navigation menu"
-              >
-                <X size={22} strokeWidth={2} />
-              </button>
+              <div className="app__navbar-drawer-head">
+                <a href="#home" className="logo-text" onClick={() => setToggle(false)}>
+                  AK<span className="logo-dot">.</span>
+                </a>
+                <button
+                  type="button"
+                  className="app__navbar-close"
+                  onClick={() => setToggle(false)}
+                  aria-label="Close navigation menu"
+                >
+                  <X size={22} strokeWidth={2} />
+                </button>
+              </div>
               <ul>
                 {NAV_LINKS.map((item) => (
                   <li key={item}>

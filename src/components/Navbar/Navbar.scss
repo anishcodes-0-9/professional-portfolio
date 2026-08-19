@@ -143,7 +143,7 @@
       cursor: pointer;
     }
 
-    div {
+    .app__navbar-drawer {
       position: fixed;
       top: 0;
       bottom: 0;
@@ -160,6 +160,27 @@
       border-left: 1px solid var(--card-border);
       overflow-y: auto;
 
+      .app__navbar-drawer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+
+        .logo-text {
+          display: inline-flex;
+          align-items: center;
+          font-family: var(--font-display);
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: var(--white-color);
+          text-decoration: none;
+
+          .logo-dot {
+            color: var(--secondary-color);
+          }
+        }
+      }
+
       .app__navbar-close {
         width: 44px;
         height: 44px;
@@ -172,7 +193,6 @@
         background: transparent;
         color: var(--secondary-color);
         cursor: pointer;
-        align-self: flex-end;
       }
 
       ul {
@@ -228,7 +248,7 @@
       width: 44px;
       height: 44px;
 
-      div {
+      .app__navbar-drawer {
         width: 100%;
         max-width: none;
         padding: 1rem 0.9rem;
